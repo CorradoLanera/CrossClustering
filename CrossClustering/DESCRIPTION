@@ -1,9 +1,19 @@
 Package: CrossClustering
 Type: Package
-Title: What the package does (short line)
+Title: CrossClustering: a partial clustering algorithm with automatic
+    estimation of the number of clusters and identification of outliers.
 Version: 1.0
 Date: 2014-09-04
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author@R: c(person("Paola", "Tellaroli", email = "tellaroli@@stat.unipd.it"),
+    person("Marco", "Bazzi", email = "bazzi@@stat.unipd.it"), person("Michele",
+    "Donato", email = "michele.donato@@wayne.edu"))
+Author: Paola Tellaroli, Marco Bazzi, Michele Donato
+Maintainer: Paola Tellaroli <tellaroli@stat.unipd.it>
+Description: CrossClustering is a partial clustering algorithm that combines
+    the Ward's minimum variance and Complete Linkage algorithms, providing
+    automatic estimation of a suitable number of clusters and identification of
+    outlier elements.
+License: GPL (>=3)
+URL: http://CRAN.R-project.org/package=CrossClustering
+Depends:
+    cluster
