@@ -44,6 +44,6 @@ CrossClustering<-function(d,k.w.min,k.w.max,k.c.max,out=TRUE)
   }
   return(list("Optimal.cluster"=length(cluster.list[[which.max(Sil)]]$beta.list), 
               "Cluster.list"=cluster.list[[which.max(Sil)]]$beta.list, 
-              "A.star"=cluster.list[[which.max(Sil)]]$A.star,
+ #             "A.star"=cluster.list[[which.max(Sil)]]$A.star,
               "Silhouette"=max(unlist(Sil))))
 }
