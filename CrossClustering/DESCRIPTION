@@ -1,12 +1,22 @@
 Package: CrossClustering
 Type: Package
-Title: CrossClustering: a partial clustering algorithm with automatic
-    estimation of the number of clusters and identification of outliers.
+Title: CrossClustering: a partial clustering algorithm with automatic estimation of the number of clusters and identification of outliers
 Version: 1.0
 Date: 2014-09-04
-Author@R: c(person("Paola", "Tellaroli", email = "tellaroli@stat.unipd.it"),
-    person("Marco", "Bazzi", email = "bazzi@stat.unipd.it"), person("Michele",
-    "Donato", email = "michele.donato@wayne.edu"))
+Author@R: c(
+    person("Paola"  , "Tellaroli", email = "tellaroli@stat.unipd.it",
+      role = c('cre', 'aut')
+    ),
+    person("Marco"  , "Bazzi"    , email = "bazzi@stat.unipd.it",
+      role = c('aut')
+    ),
+    person("Michele", "Donato"   , email = "michele.donato@wayne.edu",
+      role = c('aut')
+    ),
+    person("Corrado", "Lanera"   , email = "corrado.lanera@unipd.it",
+      role = c('ctb')
+    )
+  )
 Author: Paola Tellaroli, Marco Bazzi, Michele Donato
 Maintainer: Paola Tellaroli <tellaroli@stat.unipd.it>
 Description: CrossClustering is a partial clustering algorithm that combines
@@ -17,3 +27,4 @@ License: GPL (>=3)
 URL: http://CRAN.R-project.org/package=CrossClustering
 Depends:
     cluster
+RoxygenNote: 6.0.1
