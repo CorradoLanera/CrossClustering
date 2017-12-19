@@ -1,3 +1,14 @@
+#' max_proportion_function
+#'
+#' @param k
+#' @param beta.clu.ward
+#' @param beta.clu.complete
+#' @param dist
+#' @param return.list
+#'
+#' @return
+#'
+#' @examples
 max_proportion_function <- function(
   k, beta.clu.ward, beta.clu.complete, dist, return.list = FALSE
 ) {
