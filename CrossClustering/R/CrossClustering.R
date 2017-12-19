@@ -34,16 +34,16 @@
 #' toyres <- CrossClustering(d, k.w.min=2, k.w.max=5, k.c.max=6, out=TRUE)
 #'  
 #'  @author
-#'  Paola Tellaroli, \email{tellaroli@@stat.unipd.it}; Marco Bazzi, \email{bazzi@@stat.unipd.it}; Michele Donato, \email{michele.donato@@wayne.edu}
+#'  Paola Tellaroli, \email{tellaroli@stat.unipd.it}; Marco Bazzi, \email{bazzi@stat.unipd.it}; Michele Donato, \email{michele.donato@wayne.edu}
 #'  
 #'  @references
 #'  Tellaroli, P., Bazzi, M., Brazzale, A. R., Donato, M., Draghici, S. Cross Clustering: a partial clustering algorithm with automatic estimation of the number of clusters (manuscript in preparation)
 
-CrossClustering<-function(d,k.w.min,k.w.max,k.c.max,out=TRUE)
+CrossClustering<-function(d,k.w.min=2,k.w.max,k.c.max,out=TRUE)
 {
   require(cluster)
   n <- (1+sqrt(1+8*length(d)))/2
-  beta.clu.ward<- hclust(d, method="ward")
+  beta.clu.ward<- hclust(d, method="ward.D")
   beta.clu.complete<-hclust(d, method="complete")
   grid<-as.matrix(expand.grid(k.w.min:k.w.max,k.w.min:k.c.max))
   if (out==T) 

@@ -3,7 +3,7 @@
 \alias{CrossClustering}
 \title{CrossClustering: a partial clustering algorithm with automatic estimation of the number of clusters and identification of outliers}
 \usage{
-CrossClustering(d, k.w.min, k.w.max, k.c.max, out = TRUE)
+CrossClustering(d, k.w.min = 2, k.w.max, k.c.max, out = TRUE)
 }
 \arguments{
 \item{d}{a dissimilarity structure as produced by the function \code{dist}}
