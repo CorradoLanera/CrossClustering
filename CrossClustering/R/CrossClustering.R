@@ -53,8 +53,8 @@ CrossClustering <- function(d, k.w.min = 2, k.w.max, k.c.max, out = TRUE)
 {
   n <- (1 + sqrt(1 + 8 * length(d))) / 2
 
-  beta.clu.ward     <- cluster::hclust(d, method = "ward.D")
-  beta.clu.complete <- cluster::hclust(d, method = "complete")
+  beta.clu.ward     <- stats::hclust(d, method = "ward.D")
+  beta.clu.complete <- stats::hclust(d, method = "complete")
 
   grid <- as.matrix(
     expand.grid(k.w.min:k.w.max,k.w.min:k.c.max)
@@ -109,7 +109,7 @@ CrossClustering <- function(d, k.w.min = 2, k.w.max, k.c.max, out = TRUE)
   Sil <- list()
 
   for (c in seq_len(ncol(clustz))) {
-    Sil[c] <- mean(silhouette(as.numeric(clustz[, c]), dist = d)[, 3])
+    Sil[c] <- mean(cluster::silhouette(as.numeric(clustz[, c]), dist = d)[, 3])
   }
 
   if(is.null(dim(k.star))) {
