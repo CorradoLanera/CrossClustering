@@ -71,7 +71,7 @@ CrossClustering <- function(d, k.w.min = 2, k.w.max, k.c.max, out = TRUE)
   n.clu <- NULL
 
   for(i in seq_len(nrow(grid))) {
-    n.clu[i] <- max.proportion.function(grid[i, ],
+    n.clu[i] <- max_proportion_function(grid[i, ],
       beta.clu.ward     = beta.clu.ward,
       beta.clu.complete = beta.clu.complete
     )
@@ -83,14 +83,14 @@ CrossClustering <- function(d, k.w.min = 2, k.w.max, k.c.max, out = TRUE)
   k.star    <- rbind(grid[grid.star, 1:2])
 
   if(is.null(dim(k.star))){
-    cluster.list <- max.proportion.function(k.star,
+    cluster.list <- max_proportion_function(k.star,
       beta.clu.ward     = beta.clu.ward,
       beta.clu.complete = beta.clu.complete,
       return.list       = TRUE
     )
     clustz <- sapply(seq_len(n), geneinlista, cluster.list$beta.list)
   } else {
-    cluster.list <- apply(k.star, 1, max.proportion.function,
+    cluster.list <- apply(k.star, 1, max_proportion_function,
       beta.clu.ward     = beta.clu.ward,
       beta.clu.complete = beta.clu.complete,
       return.list       = TRUE
