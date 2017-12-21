@@ -2,7 +2,7 @@ library(flip)
 install.packages("pdfCluster")
 library(pdfCluster)
 
-dati=read.csv("/home/livio/Downloads/partitions.csv")
+dati=read.csv(file.choose())
 
 my.fun <- function(Y){
   adj.rand.index(Y, dati$part2)
