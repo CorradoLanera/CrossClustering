@@ -1,16 +1,54 @@
 #' max_proportion_function
 #'
-#' @param k
-#' @param beta.clu.ward
-#' @param beta.clu.complete
-#' @param dist
-#' @param return.list
+#' This function computes the consensus between Ward's minimum variance and
+#' Complete Linkage algorithms (i.e., the number of elements classified together
+#' by both algorithms) .
+#'
+#' @param k a vector containing the number of clusters for Ward and for
+#' Complete algorithms, respectively
+#' @param beta.clu.ward an object of class hclust for the Ward algorithm
+#' @param beta.clu.complete an object of class hclust for the Complete Linkage
+#'  algorithm
+#' @param return.list logical. If TRUE the list of the elements
+#' belonging to each cluster and the contingency table of the clustering are
+#' shown.
 #'
 #' @return
 #'
+#' \item{beta.list}{list of the elements belonging to each cluster}
+#' \item{A.star}{contingency table of the clustering}
+#'
 #' @examples
+#' #'
+#' ### Generate simulated data
+#' toy <- matrix(NA, nrow = 10, ncol = 7)
+#' colnames(toy) <- paste("Sample", 1:ncol(toy), sep = "")
+#' rownames(toy) <- paste("Gene"  , 1:nrow(toy), sep = "")
+#' set.seed(123)
+#'
+#' toy[, 1:2] <- rnorm(n = nrow(toy) * 2, mean = 10, sd  = 0.1)
+#' toy[, 3:4] <- rnorm(n = nrow(toy) * 2, mean = 20, sd  = 0.1)
+#' toy[, 5:6] <- rnorm(n = nrow(toy) * 2, mean = 5 , sd  = 0.1)
+#' toy[, 7  ] <- runif(n = nrow(toy)    , min  = 0 , max = 1  )
+#'
+#' ### toy is transposed as we want to cluster samples (columns of the original matrix)
+#' d <- dist(t(toy), method = "euclidean")
+#'
+#' ### Hierarchical clustering
+#' beta.clu.ward     <- stats::hclust(d, method = "ward.D")
+#' beta.clu.complete <- stats::hclust(d, method = "complete")
+#'
+#' ### max_proportion_function
+#' max_proportion_function(c(3,4), beta.clu.ward, beta.clu.complete)
+#'
+#' @author
+#' Paola Tellaroli, \email{paola.tellaroli@unipd.it}; Marco Bazzi, \email{bazzi@stat.unipd.it}; Michele Donato, \email{mdonato@stanford.edu}
+#'
+#' @references
+#' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016). Cross-Clustering: A Partial Clustering Algorithm with Automatic Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333. doi:10.1371/journal.pone.0152333
+
 max_proportion_function <- function(
-  k, beta.clu.ward, beta.clu.complete, dist, return.list = FALSE
+  k, beta.clu.ward, beta.clu.complete, return.list = FALSE
 ) {
   k.w = k[1]
   k.c = k[2]

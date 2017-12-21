@@ -47,7 +47,7 @@
 #' Paola Tellaroli, \email{tellaroli@stat.unipd.it}; Marco Bazzi, \email{bazzi@stat.unipd.it}; Michele Donato, \email{michele.donato@wayne.edu}
 #'
 #' @references
-#' Tellaroli, P., Bazzi, M., Brazzale, A. R., Donato, M., Draghici, S. Cross Clustering: a partial clustering algorithm with automatic estimation of the number of clusters (manuscript in preparation)
+#' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016). Cross-Clustering: A Partial Clustering Algorithm with Automatic Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333. doi:10.1371/journal.pone.0152333
 
 CrossClustering <- function(d, k.w.min = 2, k.w.max, k.c.max, out = TRUE)
 {
@@ -60,7 +60,7 @@ CrossClustering <- function(d, k.w.min = 2, k.w.max, k.c.max, out = TRUE)
     expand.grid(k.w.min:k.w.max,k.w.min:k.c.max)
   )
 
-  if (out == TRUE) {
+  if (out) {
     grid <- grid[grid[, 2] >  grid[, 1], ]
   } else {
     grid <- grid[grid[, 2] >= grid[, 1], ]
