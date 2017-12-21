@@ -1,13 +1,13 @@
-#' CrossClustering: a partial clustering algorithm with automatic estimation of the number of clusters and identification of outliers
+#' CrossClusteringSingle: a partial clustering algorithm with automatic estimation of the number of clusters and identification of outliers for finding elongated clusters
 #'
-#' This function performs the CrossClustering algorithm. This method combines the Ward's minimum variance and Complete-linkage algorithms, providing automatic estimation of a suitable number of clusters and identification of outlier elements.
+#' This function performs a modified CrossClustering algorithm, tailored to identify elongated clusters. This method combines the Ward's minimum variance and Single-linkage algorithms, providing automatic estimation of a suitable number of elongated clusters and identification of outlier elements.
 #'
 #' @param d a dissimilarity structure as produced by the function \code{dist}
 #' @param k.w.min minimum number of clusters for the Ward's minimum variance
 #'   method. By default is set equal 2
 #' @param k.w.max maximum number of clusters for the Ward's minimum variance
 #'   method (see details)
-#' @param k.c.max maximum number of clusters for the Complete-linkage method.
+#' @param k.s.max maximum number of clusters for the Single-linkage method.
 #'   It can not be equal or greater than the number of elements to cluster (see
 #'   details)
 #' @param out logical. If \code{TRUE} (default) outliers must be searched (see
@@ -26,38 +26,36 @@
 #' @details See cited document for more details.
 #' @examples
 #'
-#' ### Generate simulated data
-#' toy <- matrix(NA, nrow = 10, ncol = 7)
-#' colnames(toy) <- paste("Sample", 1:ncol(toy), sep = "")
-#' rownames(toy) <- paste("Gene"  , 1:nrow(toy), sep = "")
-#' set.seed(123)
+#' ### Example on a famous shape data set
+#' data(twomoons)
+#' plot(twomoons, pch = 19, col = "cornflowerblue")
+#' d <- dist(twomoons, method = "euclidean")
+#' CCmoons <- CrossClusteringSingle(d,k.w.max=9,k.s.max=10)
 #'
-#' toy[, 1:2] <- rnorm(n = nrow(toy) * 2, mean = 10, sd  = 0.1)
-#' toy[, 3:4] <- rnorm(n = nrow(toy) * 2, mean = 20, sd  = 0.1)
-#' toy[, 5:6] <- rnorm(n = nrow(toy) * 2, mean = 5 , sd  = 0.1)
-#' toy[, 7  ] <- runif(n = nrow(toy)    , min  = 0 , max = 1  )
+#' my_col <- sapply(1:dim(twomoons)[1], geneinlista, CCmoons$Cluster.list)
+#' my_col[my_col=="integer(0)"] <- 0
+#' my_col <- unlist(my_col)
+#' my_col <- my_col + 1
+
+#' plot(twomoons, pch=19, col=my_col, main="CrossClusteringSingle",
+#' xlab="",ylab="", cex.main=1)
 #'
-#' ### toy is transposed as we want to cluster samples (columns of the original matrix)
-#' d <- dist(t(toy), method = "euclidean")
-#'
-#' ### Run CrossClustering
-#' toyres <- CrossClustering(d, k.w.min = 2, k.w.max = 5, k.c.max = 6, out = TRUE)
 #'
 #' @author
 #' Paola Tellaroli, \email{paola.tellaroli@unipd.it}; Marco Bazzi, \email{bazzi@stat.unipd.it}; Michele Donato, \email{mdonato@stanford.edu}
 #'
 #' @references
-#' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016). Cross-Clustering: A Partial Clustering Algorithm with Automatic Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333. doi:10.1371/journal.pone.0152333
+#' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2017). E1829: Cross-Clustering: A Partial Clustering Algorithm with Automatic Estimation of the Number of Clusters. CMStatistics 2017, London 16-18 December, Book of Abstracts (ISBN 978-9963-2227-4-2)
 
-CrossClustering <- function(d, k.w.min = 2, k.w.max, k.c.max, out = TRUE)
+CrossClusteringSingle <- function(d, k.w.min = 2, k.w.max, k.s.max, out = TRUE)
 {
   n <- (1 + sqrt(1 + 8 * length(d))) / 2
 
   beta.clu.ward     <- stats::hclust(d, method = "ward.D")
-  beta.clu.complete <- stats::hclust(d, method = "complete")
+  beta.clu.single <- stats::hclust(d, method = "single")
 
-  grid <- as.matrix(
-    expand.grid(k.w.min:k.w.max,k.w.min:k.c.max)
+    grid <- as.matrix(
+    expand.grid(k.w.min:k.w.max,k.w.min:k.s.max)
   )
 
   if (out) {
@@ -66,14 +64,14 @@ CrossClustering <- function(d, k.w.min = 2, k.w.max, k.c.max, out = TRUE)
     grid <- grid[grid[, 2] >= grid[, 1], ]
   }
   grid <- cbind(grid, 0)
-  colnames(grid) <- c("Ward", "Complete", "N. classified")
+  colnames(grid) <- c("Ward", "Single", "N. classified")
 
   n.clu <- NULL
 
   for(i in seq_len(nrow(grid))) {
     n.clu[i] <- max_proportion_function(grid[i, ],
-      beta.clu.ward     = beta.clu.ward,
-      beta.clu.complete = beta.clu.complete
+                                        beta.clu.ward     = beta.clu.ward,
+                                        beta.clu.complete = beta.clu.single
     )
   }
 
@@ -84,19 +82,19 @@ CrossClustering <- function(d, k.w.min = 2, k.w.max, k.c.max, out = TRUE)
 
   if(is.null(dim(k.star))){
     cluster.list <- max_proportion_function(k.star,
-      beta.clu.ward     = beta.clu.ward,
-      beta.clu.complete = beta.clu.complete,
-      return.list       = TRUE
+                                            beta.clu.ward     = beta.clu.ward,
+                                            beta.clu.complete = beta.clu.single,
+                                            return.list       = TRUE
     )
     clustz <- sapply(seq_len(n), geneinlista, cluster.list$beta.list)
   } else {
     cluster.list <- apply(k.star, 1, max_proportion_function,
-      beta.clu.ward     = beta.clu.ward,
-      beta.clu.complete = beta.clu.complete,
-      return.list       = TRUE
+                          beta.clu.ward     = beta.clu.ward,
+                          beta.clu.complete = beta.clu.single,
+                          return.list       = TRUE
     )
     clustz <- sapply(cluster.list,
-      function(lasim) sapply(seq_len(n), geneinlista, lista = lasim$beta.list)
+                     function(lasim) sapply(seq_len(n), geneinlista, lista = lasim$beta.list)
     )
   }
 
@@ -121,9 +119,12 @@ CrossClustering <- function(d, k.w.min = 2, k.w.max, k.c.max, out = TRUE)
   Cluster.list <- cluster.list[[which.max(Sil)]]$beta.list
   n.clustered  <- length(unlist(Cluster.list))
 
+  k.c.max <- k.s.max
+  beta.clu.complete <- beta.clu.single
+
   list("Optimal.cluster" = length(cluster.list[[which.max(Sil)]]$beta.list),
        "Cluster.list"    = Cluster.list,
- #       "A.star"          = cluster.list[[which.max(Sil)]]$A.star,
+       #       "A.star"          = cluster.list[[which.max(Sil)]]$A.star,
        "Silhouette"      = max(unlist(Sil)),
        "n.total"         = n,
        "n.clustered"     = n.clustered)

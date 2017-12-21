@@ -1,14 +1,14 @@
 #' max_proportion_function
 #'
 #' This function computes the consensus between Ward's minimum variance and
-#' Complete Linkage algorithms (i.e., the number of elements classified together
-#' by both algorithms) .
+#' Complete-linkage (or Single-linkage) algorithms (i.e., the number of elements
+#' classified together by both algorithms) .
 #'
 #' @param k a vector containing the number of clusters for Ward and for
-#' Complete algorithms, respectively
+#' Complete-linkage (or Single-linkage) algorithms, respectively
 #' @param beta.clu.ward an object of class hclust for the Ward algorithm
-#' @param beta.clu.complete an object of class hclust for the Complete Linkage
-#'  algorithm
+#' @param beta.clu.complete an object of class hclust for the Complete-linkage
+#'  (or Single-linkage) algorithm
 #' @param return.list logical. If TRUE the list of the elements
 #' belonging to each cluster and the contingency table of the clustering are
 #' shown.
@@ -45,7 +45,7 @@
 #' Paola Tellaroli, \email{paola.tellaroli@unipd.it}; Marco Bazzi, \email{bazzi@stat.unipd.it}; Michele Donato, \email{mdonato@stanford.edu}
 #'
 #' @references
-#' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016). Cross-Clustering: A Partial Clustering Algorithm with Automatic Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333. doi:10.1371/journal.pone.0152333
+#' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016). Cross-Clustering: A Partial Clustering Algorithm with Automatic Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333. doi:10.1371/journal.pone.0152333
 
 max_proportion_function <- function(
   k, beta.clu.ward, beta.clu.complete, return.list = FALSE
