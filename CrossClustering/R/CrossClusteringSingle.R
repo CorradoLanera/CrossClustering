@@ -29,8 +29,8 @@
 #' ### Example on a famous shape data set
 #' ### Two moons data
 #' data(twomoons)
-#' plot(twomoons[,1:2], pch = 19, col = "cornflowerblue")
-#' d <- dist(twomoons[,1:2], method = "euclidean")
+#' plot(twomoons, pch = 19, col = "cornflowerblue")
+#' d <- dist(twomoons, method = "euclidean")
 #' CCmoons <- CrossClusteringSingle(d,k.w.max=9,k.s.max=10)
 #'
 #' my_col <- sapply(1:dim(twomoons)[1], geneinlista, CCmoons$Cluster.list)
@@ -40,7 +40,7 @@
 #' plot(twomoons, pch=19, col=my_col, main="CrossClusteringSingle",
 #' xlab="",ylab="", cex.main=1)
 
-#' ### Two moons data
+#' ### Worms data
 #' data(worms)
 #' plot(worms, pch = 19, col = "cornflowerblue")
 #' d <- dist(worms, method = "euclidean")
