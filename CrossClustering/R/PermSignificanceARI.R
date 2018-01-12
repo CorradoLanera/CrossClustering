@@ -21,7 +21,7 @@
 #' CCmoons_clusters[CCmoons_clusters == "integer(0)"] <- 0
 #' CCmoons_clusters <- unlist(CCmoons_clusters) + 1
 #'
-#' significanceAdjRandIndex(twomoons[,3], CCmoons_clusters)
+#' PermSignificanceARI(twomoons[,3], CCmoons_clusters)
 #'
 #' @author
 #' Paola Tellaroli, \email{paola.tellaroli@unipd.it}; Livio Finos, \email{livioATstatDOTunipdDOTit}
