@@ -37,11 +37,13 @@
 #' toy[, 5:6] <- rnorm(n = nrow(toy) * 2, mean = 5 , sd  = 0.1)
 #' toy[, 7  ] <- runif(n = nrow(toy)    , min  = 0 , max = 1  )
 #'
-#' ### toy is transposed as we want to cluster samples (columns of the original matrix)
+#' ### toy is transposed as we want to cluster samples (columns of the original
+#' matrix)
 #' d <- dist(t(toy), method = "euclidean")
 #'
 #' ### Run CrossClustering
-#' toyres <- CrossClustering(d, k.w.min = 2, k.w.max = 5, k.c.max = 6, out = TRUE)
+#' toyres <- CrossClustering(d, k.w.min = 2, k.w.max = 5, k.c.max = 6,
+#' out = TRUE)
 #'
 #' @author
 #' Paola Tellaroli, \email{paola.tellaroli@unipd.it}; Marco Bazzi, \email{bazzi@stat.unipd.it}; Michele Donato, \email{mdonato@stanford.edu}
