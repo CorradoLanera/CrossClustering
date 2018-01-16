@@ -5,21 +5,20 @@
 #' classified together by both algorithms) .
 #'
 #' @param k a vector containing the number of clusters for Ward and for
-#' Complete-linkage (or Single-linkage) algorithms, respectively
+#'        Complete-linkage (or Single-linkage) algorithms, respectively
 #' @param beta.clu.ward an object of class hclust for the Ward algorithm
 #' @param beta.clu.complete an object of class hclust for the Complete-linkage
-#'  (or Single-linkage) algorithm
-#' @param return.list logical. If TRUE the list of the elements
-#' belonging to each cluster and the contingency table of the clustering are
-#' shown.
+#'        (or Single-linkage) algorithm
+#' @param return.list logical. If TRUE the list of the elements belonging to
+#'        each cluster and the contingency table of the clustering are shown.
 #'
-#' @return
+#' @return !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #'
 #' \item{beta.list}{list of the elements belonging to each cluster}
 #' \item{A.star}{contingency table of the clustering}
 #'
 #' @examples
-#' #'
+#'
 #' ### Generate simulated data
 #' toy <- matrix(NA, nrow = 10, ncol = 7)
 #' colnames(toy) <- paste("Sample", 1:ncol(toy), sep = "")
@@ -29,9 +28,10 @@
 #' toy[, 1:2] <- rnorm(n = nrow(toy) * 2, mean = 10, sd  = 0.1)
 #' toy[, 3:4] <- rnorm(n = nrow(toy) * 2, mean = 20, sd  = 0.1)
 #' toy[, 5:6] <- rnorm(n = nrow(toy) * 2, mean = 5 , sd  = 0.1)
-#' toy[, 7  ] <- runif(n = nrow(toy)    , min  = 0 , max = 1  )
+#' toy[,   7] <- runif(n = nrow(toy)    , min  = 0 , max = 1  )
 #'
-#' ### toy is transposed as we want to cluster samples (columns of the original matrix)
+#' ### toy is transposed as we want to cluster samples (columns of the original
+#' ### matrix)
 #' d <- dist(t(toy), method = "euclidean")
 #'
 #' ### Hierarchical clustering
@@ -42,10 +42,15 @@
 #' max_proportion_function(c(3,4), beta.clu.ward, beta.clu.complete)
 #'
 #' @author
-#' Paola Tellaroli, \email{paola.tellaroli@unipd.it}; Marco Bazzi, \email{bazzi@stat.unipd.it}; Michele Donato, \email{mdonato@stanford.edu}
+#' Paola Tellaroli, \email{paola.tellaroli@unipd.it};
+#' Marco Bazzi, \email{bazzi@stat.unipd.it};
+#' Michele Donato, \email{mdonato@stanford.edu}.
 #'
 #' @references
-#' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016). Cross-Clustering: A Partial Clustering Algorithm with Automatic Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333. doi:10.1371/journal.pone.0152333
+#' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016).
+#' Cross-Clustering: A Partial Clustering Algorithm with Automatic Estimation
+#' of the Number of Clusters. PLoS ONE 11(3):   e0152333.
+#' doi:10.1371/journal.pone.0152333
 
 max_proportion_function <- function(
   k, beta.clu.ward, beta.clu.complete, return.list = FALSE
@@ -58,19 +63,19 @@ max_proportion_function <- function(
   A <- table(tree.ward, tree.complete)
   A.star <- diag(0, k.w)
 
-  if(return.list == TRUE) {
-    beta.list <- list()
+  if(return.list) {
+    beta.list <- vector('list', length = length(k.w))
   }
 
-  i = 1
+  # i <- 1
   for(i in seq_len(k.w)) {
     A.star[i, i] <- max(A)
     A.max        <- which(A == max(A), arr.ind = TRUE)[1, ]
     r.max        <- A.max[1]
     c.max        <- A.max[2]
 
-    if(return.list == TRUE) {
-      beta.list[[i]] <- (seq_len(N))[(tree.ward == r.max) &
+    if(return.list) {
+      beta.list[[i]] <- (seq_len(N))[(tree.ward     == r.max) &
                                      (tree.complete == c.max)
                         ]
     }
@@ -81,14 +86,14 @@ max_proportion_function <- function(
   while (A.star[nrow(A.star), ncol(A.star)] == 0) {
     A.star <- A.star[-(nrow(A.star)), -(ncol(A.star))]
 
-    if(return.list == TRUE) {
+    if(return.list) {
       beta.list <- beta.list[-length(beta.list)]
     }
 
     if(is.null(dim(A.star))) break
   }
 
-  if(return.list == TRUE) {
+  if(return.list) {
     return(list("beta.list" = beta.list, "A.star" = A.star))
   }
 
