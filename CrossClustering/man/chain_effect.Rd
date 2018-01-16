@@ -3,24 +3,18 @@
 \docType{data}
 \name{chain_effect}
 \alias{chain_effect}
-\title{TITLE}
-\format{A data frame with 423 rows and 6 variables:
+\title{chain_effect: a toy dataset for illustrating the chain effect.}
+\format{A data frame with 28 rows and 2 variables:
 
 \describe{
-   \item{\code{final}}{integer} gold standard classification: 1 is positive
+   \item{\code{X}}{num} x coordinates
      0 is negative.
-   \item{\code{id}}{integer} ID code as retrieved from pubmed.
-   \item{\code{title}}{character} Title of the record retrieved from pubmed.
-   \item{\code{year}}{integer} Year of the record retrieved from pubmed.
-   \item{\code{authors}}{character} Authors of the record retrieved from
-     pubmed.
-   \item{\code{Abstract}}{character} Abstract of the record retrieved from
-     pubmed.
-}}
+   \item{\code{Y}}{num} y coordinates.
+   }}
 \usage{
 chain_effect
 }
 \description{
-DESCRIPTION
+chain_effect: a toy dataset for illustrating the chain effect.
 }
 \keyword{datasets}

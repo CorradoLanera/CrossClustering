@@ -2,7 +2,8 @@
 % Please edit documentation in R/CrossClustering.R
 \name{CrossClustering}
 \alias{CrossClustering}
-\title{CrossClustering: a partial clustering algorithm with automatic estimation of the number of clusters and identification of outliers}
+\title{CrossClustering: a partial clustering algorithm with automatic estimation of
+the number of clusters and identification of outliers}
 \usage{
 CrossClustering(d, k.w.min = 2, k.w.max, k.c.max, out = TRUE)
 }
@@ -43,6 +44,7 @@ outlier elements.
 See cited document for more details.
 }
 \examples{
+library(CrossClustering)
 
 ### Generate simulated data
 toy <- matrix(NA, nrow = 10, ncol = 7)
@@ -56,7 +58,7 @@ toy[, 5:6] <- rnorm(n = nrow(toy) * 2, mean = 5 , sd  = 0.1)
 toy[,   7] <- runif(n = nrow(toy)    , min  = 0 , max = 1  )
 
 ### toy is transposed as we want to cluster samples (columns of the original
-matrix)
+### matrix)
 d <- dist(t(toy), method = "euclidean")
 
 ### Run CrossClustering
@@ -71,7 +73,7 @@ the Number of Clusters. PLoS ONE 11(3):   e0152333.
 doi:10.1371/journal.pone.0152333
 }
 \author{
-Paola Tellaroli, \email{paola.tellaroli@unipd.it};
-Marco Bazzi, \email{bazzi@stat.unipd.it};
-Michele Donato, \email{mdonato@stanford.edu}
+Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
+Marco Bazzi, <bazzi [at] stat [dot] unipd [dot] it>;
+Michele Donato, <mdonato [at] stanford [dot] edu>
 }

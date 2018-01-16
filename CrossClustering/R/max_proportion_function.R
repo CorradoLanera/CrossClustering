@@ -18,6 +18,7 @@
 #'
 #'
 #' @examples
+#' library(CrossClustering)
 #'
 #' ### Generate simulated data
 #' toy <- matrix(NA, nrow = 10, ncol = 7)
@@ -35,11 +36,14 @@
 #' d <- dist(t(toy), method = "euclidean")
 #'
 #' ### Hierarchical clustering
-#' beta.clu.ward     <- stats::hclust(d, method = "ward.D")
-#' beta.clu.complete <- stats::hclust(d, method = "complete")
+#' beta.clu.ward     <- hclust(d, method = "ward.D")
+#' beta.clu.complete <- hclust(d, method = "complete")
 #'
 #' ### max_proportion_function
-#' max_proportion_function(c(3,4), beta.clu.ward, beta.clu.complete)
+#' CrossClustering:::max_proportion_function(c(3, 4),
+#'   beta.clu.ward,
+#'   beta.clu.complete
+#' )
 #'
 #' @author
 #' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
@@ -57,8 +61,8 @@ max_proportion_function <- function(
 ) {
   k.w = k[1]
   k.c = k[2]
-  tree.ward     <- stats::cutree(beta.clu.ward    , k = k.w)
-  tree.complete <- stats::cutree(beta.clu.complete, k = k.c)
+  tree.ward     <- cutree(beta.clu.ward    , k = k.w)
+  tree.complete <- cutree(beta.clu.complete, k = k.c)
   N <- sum(tree.ward * 0 + 1)
   A <- table(tree.ward, tree.complete)
   A.star <- diag(0, k.w)

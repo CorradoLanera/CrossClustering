@@ -14,16 +14,18 @@
 #'
 #'
 #' @examples
+#' library(CrossClustering)
+#'
 #' ### Two moons data
 #' data(twomoons)
 #' d <- dist(twomoons[,1:2], method = "euclidean")
 #' CCmoons <- CrossClusteringSingle(d,k.w.max=9,k.s.max=10)
-#' CCmoons_clusters <- sapply(1:dim(twomoons)[1], geneinlista,
+#' CCmoons_clusters <- sapply(1:dim(twomoons)[1], CrossClustering:::geneinlista,
 #' CCmoons$Cluster.list)
 #' CCmoons_clusters[CCmoons_clusters == "integer(0)"] <- 0
 #' CCmoons_clusters <- unlist(CCmoons_clusters) + 1
 #'
-#' SignificanceARI(twomoons[,3], CCmoons_clusters)
+#' CrossClustering:::SignificanceARI(twomoons[,3], CCmoons_clusters)
 #'
 #' @author
 #' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;

@@ -1,35 +1,35 @@
 Package: CrossClustering
 Type: Package
-Title: CrossClustering: a partial clustering algorithm with automatic estimation of the number of clusters and identification of outliers
+Title: A partial clustering algorithm with automatic estimation of the number of
+       clusters and identification of outliers
 Version: 1.0
 Date: 2014-09-04
-Author@R: c(
+Authors@R: c(
     person("Paola"  , "Tellaroli",
       email = "paola [dot] tellaroli [at] unipd [dot] it",
       role  = c('cre', 'aut')
     ),
     person("Marco"  , "Bazzi",
       email = "bazzi [at] stat [dot] unipd [dot] it",
-      role  = c('aut')
+      role  = 'aut'
     ),
     person("Michele", "Donato",
       email = "mdonato [at] stanford [dot] edu",
-      role  = c('aut')
+      role  = 'aut'
     ),
     person("Livio", "Finos",
       email = "livio [dot] finos [at] unipd [dot] it",
-      role  = c('aut')
+      role  = 'aut'
     ),
     person("Philippe", "Courcoux",
       email = "philippe [dot] courcoux [at] oniris-nantes [dot] fr",
-      role  = c('aut')
+      role  = 'aut'
     ),
     person("Corrado", "Lanera",
       email = "corrado [dot] lanera [at] unipd [dot] it",
-      role  = c('ctb')
+      role  = 'ctb'
     )
   )
-Author: Paola Tellaroli, Marco Bazzi, Michele Donato
 Maintainer: Paola Tellaroli <paola.tellaroli@unipd.it>
 Description: CrossClustering is a partial clustering algorithm that combines
     the Ward's minimum variance and Complete Linkage algorithms, providing
@@ -38,7 +38,7 @@ Description: CrossClustering is a partial clustering algorithm that combines
 License: GPL (>=3)
 URL: http://CRAN.R-project.org/package=CrossClustering
 RoxygenNote: 6.0.1
+Depends: R (>= 3.4.3)
 Imports: cluster,
-    stats,
-    mcclust,
+    mclust,
     flip

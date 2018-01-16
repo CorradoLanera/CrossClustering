@@ -2,7 +2,9 @@
 % Please edit documentation in R/PermSignificanceARI.R
 \name{PermSignificanceARI}
 \alias{PermSignificanceARI}
-\title{PermSignificanceARI}
+\title{PermSignificanceARI: a permutation test for testing the null hypothesis of
+random agreement (i.e., adjusted Rand Index equal to 0) between
+two partitions.}
 \usage{
 PermSignificanceARI(ground_truth, partition)
 }
@@ -16,7 +18,7 @@ PermSignificanceARI(ground_truth, partition)
 \item{p-value}{the p-value of the test}
 }
 \description{
-This function performs a permutation test for testing the null hypothesis of
+PermSignificanceARI: a permutation test for testing the null hypothesis of
 random agreement (i.e., adjusted Rand Index equal to 0) between
 two partitions.
 }
@@ -25,12 +27,12 @@ two partitions.
 data(twomoons)
 d <- dist(twomoons[,1:2], method = "euclidean")
 CCmoons <- CrossClusteringSingle(d,k.w.max=9,k.s.max=10)
-CCmoons_clusters <- sapply(1:dim(twomoons)[1], geneinlista,
+CCmoons_clusters <- sapply(1:dim(twomoons)[1], CrossClustering:::geneinlista,
 CCmoons$Cluster.list)
 CCmoons_clusters[CCmoons_clusters == "integer(0)"] <- 0
 CCmoons_clusters <- unlist(CCmoons_clusters) + 1
 
-PermSignificanceARI(twomoons[,3], CCmoons_clusters)
+CrossClustering:::PermSignificanceARI(twomoons[,3], CCmoons_clusters)
 
 }
 \references{
@@ -42,6 +44,6 @@ L. Hubert and P. Arabie (1985) Comparing partitions, Journal of
 Classification, 2, 193-218.
 }
 \author{
-Paola Tellaroli, \email{paola.tellaroli@unipd.it};
-Livio Finos, \email{livioATstatDOTunipdDOTit}
+Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;
+Livio Finos, <livio [dot] finos [at] unipd [dot] it>
 }

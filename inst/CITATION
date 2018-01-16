@@ -1,0 +1,25 @@
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "Manual",
+    title  = "CrossClustering: a partial clustering algorithm with automatic
+           estimation of the number of clusters and identification of
+           outliers.",
+    author = c(
+      person("Paola"   , "Tellaroli"),
+      person("Marco"   , "Bazzi"    ),
+      person("Michele" , "Donato"   ),
+      person("Livio"   , "Finos"    ),
+      person("Philippe", "Courcoux" ),
+      person("Corrado" , "Lanera"   )
+    ),
+    year   = year,
+    note   = note,
+    url    = "http://CRAN.R-project.org/package=CrossClustering",
+    textVersion = paste0(
+    "Plain text citation: \n\n\n",
+
+    "Paola Tellaroli and Marco Bazzi and Michele Donato, (", year,"),
+    CrossClustering: a partial clustering algorithm with automatic estimation of
+    the number of clusters and identification of outliers.")
+)

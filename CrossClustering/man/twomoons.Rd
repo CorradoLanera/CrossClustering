@@ -3,24 +3,20 @@
 \docType{data}
 \name{twomoons}
 \alias{twomoons}
-\title{TITLE}
-\format{A data frame with 423 rows and 6 variables:
+\title{twomoons:}
+\format{A data frame with 52 rows and 3 variables:
 
 \describe{
-   \item{\code{final}}{integer} gold standard classification: 1 is positive
-     0 is negative.
-   \item{\code{id}}{integer} ID code as retrieved from pubmed.
-   \item{\code{title}}{character} Title of the record retrieved from pubmed.
-   \item{\code{year}}{integer} Year of the record retrieved from pubmed.
-   \item{\code{authors}}{character} Authors of the record retrieved from
-     pubmed.
-   \item{\code{Abstract}}{character} Abstract of the record retrieved from
-     pubmed.
+   \item{\code{x}}{num} x coordinates
+   \item{\code{y}}{num} y coordinates.
+   \item{\code{clusters}}{integer} cluster membership (outliers classified as
+                                   3rd cluster).
 }}
 \usage{
 twomoons
 }
 \description{
-DESCRIPTION
+A famous shape data set containing two clusters with two moons shapes and
+outliers
 }
 \keyword{datasets}

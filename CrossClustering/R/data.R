@@ -1,7 +1,4 @@
-#' TITLE
 #' chain_effect: a toy dataset for illustrating the chain effect.
-#'
-#' DESCRIPTION
 #'
 #' @format A data frame with 28 rows and 2 variables:
 #'
@@ -13,31 +10,34 @@
 #'
 "chain_effect"
 
-#' TITLE
-#'twomoons: a famous shape data set containing two clusters with two moons shapes and outliers
-#' DESCRIPTION
+#'twomoons:
+#'
+#' A famous shape data set containing two clusters with two moons shapes and
+#' outliers
 #'
 #' @format A data frame with 52 rows and 3 variables:
 #'
 #' \describe{
 #'    \item{\code{x}}{num} x coordinates
 #'    \item{\code{y}}{num} y coordinates.
-#'    \item{\code{clusters}}{integer} cluster membership (outliers classified as 3rd cluster).
+#'    \item{\code{clusters}}{integer} cluster membership (outliers classified as
+#'                                    3rd cluster).
 #' }
 #'
 "twomoons"
 
 
-#' TITLE
-#' worms: a famous shape data set containing two clusters with two worms shapes and outliers
-#' DESCRIPTION
+#' worms
+#' A famous shape data set containing two clusters with two worms shapes and
+#' outliers
 #'
 #' @format A data frame with 87 rows and 3 variables:
 #'
 #' \describe{
 #'    \item{\code{x}}{num} x coordinates
 #'    \item{\code{y}}{num} y coordinates.
-#'    \item{\code{clusters}}{integer} cluster membership (outliers classified as 3rd cluster).
+#'    \item{\code{c}}{integer} cluster membership (outliers classified as 3rd
+#'                             cluster).
 #' }
 #'
 "worms"

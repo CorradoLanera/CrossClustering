@@ -14,15 +14,15 @@
 #' data(twomoons)
 #' d <- dist(twomoons[,1:2], method = "euclidean")
 #' CCmoons <- CrossClusteringSingle(d,k.w.max=9,k.s.max=10)
-#' CCmoons_clusters <- sapply(1:dim(twomoons)[1], geneinlista,
+#' CCmoons_clusters <- sapply(1:dim(twomoons)[1], CrossClustering:::geneinlista,
 #' CCmoons$Cluster.list)
 #' CCmoons_clusters[CCmoons_clusters == "integer(0)"] <- 0
 #' CCmoons_clusters <- unlist(CCmoons_clusters) + 1
 #'
-#' PermSignificanceARI(twomoons[,3], CCmoons_clusters)
+#' CrossClustering:::PermSignificanceARI(twomoons[,3], CCmoons_clusters)
 #'
 #' @author
-#' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
+#' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;
 #' Livio Finos, <livio [dot] finos [at] unipd [dot] it>
 #'
 #' @references
@@ -38,8 +38,6 @@ PermSignificanceARI <- function(ground_truth, partition) {
     mclust::adjustedRandIndex(ground_truth, partition)
   }
 
-  flip::flip(Y = matrix(ground_truth), X = matrix(partition),
-    statTest = my_fun, data = dati
-  )
+  flip::flip(Y = matrix(ground_truth), X = matrix(partition), statTest = my_fun)
 }
 

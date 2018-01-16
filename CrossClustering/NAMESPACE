@@ -2,3 +2,6 @@
 
 export(CrossClustering)
 export(CrossClusteringSingle)
+importFrom(stats,cutree)
+importFrom(stats,hclust)
+importFrom(stats,pnorm)

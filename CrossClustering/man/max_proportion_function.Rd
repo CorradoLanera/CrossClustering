@@ -2,7 +2,9 @@
 % Please edit documentation in R/max_proportion_function.R
 \name{max_proportion_function}
 \alias{max_proportion_function}
-\title{max_proportion_function}
+\title{max_proportion_function: computes the consensus between Ward's minimum variance and
+Complete-linkage (or Single-linkage) algorithms (i.e., the number of elements
+classified together by both algorithms) .}
 \usage{
 max_proportion_function(k, beta.clu.ward, beta.clu.complete,
   return.list = FALSE)
@@ -27,11 +29,12 @@ If return.list is FALSE (default) the number of elements classified.
 \item{A.star}{contingency table of the clustering}.
 }
 \description{
-This function computes the consensus between Ward's minimum variance and
+max_proportion_function: computes the consensus between Ward's minimum variance and
 Complete-linkage (or Single-linkage) algorithms (i.e., the number of elements
 classified together by both algorithms) .
 }
 \examples{
+library(CrossClustering)
 
 ### Generate simulated data
 toy <- matrix(NA, nrow = 10, ncol = 7)
@@ -49,11 +52,14 @@ toy[,   7] <- runif(n = nrow(toy)    , min  = 0 , max = 1  )
 d <- dist(t(toy), method = "euclidean")
 
 ### Hierarchical clustering
-beta.clu.ward     <- stats::hclust(d, method = "ward.D")
-beta.clu.complete <- stats::hclust(d, method = "complete")
+beta.clu.ward     <- hclust(d, method = "ward.D")
+beta.clu.complete <- hclust(d, method = "complete")
 
 ### max_proportion_function
-max_proportion_function(c(3,4), beta.clu.ward, beta.clu.complete)
+CrossClustering:::max_proportion_function(c(3, 4),
+  beta.clu.ward,
+  beta.clu.complete
+)
 
 }
 \references{
@@ -63,7 +69,7 @@ of the Number of Clusters. PLoS ONE 11(3):   e0152333.
 doi:10.1371/journal.pone.0152333
 }
 \author{
-Paola Tellaroli, \email{paola.tellaroli@unipd.it};
-Marco Bazzi, \email{bazzi@stat.unipd.it};
-Michele Donato, \email{mdonato@stanford.edu}.
+Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
+Marco Bazzi, <bazzi [at] stat [dot] unipd [dot] it>;
+Michele Donato, <mdonato [at] stanford [dot] edu>.
 }

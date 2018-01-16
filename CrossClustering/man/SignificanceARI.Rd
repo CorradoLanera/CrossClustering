@@ -2,7 +2,8 @@
 % Please edit documentation in R/SignificanceARI.R
 \name{SignificanceARI}
 \alias{SignificanceARI}
-\title{SignificanceARI}
+\title{SignificanceARI: a test for testing the null hypothesis of random
+agreement (i.e., adjusted Rand Index equal to 0) between two partitions.}
 \usage{
 SignificanceARI(ground_truth, partition)
 }
@@ -20,20 +21,22 @@ SignificanceARI(ground_truth, partition)
 \item{p-value}{the p-value of the test}
 }
 \description{
-This function performs a test for testing the null hypothesis of random
+SignificanceARI: a test for testing the null hypothesis of random
 agreement (i.e., adjusted Rand Index equal to 0) between two partitions.
 }
 \examples{
+library(CrossClustering)
+
 ### Two moons data
 data(twomoons)
 d <- dist(twomoons[,1:2], method = "euclidean")
 CCmoons <- CrossClusteringSingle(d,k.w.max=9,k.s.max=10)
-CCmoons_clusters <- sapply(1:dim(twomoons)[1], geneinlista,
+CCmoons_clusters <- sapply(1:dim(twomoons)[1], CrossClustering:::geneinlista,
 CCmoons$Cluster.list)
 CCmoons_clusters[CCmoons_clusters == "integer(0)"] <- 0
 CCmoons_clusters <- unlist(CCmoons_clusters) + 1
 
-SignificanceARI(twomoons[,3], CCmoons_clusters)
+CrossClustering:::SignificanceARI(twomoons[,3], CCmoons_clusters)
 
 }
 \references{
@@ -46,5 +49,5 @@ Classification, 2, 193-218.
 }
 \author{
 Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;
-Philippe Courcoux, \email{philippe.courcoux@oniris-nantes.fr}
+Philippe Courcoux, <philippe [dot] courcoux [at] oniris-nantes [dot] fr>
 }

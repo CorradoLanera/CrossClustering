@@ -43,6 +43,7 @@ number of elongated clusters and identification of outlier elements.
 See cited document for more details.
 }
 \examples{
+library(CrossClustering)
 
 ### Example on a famous shape data set
 ### Two moons data
@@ -51,7 +52,7 @@ plot(twomoons[, 1:2], pch = 19, col = "cornflowerblue")
 d <- dist(twomoons[, 1:2], method = "euclidean")
 CCmoons <- CrossClusteringSingle(d, k.w.max = 9, k.s.max = 10)
 
-my_col <- sapply(1:dim(twomoons)[1], geneinlista,
+my_col <- sapply(1:dim(twomoons)[1], CrossClustering:::geneinlista,
   lista = CCmoons$Cluster.list
 )
 my_col[my_col == "integer(0)"] <- 0
@@ -66,7 +67,9 @@ plot(worms[, 1:2], pch = 19, col = "cornflowerblue")
 d <- dist(worms[, 1:2], method = "euclidean")
 CCworms <- CrossClusteringSingle(d, k.w.max = 9, k.s.max = 10)
 
-my_col <- sapply(1:dim(worms)[1], geneinlista, lista = CCworms$Cluster.list)
+my_col <- sapply(1:dim(worms)[1], CrossClustering:::geneinlista,
+  lista = CCworms$Cluster.list
+)
 my_col[my_col == "integer(0)"] <- 0
 my_col <- unlist(my_col)
 my_col <- my_col + 1
@@ -80,7 +83,7 @@ plot(chain_effect, pch = 19, col = "cornflowerblue")
 d <- dist(chain_effect, method = "euclidean")
 CCchain_effect <- CrossClusteringSingle(d, k.w.max = 9, k.s.max = 10)
 
-my_col <- sapply(1:dim(chain_effect)[1], geneinlista,
+my_col <- sapply(1:dim(chain_effect)[1], CrossClustering:::geneinlista,
   lista = CCchain_effect$Cluster.list
 )
 my_col[my_col == "integer(0)"] <- 0
@@ -99,7 +102,7 @@ Estimation of the Number of Clusters. CMStatistics 2017, London 16-18
 December, Book of Abstracts (ISBN 978-9963-2227-4-2)
 }
 \author{
-Paola Tellaroli, \email{paola.tellaroli@unipd.it};
-Marco Bazzi, \email{bazzi@stat.unipd.it};
-Michele Donato, \email{mdonato@stanford.edu}
+Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
+Marco Bazzi, <bazzi [at] stat [dot] unipd [dot] it>;
+Michele Donato, <mdonato [at] stanford [dot] edu>
 }

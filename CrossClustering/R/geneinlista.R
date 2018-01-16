@@ -7,6 +7,7 @@
 #' @return  The list of clusters to which the elements belong.
 #'
 #' @examples
+#' library(CrossClustering)
 #'
 #' ### Generate simulated data
 #' toy <- matrix(NA, nrow = 10, ncol = 7)
@@ -32,7 +33,7 @@
 #' )
 #'
 #' ### geneinlista
-#' sapply(seq_len(ncol(toy)), geneinlista, toyres$Cluster.list)
+#' sapply(seq_len(ncol(toy)), CrossClustering:::geneinlista, toyres$Cluster.list)
 #'
 #' @author
 #' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;

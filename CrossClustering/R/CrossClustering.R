@@ -30,6 +30,7 @@
 #'
 #' @details See cited document for more details.
 #' @examples
+#' library(CrossClustering)
 #'
 #' ### Generate simulated data
 #' toy <- matrix(NA, nrow = 10, ncol = 7)
@@ -43,7 +44,7 @@
 #' toy[,   7] <- runif(n = nrow(toy)    , min  = 0 , max = 1  )
 #'
 #' ### toy is transposed as we want to cluster samples (columns of the original
-#' matrix)
+#' ### matrix)
 #' d <- dist(t(toy), method = "euclidean")
 #'
 #' ### Run CrossClustering
@@ -65,8 +66,8 @@ CrossClustering <- function(d, k.w.min = 2, k.w.max, k.c.max, out = TRUE)
 {
   n <- (1 + sqrt(1 + 8 * length(d))) / 2
 
-  beta.clu.ward     <- stats::hclust(d, method = "ward.D")
-  beta.clu.complete <- stats::hclust(d, method = "complete")
+  beta.clu.ward     <- hclust(d, method = "ward.D")
+  beta.clu.complete <- hclust(d, method = "complete")
 
   grid <- as.matrix(expand.grid(k.w.min:k.w.max, k.w.min:k.c.max))
 

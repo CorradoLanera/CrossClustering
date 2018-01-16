@@ -2,7 +2,8 @@
 % Please edit documentation in R/geneinlista.R
 \name{geneinlista}
 \alias{geneinlista}
-\title{geneinlista}
+\title{geneinlista: provides - from a list of elements for each
+cluster - the list of clusters to which the elements belong.}
 \usage{
 geneinlista(mygene, lista)
 }
@@ -15,10 +16,11 @@ geneinlista(mygene, lista)
 The list of clusters to which the elements belong.
 }
 \description{
-This function - from a list of elements for each cluster - provides the list
-of clusters to which the elements belong.
+geneinlista: provides - from a list of elements for each
+cluster - the list of clusters to which the elements belong.
 }
 \examples{
+library(CrossClustering)
 
 ### Generate simulated data
 toy <- matrix(NA, nrow = 10, ncol = 7)
@@ -44,7 +46,7 @@ toyres <- CrossClustering(d,
 )
 
 ### geneinlista
-sapply(seq_len(ncol(toy)), geneinlista, toyres$Cluster.list)
+sapply(seq_len(ncol(toy)), CrossClustering:::geneinlista, toyres$Cluster.list)
 
 }
 \references{
@@ -54,7 +56,7 @@ of the Number of Clusters. PLoS ONE 11(3):   e0152333.
 doi:10.1371/journal.pone.0152333
 }
 \author{
-Paola Tellaroli, \email{paola.tellaroli@unipd.it};
-Marco Bazzi, \email{bazzi@stat.unipd.it};
-Michele Donato, \email{mdonato@stanford.edu}.
+Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
+Marco Bazzi, <bazzi [at] stat [dot] unipd [dot] it>;
+Michele Donato, <mdonato [at] stanford [dot] edu>.
 }

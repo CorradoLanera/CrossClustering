@@ -30,6 +30,7 @@
 #'
 #' @details See cited document for more details.
 #' @examples
+#' library(CrossClustering)
 #'
 #' ### Example on a famous shape data set
 #' ### Two moons data
@@ -38,7 +39,7 @@
 #' d <- dist(twomoons[, 1:2], method = "euclidean")
 #' CCmoons <- CrossClusteringSingle(d, k.w.max = 9, k.s.max = 10)
 #'
-#' my_col <- sapply(1:dim(twomoons)[1], geneinlista,
+#' my_col <- sapply(1:dim(twomoons)[1], CrossClustering:::geneinlista,
 #'   lista = CCmoons$Cluster.list
 #' )
 #' my_col[my_col == "integer(0)"] <- 0
@@ -54,7 +55,9 @@
 #' d <- dist(worms[, 1:2], method = "euclidean")
 #' CCworms <- CrossClusteringSingle(d, k.w.max = 9, k.s.max = 10)
 #'
-#' my_col <- sapply(1:dim(worms)[1], geneinlista, lista = CCworms$Cluster.list)
+#' my_col <- sapply(1:dim(worms)[1], CrossClustering:::geneinlista,
+#'   lista = CCworms$Cluster.list
+#' )
 #' my_col[my_col == "integer(0)"] <- 0
 #' my_col <- unlist(my_col)
 #' my_col <- my_col + 1
@@ -68,7 +71,7 @@
 #' d <- dist(chain_effect, method = "euclidean")
 #' CCchain_effect <- CrossClusteringSingle(d, k.w.max = 9, k.s.max = 10)
 #'
-#' my_col <- sapply(1:dim(chain_effect)[1], geneinlista,
+#' my_col <- sapply(1:dim(chain_effect)[1], CrossClustering:::geneinlista,
 #'   lista = CCchain_effect$Cluster.list
 #' )
 #' my_col[my_col == "integer(0)"] <- 0
@@ -94,8 +97,8 @@ CrossClusteringSingle <- function(d, k.w.min = 2, k.w.max, k.s.max, out = TRUE)
 {
   n <- (1 + sqrt(1 + 8 * length(d))) / 2
 
-  beta.clu.ward     <- stats::hclust(d, method = "ward.D")
-  beta.clu.single   <- stats::hclust(d, method = "single")
+  beta.clu.ward     <- hclust(d, method = "ward.D")
+  beta.clu.single   <- hclust(d, method = "single")
 
     grid <- as.matrix(expand.grid(k.w.min:k.w.max, k.w.min:k.s.max))
 
