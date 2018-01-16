@@ -34,8 +34,12 @@ PermSignificanceARI(twomoons[,3], CCmoons_clusters)
 
 }
 \references{
-Samuh M. H., Leisch F., and Finos L. (2014), Tests for Random Agreement in Cluster Analysis, Statistica Applicata-Italian Journal of Applied Statistics, vol. 26, no. 3, pp. 219-234.
-L. Hubert and P. Arabie (1985) Comparing partitions, Journal of Classification, 2, 193-218.
+Samuh M. H., Leisch F., and Finos L. (2014), Tests for Random Agreement in
+Cluster Analysis, Statistica Applicata-Italian Journal of Applied Statistics,
+vol. 26, no. 3, pp. 219-234.
+
+L. Hubert and P. Arabie (1985) Comparing partitions, Journal of
+Classification, 2, 193-218.
 }
 \author{
 Paola Tellaroli, \email{paola.tellaroli@unipd.it};

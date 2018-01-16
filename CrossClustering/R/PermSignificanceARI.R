@@ -28,15 +28,20 @@
 #' Livio Finos, \email{livioATstatDOTunipdDOTit}
 #'
 #' @references
-#' Samuh M. H., Leisch F., and Finos L. (2014), Tests for Random Agreement in Cluster Analysis, Statistica Applicata-Italian Journal of Applied Statistics, vol. 26, no. 3, pp. 219-234.
-#' L. Hubert and P. Arabie (1985) Comparing partitions, Journal of Classification, 2, 193-218.
+#' Samuh M. H., Leisch F., and Finos L. (2014), Tests for Random Agreement in
+#' Cluster Analysis, Statistica Applicata-Italian Journal of Applied Statistics,
+#' vol. 26, no. 3, pp. 219-234.
+#'
+#' L. Hubert and P. Arabie (1985) Comparing partitions, Journal of
+#' Classification, 2, 193-218.
 
-PermSignificanceARI <- function(ground_truth, partition)
-{
-my.fun <- function(ground_truth){
-  mclust::adjustedRandIndex(ground_truth, partition)
-}
+PermSignificanceARI <- function(ground_truth, partition) {
+  my_fun <- function(ground_truth){
+    mclust::adjustedRandIndex(ground_truth, partition)
+  }
 
-flip::flip(Y=matrix(ground_truth),X=matrix(partition),statTest=my.fun,data=dati)
+  flip::flip(Y = matrix(ground_truth), X = matrix(partition),
+    statTest = my_fun, data = dati
+  )
 }
 

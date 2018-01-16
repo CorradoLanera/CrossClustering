@@ -16,15 +16,15 @@ method. By default is set equal 2}
 method (see details)}
 
 \item{k.c.max}{maximum number of clusters for the Complete-linkage method.
-It can not be equal or greater than the number of elements to cluster (see
-details)}
+It can not be equal or greater than the number of elements to cluster
+(see details)}
 
 \item{out}{logical. If \code{TRUE} (default) outliers must be searched (see
 details)}
 }
 \value{
 A list of objects describing characteristics of the partitioning as
-  follows:
+        follows:
 \item{Optimal.cluster}{number of clusters}
 \item{Cluster.list}{a list of clusters; each element of this lists contains
   the indices of the elemenents belonging to the cluster}
@@ -34,7 +34,10 @@ A list of objects describing characteristics of the partitioning as
   clustered}
 }
 \description{
-This function performs the CrossClustering algorithm. This method combines the Ward's minimum variance and Complete-linkage algorithms, providing automatic estimation of a suitable number of clusters and identification of outlier elements.
+This function performs the CrossClustering algorithm. This method combines
+the Ward's minimum variance and Complete-linkage algorithms, providing
+automatic estimation of a suitable number of clusters and identification of
+outlier elements.
 }
 \details{
 See cited document for more details.
@@ -50,7 +53,7 @@ set.seed(123)
 toy[, 1:2] <- rnorm(n = nrow(toy) * 2, mean = 10, sd  = 0.1)
 toy[, 3:4] <- rnorm(n = nrow(toy) * 2, mean = 20, sd  = 0.1)
 toy[, 5:6] <- rnorm(n = nrow(toy) * 2, mean = 5 , sd  = 0.1)
-toy[, 7  ] <- runif(n = nrow(toy)    , min  = 0 , max = 1  )
+toy[,   7] <- runif(n = nrow(toy)    , min  = 0 , max = 1  )
 
 ### toy is transposed as we want to cluster samples (columns of the original
 matrix)
@@ -62,8 +65,13 @@ out = TRUE)
 
 }
 \references{
-Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016). Cross-Clustering: A Partial Clustering Algorithm with Automatic Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333. doi:10.1371/journal.pone.0152333
+Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016).
+Cross-Clustering: A Partial Clustering Algorithm with Automatic Estimation of
+the Number of Clusters. PLoS ONE 11(3):   e0152333.
+doi:10.1371/journal.pone.0152333
 }
 \author{
-Paola Tellaroli, \email{paola.tellaroli@unipd.it}; Marco Bazzi, \email{bazzi@stat.unipd.it}; Michele Donato, \email{mdonato@stanford.edu}
+Paola Tellaroli, \email{paola.tellaroli@unipd.it};
+Marco Bazzi, \email{bazzi@stat.unipd.it};
+Michele Donato, \email{mdonato@stanford.edu}
 }

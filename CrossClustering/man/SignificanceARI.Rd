@@ -20,9 +20,8 @@ SignificanceARI(ground_truth, partition)
 \item{p-value}{the p-value of the test}
 }
 \description{
-This function performs a test for testing the null hypothesis of
-random agreement (i.e., adjusted Rand Index equal to 0) between
-two partitions.
+This function performs a test for testing the null hypothesis of random
+agreement (i.e., adjusted Rand Index equal to 0) between two partitions.
 }
 \examples{
 ### Two moons data

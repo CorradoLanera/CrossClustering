@@ -16,15 +16,15 @@ method. By default is set equal 2}
 method (see details)}
 
 \item{k.s.max}{maximum number of clusters for the Single-linkage method.
-It can not be equal or greater than the number of elements to cluster (see
-details)}
+It can not be equal or greater than the number of elements to cluster
+(see details)}
 
 \item{out}{logical. If \code{TRUE} (default) outliers must be searched (see
 details)}
 }
 \value{
 A list of objects describing characteristics of the partitioning as
-  follows:
+        follows:
 \item{Optimal.cluster}{number of clusters}
 \item{Cluster.list}{a list of clusters; each element of this lists contains
   the indices of the elemenents belonging to the cluster}
@@ -34,7 +34,10 @@ A list of objects describing characteristics of the partitioning as
   clustered}
 }
 \description{
-This function performs a modified CrossClustering algorithm, tailored to identify elongated clusters. This method combines the Ward's minimum variance and Single-linkage algorithms, providing automatic estimation of a suitable number of elongated clusters and identification of outlier elements.
+This function performs a modified CrossClustering algorithm, tailored to
+identify elongated clusters. This method combines the Ward's minimum variance
+and Single-linkage algorithms, providing automatic estimation of a suitable
+number of elongated clusters and identification of outlier elements.
 }
 \details{
 See cited document for more details.
@@ -44,47 +47,59 @@ See cited document for more details.
 ### Example on a famous shape data set
 ### Two moons data
 data(twomoons)
-plot(twomoons[,1:2], pch = 19, col = "cornflowerblue")
-d <- dist(twomoons[,1:2], method = "euclidean")
-CCmoons <- CrossClusteringSingle(d,k.w.max=9,k.s.max=10)
+plot(twomoons[, 1:2], pch = 19, col = "cornflowerblue")
+d <- dist(twomoons[, 1:2], method = "euclidean")
+CCmoons <- CrossClusteringSingle(d, k.w.max = 9, k.s.max = 10)
 
-my_col <- sapply(1:dim(twomoons)[1], geneinlista, CCmoons$Cluster.list)
-my_col[my_col=="integer(0)"] <- 0
+my_col <- sapply(1:dim(twomoons)[1], geneinlista,
+  lista = CCmoons$Cluster.list
+)
+my_col[my_col == "integer(0)"] <- 0
 my_col <- unlist(my_col)
 my_col <- my_col + 1
-plot(twomoons[,1:2], pch=19, col=my_col, main="CrossClusteringSingle",
-xlab="",ylab="", cex.main=1)
+plot(twomoons[, 1:2], pch  = 19, col = my_col, xlab = "", ylab = "",
+  main = "CrossClusteringSingle", cex.main = 1
+)
 ### Worms data
 data(worms)
-plot(worms[,1:2], pch = 19, col = "cornflowerblue")
-d <- dist(worms[,1:2], method = "euclidean")
-CCworms <- CrossClusteringSingle(d,k.w.max=9,k.s.max=10)
+plot(worms[, 1:2], pch = 19, col = "cornflowerblue")
+d <- dist(worms[, 1:2], method = "euclidean")
+CCworms <- CrossClusteringSingle(d, k.w.max = 9, k.s.max = 10)
 
-my_col <- sapply(1:dim(worms)[1], geneinlista, CCworms$Cluster.list)
-my_col[my_col=="integer(0)"] <- 0
+my_col <- sapply(1:dim(worms)[1], geneinlista, lista = CCworms$Cluster.list)
+my_col[my_col == "integer(0)"] <- 0
 my_col <- unlist(my_col)
 my_col <- my_col + 1
-plot(worms[,1:2], pch=19, col=my_col, main="CrossClusteringSingle",
-xlab="",ylab="", cex.main=1)
+plot(worms[, 1:2], pch = 19, col = my_col, xlab = "", ylab = "",
+  main = "CrossClusteringSingle", cex.main = 1
+)
+
 ### CrossClusteringSingle is not affected to chain-effect problem
 data(chain_effect)
 plot(chain_effect, pch = 19, col = "cornflowerblue")
 d <- dist(chain_effect, method = "euclidean")
-CCchain_effect <- CrossClusteringSingle(d,k.w.max=9,k.s.max=10)
+CCchain_effect <- CrossClusteringSingle(d, k.w.max = 9, k.s.max = 10)
 
 my_col <- sapply(1:dim(chain_effect)[1], geneinlista,
-CCchain_effect$Cluster.list)
-my_col[my_col=="integer(0)"] <- 0
+  lista = CCchain_effect$Cluster.list
+)
+my_col[my_col == "integer(0)"] <- 0
 my_col <- unlist(my_col)
 my_col <- my_col + 1
-plot(chain_effect, pch=19, col=my_col, main="CrossClusteringSingle",
-xlab="",ylab="", cex.main=1)
+plot(chain_effect, pch = 19, col = my_col, xlab = "",ylab = "",
+  main = "CrossClusteringSingle", cex.main = 1
+)
 
 
 }
 \references{
-Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2017). E1829: Cross-Clustering: A Partial Clustering Algorithm with Automatic Estimation of the Number of Clusters. CMStatistics 2017, London 16-18 December, Book of Abstracts (ISBN 978-9963-2227-4-2)
+Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2017).
+E1829: Cross-Clustering: A Partial Clustering Algorithm with Automatic
+Estimation of the Number of Clusters. CMStatistics 2017, London 16-18
+December, Book of Abstracts (ISBN 978-9963-2227-4-2)
 }
 \author{
-Paola Tellaroli, \email{paola.tellaroli@unipd.it}; Marco Bazzi, \email{bazzi@stat.unipd.it}; Michele Donato, \email{mdonato@stanford.edu}
+Paola Tellaroli, \email{paola.tellaroli@unipd.it};
+Marco Bazzi, \email{bazzi@stat.unipd.it};
+Michele Donato, \email{mdonato@stanford.edu}
 }
