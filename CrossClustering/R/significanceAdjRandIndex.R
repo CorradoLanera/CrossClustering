@@ -23,7 +23,8 @@
 #' significanceAdjRandIndex(twomoons[,3], CCmoons_clusters)
 #'
 #' @author
-#' Paola Tellaroli, \email{paola.tellaroli@unipd.it}; Livio Finos, \email{livioATstatDOTunipdDOTit}
+#' Paola Tellaroli, \email{paola.tellaroli@unipd.it};
+#' Livio Finos, \email{livioATstatDOTunipdDOTit}
 #'
 #' @references
 #' Samuh M. H., Leisch F., and Finos L. (2014), Tests for Random Agreement in Cluster Analysis, Statistica Applicata-Italian Journal of Applied Statistics, vol. 26, no. 3, pp. 219-234.

@@ -4,15 +4,66 @@
 \alias{max_proportion_function}
 \title{max_proportion_function}
 \usage{
-max_proportion_function(k, beta.clu.ward, beta.clu.complete, dist,
+max_proportion_function(k, beta.clu.ward, beta.clu.complete,
   return.list = FALSE)
 }
 \arguments{
-\item{return.list}{}
+\item{k}{a vector containing the number of clusters for Ward and for
+Complete-linkage (or Single-linkage) algorithms, respectively}
+
+\item{beta.clu.ward}{an object of class hclust for the Ward algorithm}
+
+\item{beta.clu.complete}{an object of class hclust for the Complete-linkage
+(or Single-linkage) algorithm}
+
+\item{return.list}{logical. If TRUE the list of the elements belonging to
+each cluster and the contingency table of the clustering are shown.}
 }
 \value{
+If return.list is FALSE (default) the number of elements classified.
 
+        If return.list is TRUE, a list with the following elements:
+\item{beta.list}{list of the elements belonging to each cluster};
+\item{A.star}{contingency table of the clustering}.
 }
 \description{
-max_proportion_function
+This function computes the consensus between Ward's minimum variance and
+Complete-linkage (or Single-linkage) algorithms (i.e., the number of elements
+classified together by both algorithms) .
+}
+\examples{
+
+### Generate simulated data
+toy <- matrix(NA, nrow = 10, ncol = 7)
+colnames(toy) <- paste("Sample", 1:ncol(toy), sep = "")
+rownames(toy) <- paste("Gene"  , 1:nrow(toy), sep = "")
+set.seed(123)
+
+toy[, 1:2] <- rnorm(n = nrow(toy) * 2, mean = 10, sd  = 0.1)
+toy[, 3:4] <- rnorm(n = nrow(toy) * 2, mean = 20, sd  = 0.1)
+toy[, 5:6] <- rnorm(n = nrow(toy) * 2, mean = 5 , sd  = 0.1)
+toy[,   7] <- runif(n = nrow(toy)    , min  = 0 , max = 1  )
+
+### toy is transposed as we want to cluster samples (columns of the original
+### matrix)
+d <- dist(t(toy), method = "euclidean")
+
+### Hierarchical clustering
+beta.clu.ward     <- stats::hclust(d, method = "ward.D")
+beta.clu.complete <- stats::hclust(d, method = "complete")
+
+### max_proportion_function
+max_proportion_function(c(3,4), beta.clu.ward, beta.clu.complete)
+
+}
+\references{
+Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016).
+Cross-Clustering: A Partial Clustering Algorithm with Automatic Estimation
+of the Number of Clusters. PLoS ONE 11(3):   e0152333.
+doi:10.1371/journal.pone.0152333
+}
+\author{
+Paola Tellaroli, \email{paola.tellaroli@unipd.it};
+Marco Bazzi, \email{bazzi@stat.unipd.it};
+Michele Donato, \email{mdonato@stanford.edu}.
 }

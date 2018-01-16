@@ -1,6 +1,9 @@
 #' CrossClustering: a partial clustering algorithm with automatic estimation of the number of clusters and identification of outliers
 #'
-#' This function performs the CrossClustering algorithm. This method combines the Ward's minimum variance and Complete-linkage algorithms, providing automatic estimation of a suitable number of clusters and identification of outlier elements.
+#' This function performs the CrossClustering algorithm. This method combines
+#' the Ward's minimum variance and Complete-linkage algorithms, providing
+#' automatic estimation of a suitable number of clusters and identification of
+#' outlier elements.
 #'
 #' @param d a dissimilarity structure as produced by the function \code{dist}
 #' @param k.w.min minimum number of clusters for the Ward's minimum variance
@@ -35,19 +38,30 @@
 #' toy[, 1:2] <- rnorm(n = nrow(toy) * 2, mean = 10, sd  = 0.1)
 #' toy[, 3:4] <- rnorm(n = nrow(toy) * 2, mean = 20, sd  = 0.1)
 #' toy[, 5:6] <- rnorm(n = nrow(toy) * 2, mean = 5 , sd  = 0.1)
-#' toy[, 7  ] <- runif(n = nrow(toy)    , min  = 0 , max = 1  )
+#' toy[,   7] <- runif(n = nrow(toy)    , min  = 0 , max = 1  )
 #'
-#' ### toy is transposed as we want to cluster samples (columns of the original matrix)
+#' ### toy is transposed as we want to cluster samples (columns of the original
+#' ### matrix)
 #' d <- dist(t(toy), method = "euclidean")
 #'
 #' ### Run CrossClustering
-#' toyres <- CrossClustering(d, k.w.min = 2, k.w.max = 5, k.c.max = 6, out = TRUE)
+#' toyres <- CrossClustering(d,
+#'   k.w.min = 2,
+#'   k.w.max = 5,
+#'   k.c.max = 6,
+#'   out     = TRUE
+#' )
 #'
 #' @author
-#' Paola Tellaroli, \email{paola.tellaroli@unipd.it}; Marco Bazzi, \email{bazzi@stat.unipd.it}; Michele Donato, \email{mdonato@stanford.edu}
+#' Paola Tellaroli, \email{paola.tellaroli@unipd.it};
+#' Marco Bazzi, \email{bazzi@stat.unipd.it};
+#' Michele Donato, \email{mdonato@stanford.edu}.
 #'
 #' @references
-#' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016). Cross-Clustering: A Partial Clustering Algorithm with Automatic Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333. doi:10.1371/journal.pone.0152333
+#' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016).
+#' Cross-Clustering: A Partial Clustering Algorithm with Automatic Estimation
+#' of the Number of Clusters. PLoS ONE 11(3):   e0152333.
+#' doi:10.1371/journal.pone.0152333
 
 CrossClustering <- function(d, k.w.min = 2, k.w.max, k.c.max, out = TRUE)
 {
@@ -88,7 +102,7 @@ CrossClustering <- function(d, k.w.min = 2, k.w.max, k.c.max, out = TRUE)
       beta.clu.complete = beta.clu.complete,
       return.list       = TRUE
     )
-    clustz <- sapply(seq_len(n), geneinlista, cluster.list$beta.list)
+    clustz <- sapply(seq_len(n), geneinlista, lista =  cluster.list$beta.list)
   } else {
     cluster.list <- apply(k.star, 1, max_proportion_function,
       beta.clu.ward     = beta.clu.ward,

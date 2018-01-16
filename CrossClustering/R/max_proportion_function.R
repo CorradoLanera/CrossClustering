@@ -12,10 +12,12 @@
 #' @param return.list logical. If TRUE the list of the elements belonging to
 #'        each cluster and the contingency table of the clustering are shown.
 #'
-#' @return !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#' @return If return.list is FALSE (default) the number of elements classified.
 #'
-#' \item{beta.list}{list of the elements belonging to each cluster}
-#' \item{A.star}{contingency table of the clustering}
+#'         If return.list is TRUE, a list with the following elements:
+#' \item{beta.list}{list of the elements belonging to each cluster};
+#' \item{A.star}{contingency table of the clustering}.
+#'
 #'
 #' @examples
 #'

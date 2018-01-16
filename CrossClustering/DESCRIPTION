@@ -4,17 +4,25 @@ Title: CrossClustering: a partial clustering algorithm with automatic estimation
 Version: 1.0
 Date: 2014-09-04
 Author@R: c(
-    person("Paola"  , "Tellaroli", email = "tellaroli@stat.unipd.it",
-      role = c('cre', 'aut')
+    person("Paola"  , "Tellaroli",
+      email = "paola [dot] tellaroli [at] unipd [dot] it",
+      role  = c('cre', 'aut')
     ),
-    person("Marco"  , "Bazzi"    , email = "bazzi@stat.unipd.it",
-      role = c('aut')
+    person("Marco"  , "Bazzi",
+      email = "bazzi [at] stat [dot] unipd [dot] it",
+      role  = c('aut')
     ),
-    person("Michele", "Donato"   , email = "michele.donato@wayne.edu",
-      role = c('aut')
+    person("Michele", "Donato",
+      email = "mdonato [at] stanford [dot] edu",
+      role  = c('aut')
     ),
-    person("Corrado", "Lanera"   , email = "corrado.lanera@unipd.it",
-      role = c('ctb')
+    person("Livio", "Finos",
+      email = "livio [dot] finos [at] unipd [dot] it",
+      role  = c('aut')
+    ),
+    person("Corrado", "Lanera",
+      email = "corrado [dot] lanera [at] unipd [dot] it",
+      role  = c('ctb')
     )
   )
 Author: Paola Tellaroli, Marco Bazzi, Michele Donato
