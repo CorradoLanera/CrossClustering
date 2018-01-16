@@ -52,19 +52,19 @@ my_col <- sapply(1:dim(twomoons)[1], geneinlista, CCmoons$Cluster.list)
 my_col[my_col=="integer(0)"] <- 0
 my_col <- unlist(my_col)
 my_col <- my_col + 1
-plot(twomoons, pch=19, col=my_col, main="CrossClusteringSingle",
+plot(twomoons[,1:2], pch=19, col=my_col, main="CrossClusteringSingle",
 xlab="",ylab="", cex.main=1)
-### Two moons data
+### Worms data
 data(worms)
-plot(worms, pch = 19, col = "cornflowerblue")
-d <- dist(worms, method = "euclidean")
+plot(worms[,1:2], pch = 19, col = "cornflowerblue")
+d <- dist(worms[,1:2], method = "euclidean")
 CCworms <- CrossClusteringSingle(d,k.w.max=9,k.s.max=10)
 
 my_col <- sapply(1:dim(worms)[1], geneinlista, CCworms$Cluster.list)
 my_col[my_col=="integer(0)"] <- 0
 my_col <- unlist(my_col)
 my_col <- my_col + 1
-plot(worms, pch=19, col=my_col, main="CrossClusteringSingle",
+plot(worms[,1:2], pch=19, col=my_col, main="CrossClusteringSingle",
 xlab="",ylab="", cex.main=1)
 ### CrossClusteringSingle is not affected to chain-effect problem
 data(chain_effect)

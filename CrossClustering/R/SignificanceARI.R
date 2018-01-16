@@ -29,11 +29,16 @@
 #' SignificanceARI(twomoons[,3], CCmoons_clusters)
 #'
 #' @author
-#' Paola Tellaroli, \email{paola.tellaroli@unipd.it}; Philippe Courcoux, \email{philippe.courcoux@oniris-nantes.fr}
+#' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;
+#' Philippe Courcoux, \email{philippe.courcoux@oniris-nantes.fr}
 #'
 #' @references
-#' E.M. Qannari, P. Courcoux and Faye P. (2014) Significance test of the adjusted Rand index. Application to the free sorting task, Food Quality and Preference, (32)93-97
-#' L. Hubert and P. Arabie (1985) Comparing partitions, Journal of Classification, 2, 193-218.
+#' E.M. Qannari, P. Courcoux and Faye P. (2014) Significance test of the
+#' adjusted Rand index. Application to the free sorting task, Food Quality and
+#' Preference, (32)93-97
+#'
+#' L. Hubert and P. Arabie (1985) Comparing partitions, Journal of
+#' Classification, 2, 193-218.
 
 
 SignificanceARI<-function(ground_truth,partition){
