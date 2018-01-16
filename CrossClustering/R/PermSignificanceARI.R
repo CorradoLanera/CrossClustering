@@ -1,6 +1,4 @@
-#' PermSignificanceARI
-#'
-#' This function performs a permutation test for testing the null hypothesis of
+#' PermSignificanceARI: a permutation test for testing the null hypothesis of
 #' random agreement (i.e., adjusted Rand Index equal to 0) between
 #' two partitions.
 #'

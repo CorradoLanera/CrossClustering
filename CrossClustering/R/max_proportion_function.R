@@ -1,6 +1,4 @@
-#' max_proportion_function
-#'
-#' This function computes the consensus between Ward's minimum variance and
+#' max_proportion_function: computes the consensus between Ward's minimum variance and
 #' Complete-linkage (or Single-linkage) algorithms (i.e., the number of elements
 #' classified together by both algorithms) .
 #'

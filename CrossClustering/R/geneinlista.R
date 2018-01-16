@@ -1,7 +1,5 @@
-#' geneinlista
-#'
-#' This function - from a list of elements for each cluster - provides the list
-#' of clusters to which the elements belong.
+#' geneinlista: provides - from a list of elements for each
+#' cluster - the list of clusters to which the elements belong.
 #'
 #' @param mygene elements to be clustered
 #' @param lista list of clustered elements

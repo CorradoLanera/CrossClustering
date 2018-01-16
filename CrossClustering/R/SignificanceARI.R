@@ -1,6 +1,4 @@
-#' SignificanceARI
-#'
-#' This function performs a test for testing the null hypothesis of random
+#' SignificanceARI: a test for testing the null hypothesis of random
 #' agreement (i.e., adjusted Rand Index equal to 0) between two partitions.
 #'
 #' @param ground_truth The actual membership of elements in clusters
