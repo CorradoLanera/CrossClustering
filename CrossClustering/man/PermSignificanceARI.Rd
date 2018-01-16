@@ -14,8 +14,9 @@ PermSignificanceARI(ground_truth, partition)
 \item{partition}{The partition coming from a clustering algorithm}
 }
 \value{
-\item{Stat}{the adjusted Rand Index}
-\item{p-value}{the p-value of the test}
+A data.frame with two columns:
+  \item{Stat}{the adjusted Rand Index}
+  \item{p-value}{the p-value of the test}
 }
 \description{
 PermSignificanceARI: a permutation test for testing the null hypothesis of
@@ -23,6 +24,8 @@ random agreement (i.e., adjusted Rand Index equal to 0) between
 two partitions.
 }
 \examples{
+library(CrossClustering)
+
 ### Two moons data
 data(twomoons)
 d <- dist(twomoons[,1:2], method = "euclidean")
@@ -32,7 +35,7 @@ CCmoons$Cluster.list)
 CCmoons_clusters[CCmoons_clusters == "integer(0)"] <- 0
 CCmoons_clusters <- unlist(CCmoons_clusters) + 1
 
-CrossClustering:::PermSignificanceARI(twomoons[,3], CCmoons_clusters)
+PermSignificanceARI(twomoons[,3], CCmoons_clusters)
 
 }
 \references{

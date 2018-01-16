@@ -2,6 +2,7 @@
 
 export(CrossClustering)
 export(CrossClusteringSingle)
+export(PermSignificanceARI)
 importFrom(stats,cutree)
 importFrom(stats,hclust)
 importFrom(stats,pnorm)

@@ -5,11 +5,15 @@
 #' @param ground_truth The actual membership of elements in clusters
 #' @param partition The partition coming from a clustering algorithm
 #'
-#' @return
-#' \item{Stat}{the adjusted Rand Index}
-#' \item{p-value}{the p-value of the test}
+#' @return A data.frame with two columns:
+#'   \item{Stat}{the adjusted Rand Index}
+#'   \item{p-value}{the p-value of the test}
+#'
+#' @export
 #'
 #' @examples
+#' library(CrossClustering)
+#'
 #' ### Two moons data
 #' data(twomoons)
 #' d <- dist(twomoons[,1:2], method = "euclidean")
@@ -19,7 +23,7 @@
 #' CCmoons_clusters[CCmoons_clusters == "integer(0)"] <- 0
 #' CCmoons_clusters <- unlist(CCmoons_clusters) + 1
 #'
-#' CrossClustering:::PermSignificanceARI(twomoons[,3], CCmoons_clusters)
+#' PermSignificanceARI(twomoons[,3], CCmoons_clusters)
 #'
 #' @author
 #' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;
@@ -38,6 +42,14 @@ PermSignificanceARI <- function(ground_truth, partition) {
     mclust::adjustedRandIndex(ground_truth, partition)
   }
 
-  flip::flip(Y = matrix(ground_truth), X = matrix(partition), statTest = my_fun)
+  tmp <- tempfile()
+  sink('tmp');
+  res_flip <- flip::flip(Y = matrix(ground_truth), X = matrix(partition),
+                         statTest = my_fun
+  )
+  sink(NULL);
+  unlink('tmp')
+
+  res_flip@res[c('Stat', 'p-value')]
 }
 

@@ -2,9 +2,9 @@
 % Please edit documentation in R/max_proportion_function.R
 \name{max_proportion_function}
 \alias{max_proportion_function}
-\title{max_proportion_function: computes the consensus between Ward's minimum variance and
-Complete-linkage (or Single-linkage) algorithms (i.e., the number of elements
-classified together by both algorithms) .}
+\title{max_proportion_function: computes the consensus between Ward's minimum
+variance and Complete-linkage (or Single-linkage) algorithms (i.e., the
+number of elements classified together by both algorithms) .}
 \usage{
 max_proportion_function(k, beta.clu.ward, beta.clu.complete,
   return.list = FALSE)
@@ -29,9 +29,9 @@ If return.list is FALSE (default) the number of elements classified.
 \item{A.star}{contingency table of the clustering}.
 }
 \description{
-max_proportion_function: computes the consensus between Ward's minimum variance and
-Complete-linkage (or Single-linkage) algorithms (i.e., the number of elements
-classified together by both algorithms) .
+max_proportion_function: computes the consensus between Ward's minimum
+variance and Complete-linkage (or Single-linkage) algorithms (i.e., the
+number of elements classified together by both algorithms) .
 }
 \examples{
 library(CrossClustering)

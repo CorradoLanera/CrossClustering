@@ -25,7 +25,7 @@
 #' CCmoons_clusters[CCmoons_clusters == "integer(0)"] <- 0
 #' CCmoons_clusters <- unlist(CCmoons_clusters) + 1
 #'
-#' CrossClustering:::SignificanceARI(twomoons[,3], CCmoons_clusters)
+#' CrossClustering:::SignificanceARI(twomoons[, 3], CCmoons_clusters)
 #'
 #' @author
 #' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;

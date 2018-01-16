@@ -4,7 +4,7 @@
 #' @param mygene elements to be clustered
 #' @param lista list of clustered elements
 #'
-#' @return  The list of clusters to which the elements belong.
+#' @return The list of clusters to which the elements belong.
 #'
 #' @examples
 #' library(CrossClustering)

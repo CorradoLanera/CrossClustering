@@ -1,6 +1,6 @@
-#' max_proportion_function: computes the consensus between Ward's minimum variance and
-#' Complete-linkage (or Single-linkage) algorithms (i.e., the number of elements
-#' classified together by both algorithms) .
+#' max_proportion_function: computes the consensus between Ward's minimum
+#' variance and Complete-linkage (or Single-linkage) algorithms (i.e., the
+#' number of elements classified together by both algorithms) .
 #'
 #' @param k a vector containing the number of clusters for Ward and for
 #'        Complete-linkage (or Single-linkage) algorithms, respectively
