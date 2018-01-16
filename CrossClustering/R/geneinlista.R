@@ -37,9 +37,9 @@
 #' sapply(seq_len(ncol(toy)), geneinlista, toyres$Cluster.list)
 #'
 #' @author
-#' Paola Tellaroli, \email{paola.tellaroli@unipd.it};
-#' Marco Bazzi, \email{bazzi@stat.unipd.it};
-#' Michele Donato, \email{mdonato@stanford.edu}.
+#' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
+#' Marco Bazzi, <bazzi [at] stat [dot] unipd [dot] it>;
+#' Michele Donato, <mdonato [at] stanford [dot] edu>.
 #'
 #' @references
 #' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016).

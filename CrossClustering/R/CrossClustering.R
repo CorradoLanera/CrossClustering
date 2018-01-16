@@ -1,4 +1,5 @@
-#' CrossClustering: a partial clustering algorithm with automatic estimation of the number of clusters and identification of outliers
+#' CrossClustering: a partial clustering algorithm with automatic estimation of
+#' the number of clusters and identification of outliers
 #'
 #' This function performs the CrossClustering algorithm. This method combines
 #' the Ward's minimum variance and Complete-linkage algorithms, providing
@@ -50,9 +51,9 @@
 #' out = TRUE)
 #'
 #' @author
-#' Paola Tellaroli, \email{paola.tellaroli@unipd.it};
-#' Marco Bazzi, \email{bazzi@stat.unipd.it};
-#' Michele Donato, \email{mdonato@stanford.edu}
+#' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
+#' Marco Bazzi, <bazzi [at] stat [dot] unipd [dot] it>;
+#' Michele Donato, <mdonato [at] stanford [dot] edu>
 #'
 #' @references
 #' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016).

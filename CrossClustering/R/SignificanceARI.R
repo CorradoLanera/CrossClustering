@@ -29,7 +29,7 @@
 #'
 #' @author
 #' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;
-#' Philippe Courcoux, \email{philippe.courcoux@oniris-nantes.fr}
+#' Philippe Courcoux, <philippe [dot] courcoux [at] oniris-nantes [dot] fr>
 #'
 #' @references
 #' E.M. Qannari, P. Courcoux and Faye P. (2014) Significance test of the

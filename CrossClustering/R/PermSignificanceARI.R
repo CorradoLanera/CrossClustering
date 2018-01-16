@@ -24,8 +24,8 @@
 #' PermSignificanceARI(twomoons[,3], CCmoons_clusters)
 #'
 #' @author
-#' Paola Tellaroli, \email{paola.tellaroli@unipd.it};
-#' Livio Finos, \email{livioATstatDOTunipdDOTit}
+#' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
+#' Livio Finos, <livio [dot] finos [at] unipd [dot] it>
 #'
 #' @references
 #' Samuh M. H., Leisch F., and Finos L. (2014), Tests for Random Agreement in
