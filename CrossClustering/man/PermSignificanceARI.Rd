@@ -2,14 +2,15 @@
 % Please edit documentation in R/PermSignificanceARI.R
 \name{PermSignificanceARI}
 \alias{PermSignificanceARI}
-\title{PermSignificanceARI: a permutation test for testing the null hypothesis of
+\title{A permutation test for testing the null hypothesis of
 random agreement (i.e., adjusted Rand Index equal to 0) between
 two partitions.}
 \usage{
 PermSignificanceARI(ground_truth, partition)
 }
 \arguments{
-\item{ground_truth}{The actual membership of elements in clusters}
+\item{ground_truth}{[int] A vector of the actual membership of elements in
+clusters}
 
 \item{partition}{The partition coming from a clustering algorithm}
 }
@@ -19,7 +20,7 @@ A data.frame with two columns:
   \item{p-value}{the p-value of the test}
 }
 \description{
-PermSignificanceARI: a permutation test for testing the null hypothesis of
+A permutation test for testing the null hypothesis of
 random agreement (i.e., adjusted Rand Index equal to 0) between
 two partitions.
 }
@@ -29,13 +30,14 @@ library(CrossClustering)
 ### Two moons data
 data(twomoons)
 d <- dist(twomoons[,1:2], method = "euclidean")
-CCmoons <- CrossClusteringSingle(d,k.w.max=9,k.s.max=10)
-CCmoons_clusters <- sapply(1:dim(twomoons)[1], CrossClustering:::geneinlista,
-CCmoons$Cluster.list)
+CCmoons <- CrossClustering(d, k.w.max=9, k2.max=10, method = 'single')
+CCmoons_clusters <- sapply(seq_len(dim(twomoons)[1]), which_cluster,
+  cluster_list = CCmoons$Cluster.list
+)
 CCmoons_clusters[CCmoons_clusters == "integer(0)"] <- 0
 CCmoons_clusters <- unlist(CCmoons_clusters) + 1
 
-PermSignificanceARI(twomoons[,3], CCmoons_clusters)
+PermSignificanceARI(twomoons[, 3], CCmoons_clusters)
 
 }
 \references{

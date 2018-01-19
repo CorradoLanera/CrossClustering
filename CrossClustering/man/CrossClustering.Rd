@@ -2,43 +2,51 @@
 % Please edit documentation in R/CrossClustering.R
 \name{CrossClustering}
 \alias{CrossClustering}
-\title{CrossClustering: a partial clustering algorithm with automatic estimation of
+\title{A partial clustering algorithm with automatic estimation of
 the number of clusters and identification of outliers}
 \usage{
-CrossClustering(d, k.w.min = 2, k.w.max, k.c.max, out = TRUE)
+CrossClustering(d, k.w.min = 2, k.w.max, k2.max, out = TRUE,
+  method = c("complete", "single"))
 }
 \arguments{
-\item{d}{a dissimilarity structure as produced by the function \code{dist}}
+\item{d}{A dissimilarity structure as produced by the function \code{dist}}
 
-\item{k.w.min}{minimum number of clusters for the Ward's minimum variance
-method. By default is set equal 2}
+\item{k.w.min}{[int] Minimum number of clusters for the Ward's minimum
+variance method. By default is set equal 2}
 
-\item{k.w.max}{maximum number of clusters for the Ward's minimum variance
-method (see details)}
+\item{k.w.max}{[int] Maximum number of clusters for the Ward's minimum
+variance method (see details)}
 
-\item{k.c.max}{maximum number of clusters for the Complete-linkage method.
-It can not be equal or greater than the number of elements to cluster
-(see details)}
+\item{k2.max}{[int] Maximum number of clusters for the
+Complete/Single-linkage method. It can not be equal or greater than
+the number of elements to cluster (see details)}
 
-\item{out}{logical. If \code{TRUE} (default) outliers must be searched (see
+\item{out}{[lgl] If \code{TRUE} (default) outliers must be searched (see
 details)}
+
+\item{method}{[chr] "complete" (default) or "single". CrossClustering
+combines Ward's algorithm with Complete-linkage if method is set to
+"complete", otherwhise (if method is set to 'single') Single-linkage
+will be used.}
 }
 \value{
 A list of objects describing characteristics of the partitioning as
         follows:
-\item{Optimal.cluster}{number of clusters}
-\item{Cluster.list}{a list of clusters; each element of this lists contains
-  the indices of the elemenents belonging to the cluster}
-\item{Silhouette}{the average silhouette witdh over all the clusters}
-\item{n.total}{total number of input elements}
-\item{n.clustered}{number of input elements that have actually been
-  clustered}
+          \item{Optimal.cluster}{number of clusters}
+          \item{Cluster.list}{a list of clusters; each element of this lists
+            contains the indices of the elemenents belonging to the cluster}
+          \item{Silhouette}{the average silhouette witdh over all the
+            clusters}
+          \item{n.total}{total number of input elements}
+          \item{n.clustered}{number of input elements that have actually been
+            clustered}
 }
 \description{
 This function performs the CrossClustering algorithm. This method combines
-the Ward's minimum variance and Complete-linkage algorithms, providing
-automatic estimation of a suitable number of clusters and identification of
-outlier elements.
+the Ward's minimum variance and Complete-linkage (default, useful for finding
+spherical clusters) or Single-linkage (useful for finding elongated clusters)
+algorithms, providing automatic estimation of a suitable number of clusters
+and identification of outlier elements.
 }
 \details{
 See cited document for more details.
@@ -46,6 +54,7 @@ See cited document for more details.
 \examples{
 library(CrossClustering)
 
+#### method = "complete"
 ### Generate simulated data
 toy <- matrix(NA, nrow = 10, ncol = 7)
 colnames(toy) <- paste("Sample", 1:ncol(toy), sep = "")
@@ -62,8 +71,61 @@ toy[,   7] <- runif(n = nrow(toy)    , min  = 0 , max = 1  )
 d <- dist(t(toy), method = "euclidean")
 
 ### Run CrossClustering
-toyres <- CrossClustering(d, k.w.min = 2, k.w.max = 5, k.c.max = 6,
+CrossClustering(d, k.w.min = 2, k.w.max = 5, k2.max = 6,
 out = TRUE)
+
+
+#### method = "single"
+### Example on a famous shape data set
+### Two moons data
+data(twomoons)
+plot(twomoons[, 1:2], pch = 19, col = "cornflowerblue")
+d <- dist(twomoons[, 1:2], method = "euclidean")
+CCmoons <- CrossClustering(d, k.w.max = 9, k2.max = 10, method = 'single')
+
+my_col <- sapply(1:dim(twomoons)[1], which_cluster,
+  cluster_list = CCmoons$Cluster.list
+)
+my_col[my_col == "integer(0)"] <- 0
+my_col <- unlist(my_col)
+my_col <- my_col + 1
+plot(twomoons[, 1:2], pch  = 19, col = my_col, xlab = "", ylab = "",
+  main = "CrossClusteringSingle", cex.main = 1
+)
+
+### Worms data
+data(worms)
+plot(worms[, 1:2], pch = 19, col = "cornflowerblue")
+d <- dist(worms[, 1:2], method = "euclidean")
+CCworms <- CrossClustering(d, k.w.max = 9, k2.max = 10, method = 'single')
+
+my_col <- sapply(seq_len(dim(worms)[1]), which_cluster,
+  cluster_list = CCworms$Cluster.list
+)
+my_col[my_col == "integer(0)"] <- 0
+my_col <- unlist(my_col)
+my_col <- my_col + 1
+plot(worms[, 1:2], pch = 19, col = my_col, xlab = "", ylab = "",
+  main = "CrossClusteringSingle", cex.main = 1
+)
+
+### CrossClusteringSingle is not affected to chain-effect problem
+data(chain_effect)
+plot(chain_effect, pch = 19, col = "cornflowerblue")
+d <- dist(chain_effect, method = "euclidean")
+CCchain_effect <- CrossClustering(d, k.w.max = 9, k2.max = 10,
+  method = 'single'
+)
+
+my_col <- sapply(1:dim(chain_effect)[1], which_cluster,
+  cluster_list = CCchain_effect$Cluster.list
+)
+my_col[my_col == "integer(0)"] <- 0
+my_col <- unlist(my_col)
+my_col <- my_col + 1
+plot(chain_effect, pch = 19, col = my_col, xlab = "",ylab = "",
+  main = "CrossClusteringSingle", cex.main = 1
+)
 
 }
 \references{
@@ -71,6 +133,11 @@ Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016).
 Cross-Clustering: A Partial Clustering Algorithm with Automatic Estimation of
 the Number of Clusters. PLoS ONE 11(3):   e0152333.
 doi:10.1371/journal.pone.0152333
+
+#' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2017).
+E1829: Cross-Clustering: A Partial Clustering Algorithm with Automatic
+Estimation of the Number of Clusters. CMStatistics 2017, London 16-18
+December, Book of Abstracts (ISBN 978-9963-2227-4-2)
 }
 \author{
 Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;

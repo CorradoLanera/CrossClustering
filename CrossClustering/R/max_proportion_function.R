@@ -1,20 +1,20 @@
-#' max_proportion_function: computes the consensus between Ward's minimum
+#' Computes the consensus between Ward's minimum
 #' variance and Complete-linkage (or Single-linkage) algorithms (i.e., the
 #' number of elements classified together by both algorithms) .
 #'
-#' @param k a vector containing the number of clusters for Ward and for
+#' @param k [int] a vector containing the number of clusters for Ward and for
 #'        Complete-linkage (or Single-linkage) algorithms, respectively
 #' @param beta.clu.ward an object of class hclust for the Ward algorithm
-#' @param beta.clu.complete an object of class hclust for the Complete-linkage
+#' @param beta.clu.method2 an object of class hclust for the Complete-linkage
 #'        (or Single-linkage) algorithm
-#' @param return.list logical. If TRUE the list of the elements belonging to
-#'        each cluster and the contingency table of the clustering are shown.
+#' @param return.list [lgl] If TRUE the list of the elements belonging to each
+#'        cluster and the contingency table of the clustering are shown.
 #'
 #' @return If return.list is FALSE (default) the number of elements classified.
 #'
 #'         If return.list is TRUE, a list with the following elements:
-#' \item{beta.list}{list of the elements belonging to each cluster};
-#' \item{A.star}{contingency table of the clustering}.
+#'           \item{beta.list}{list of the elements belonging to each cluster};
+#'           \item{A.star}{contingency table of the clustering}.
 #'
 #'
 #' @examples
@@ -37,12 +37,12 @@
 #'
 #' ### Hierarchical clustering
 #' beta.clu.ward     <- hclust(d, method = "ward.D")
-#' beta.clu.complete <- hclust(d, method = "complete")
+#' beta.clu.method2 <- hclust(d, method = "complete")
 #'
 #' ### max_proportion_function
 #' CrossClustering:::max_proportion_function(c(3, 4),
 #'   beta.clu.ward,
-#'   beta.clu.complete
+#'   beta.clu.method2
 #' )
 #'
 #' @author
@@ -57,12 +57,12 @@
 #' doi:10.1371/journal.pone.0152333
 
 max_proportion_function <- function(
-  k, beta.clu.ward, beta.clu.complete, return.list = FALSE
+  k, beta.clu.ward, beta.clu.method2, return.list = FALSE
 ) {
   k.w = k[1]
   k.c = k[2]
   tree.ward     <- cutree(beta.clu.ward    , k = k.w)
-  tree.complete <- cutree(beta.clu.complete, k = k.c)
+  tree.complete <- cutree(beta.clu.method2, k = k.c)
   N <- sum(tree.ward * 0 + 1)
   A <- table(tree.ward, tree.complete)
   A.star <- diag(0, k.w)

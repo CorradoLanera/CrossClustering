@@ -1,10 +1,12 @@
-#' geneinlista: provides - from a list of elements for each
+#' Provides - from a list of elements for each
 #' cluster - the list of clusters to which the elements belong.
 #'
-#' @param mygene elements to be clustered
-#' @param lista list of clustered elements
+#' @param data elements to be clustered
+#' @param cluster_list list of clustered elements
 #'
 #' @return The list of clusters to which the elements belong.
+#'
+#' @export
 #'
 #' @examples
 #' library(CrossClustering)
@@ -28,12 +30,15 @@
 #' toyres <- CrossClustering(d,
 #'   k.w.min = 2,
 #'   k.w.max = 5,
-#'   k.c.max = 6,
+#'   k2.max = 6,
 #'   out     = TRUE
 #' )
 #'
-#' ### geneinlista
-#' sapply(seq_len(ncol(toy)), CrossClustering:::geneinlista, toyres$Cluster.list)
+#' ### which_cluster
+#' sapply(seq_len(ncol(toy)),
+#'   which_cluster,
+#'   toyres$Cluster.list
+#' )
 #'
 #' @author
 #' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
@@ -46,6 +51,6 @@
 #' of the Number of Clusters. PLoS ONE 11(3):   e0152333.
 #' doi:10.1371/journal.pone.0152333
 
-geneinlista <- function(mygene, lista) {
-  which(sapply(lista, function(elem) mygene %in% elem))
+which_cluster <- function(data, cluster_list) {
+  which(sapply(cluster_list, function(elem) data %in% elem))
 }

@@ -1,9 +1,10 @@
 Package: CrossClustering
 Type: Package
 Title: A partial clustering algorithm with automatic estimation of the number of
-       clusters and identification of outliers
-Version: 1.0
-Date: 2014-09-04
+       clusters and identification of outliers for spherical or elongated
+       clusters
+Version: 1.2.0
+Date: 2018-01-19
 Authors@R: c(
     person("Paola"  , "Tellaroli",
       email = "paola [dot] tellaroli [at] unipd [dot] it",

@@ -3,7 +3,7 @@
 \docType{data}
 \name{chain_effect}
 \alias{chain_effect}
-\title{chain_effect: a toy dataset for illustrating the chain effect.}
+\title{A toy dataset for illustrating the chain effect.}
 \format{A data frame with 28 rows and 2 variables:
 
 \describe{
@@ -15,6 +15,6 @@
 chain_effect
 }
 \description{
-chain_effect: a toy dataset for illustrating the chain effect.
+A toy dataset for illustrating the chain effect.
 }
 \keyword{datasets}

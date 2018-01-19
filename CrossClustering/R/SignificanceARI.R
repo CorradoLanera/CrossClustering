@@ -1,31 +1,32 @@
-#' SignificanceARI: a test for testing the null hypothesis of random
+#' A test for testing the null hypothesis of random
 #' agreement (i.e., adjusted Rand Index equal to 0) between two partitions.
 #'
-#' @param ground_truth The actual membership of elements in clusters
+#' @param ground_truth [int] A vector of the actual membership of elements in
+#'        clusters
 #' @param partition The partition coming from a clustering algorithm
 #'
-#' @return
-#' \item{Rand}{the Rand Index}
-#' \item{ExpectedRand}{expected value of  Rand Index}
-#' \item{AdjustedRand}{Adjusted Rand Index}
-#' \item{varARI}{variance of Rand Index}
-#' \item{NARI}{NARI}
-#' \item{p-value}{the p-value of the test}
+#' @return A list with six elements:
+#'   \item{Rand}{the Rand Index}
+#'   \item{ExpectedRand}{expected value of  Rand Index}
+#'   \item{AdjustedRand}{Adjusted Rand Index}
+#'   \item{varARI}{variance of Rand Index}
+#'   \item{NARI}{NARI}
+#'   \item{p-value}{the p-value of the test}
 #'
-#'
+#' @export
 #' @examples
 #' library(CrossClustering)
 #'
 #' ### Two moons data
 #' data(twomoons)
-#' d <- dist(twomoons[,1:2], method = "euclidean")
-#' CCmoons <- CrossClusteringSingle(d,k.w.max=9,k.s.max=10)
-#' CCmoons_clusters <- sapply(1:dim(twomoons)[1], CrossClustering:::geneinlista,
-#' CCmoons$Cluster.list)
+#' d <- dist(twomoons[, 1:2], method = "euclidean")
+#' CCmoons <- CrossClustering(d, k.w.max = 9, k2.max = 10, method = 'single')
+#' CCmoons_clusters <- sapply(seq_len(dim(twomoons)[1]), which_cluster,
+#'   cluster_list = CCmoons$Cluster.list)
 #' CCmoons_clusters[CCmoons_clusters == "integer(0)"] <- 0
 #' CCmoons_clusters <- unlist(CCmoons_clusters) + 1
 #'
-#' CrossClustering:::SignificanceARI(twomoons[, 3], CCmoons_clusters)
+#' SignificanceARI(twomoons[, 3], CCmoons_clusters)
 #'
 #' @author
 #' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;

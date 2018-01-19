@@ -2,34 +2,34 @@
 % Please edit documentation in R/max_proportion_function.R
 \name{max_proportion_function}
 \alias{max_proportion_function}
-\title{max_proportion_function: computes the consensus between Ward's minimum
+\title{Computes the consensus between Ward's minimum
 variance and Complete-linkage (or Single-linkage) algorithms (i.e., the
 number of elements classified together by both algorithms) .}
 \usage{
-max_proportion_function(k, beta.clu.ward, beta.clu.complete,
+max_proportion_function(k, beta.clu.ward, beta.clu.method2,
   return.list = FALSE)
 }
 \arguments{
-\item{k}{a vector containing the number of clusters for Ward and for
+\item{k}{[int] a vector containing the number of clusters for Ward and for
 Complete-linkage (or Single-linkage) algorithms, respectively}
 
 \item{beta.clu.ward}{an object of class hclust for the Ward algorithm}
 
-\item{beta.clu.complete}{an object of class hclust for the Complete-linkage
+\item{beta.clu.method2}{an object of class hclust for the Complete-linkage
 (or Single-linkage) algorithm}
 
-\item{return.list}{logical. If TRUE the list of the elements belonging to
-each cluster and the contingency table of the clustering are shown.}
+\item{return.list}{[lgl] If TRUE the list of the elements belonging to each
+cluster and the contingency table of the clustering are shown.}
 }
 \value{
 If return.list is FALSE (default) the number of elements classified.
 
         If return.list is TRUE, a list with the following elements:
-\item{beta.list}{list of the elements belonging to each cluster};
-\item{A.star}{contingency table of the clustering}.
+          \item{beta.list}{list of the elements belonging to each cluster};
+          \item{A.star}{contingency table of the clustering}.
 }
 \description{
-max_proportion_function: computes the consensus between Ward's minimum
+Computes the consensus between Ward's minimum
 variance and Complete-linkage (or Single-linkage) algorithms (i.e., the
 number of elements classified together by both algorithms) .
 }
@@ -53,12 +53,12 @@ d <- dist(t(toy), method = "euclidean")
 
 ### Hierarchical clustering
 beta.clu.ward     <- hclust(d, method = "ward.D")
-beta.clu.complete <- hclust(d, method = "complete")
+beta.clu.method2 <- hclust(d, method = "complete")
 
 ### max_proportion_function
 CrossClustering:::max_proportion_function(c(3, 4),
   beta.clu.ward,
-  beta.clu.complete
+  beta.clu.method2
 )
 
 }

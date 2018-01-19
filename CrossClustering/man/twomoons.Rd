@@ -3,7 +3,8 @@
 \docType{data}
 \name{twomoons}
 \alias{twomoons}
-\title{twomoons:}
+\title{A famous shape data set containing two clusters with two moons shapes and
+outliers}
 \format{A data frame with 52 rows and 3 variables:
 
 \describe{

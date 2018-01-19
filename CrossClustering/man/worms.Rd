@@ -3,22 +3,20 @@
 \docType{data}
 \name{worms}
 \alias{worms}
-\title{worms
-A famous shape data set containing two clusters with two worms shapes and
+\title{A famous shape data set containing two clusters with two worms shapes and
 outliers}
 \format{A data frame with 87 rows and 3 variables:
 
 \describe{
    \item{\code{x}}{num} x coordinates
    \item{\code{y}}{num} y coordinates.
-   \item{\code{c}}{integer} cluster membership (outliers classified as 3rd
-                            cluster).
+   \item{\code{cluster}}{integer} cluster membership (outliers classified as
+   3rd cluster).
 }}
 \usage{
 worms
 }
 \description{
-worms
 A famous shape data set containing two clusters with two worms shapes and
 outliers
 }
