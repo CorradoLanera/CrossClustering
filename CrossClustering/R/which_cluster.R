@@ -1,10 +1,10 @@
-#' Provides - from a list of elements for each
-#' cluster - the list of clusters to which the elements belong.
+#' Provides the vector of clusters' ID to which each element belong to.
 #'
-#' @param data elements to be clustered
 #' @param cluster_list list of clustered elements
+#' @param n_elem total number of elements clustered
 #'
-#' @return The list of clusters to which the elements belong.
+#' @return An integer vector of clusters to which the elements belong (`1` for
+#'         the outliers, ID + 1 for the others).
 #'
 #' @export
 #'
@@ -35,10 +35,7 @@
 #' )
 #'
 #' ### which_cluster
-#' sapply(seq_len(ncol(toy)),
-#'   which_cluster,
-#'   toyres$Cluster.list
-#' )
+#' which_cluster(toyres$Cluster.list, toyres$n.total)
 #'
 #' @author
 #' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
@@ -51,6 +48,29 @@
 #' of the Number of Clusters. PLoS ONE 11(3):   e0152333.
 #' doi:10.1371/journal.pone.0152333
 
-which_cluster <- function(data, cluster_list) {
-  which(sapply(cluster_list, function(elem) data %in% elem))
+which_cluster <- function(cluster_list, n_elem) {
+
+  n_cluster <- length(cluster_list)
+  elements  <- unlist(cluster_list)
+
+  if (n_elem < length(elements)) {
+    stop('n_elem has to be at least the number of clustered elements')
+  }
+
+  outliers <- setdiff(seq_len(n_elem), elements)
+
+  clustered_cluster <- vapply(elements,
+    function(element) {
+      which(vapply(cluster_list,
+        function(cluster) element %in% cluster,
+        logical(1L)
+      ))
+    },
+    integer(1L)
+  )
+
+  res <- integer(n_elem)
+  res[elements] <- clustered_cluster + 1L
+  res[outliers] <- 1L
+  res
 }

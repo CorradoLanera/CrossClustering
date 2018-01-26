@@ -62,7 +62,7 @@ max_proportion_function <- function(
   k.w = k[1]
   k.c = k[2]
   tree.ward     <- cutree(beta.clu.ward    , k = k.w)
-  tree.complete <- cutree(beta.clu.method2, k = k.c)
+  tree.complete <- cutree(beta.clu.method2 , k = k.c)
   N <- sum(tree.ward * 0 + 1)
   A <- table(tree.ward, tree.complete)
   A.star <- diag(0, k.w)

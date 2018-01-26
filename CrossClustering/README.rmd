@@ -1,0 +1,80 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# CrossClustering
+
+CrossClustering is a partial clustering algorithm that combines the Ward's
+minimum variance and Complete Linkage algorithms, providing automatic estimation
+of a suitable number of clusters and identification of outlier elements.
+
+## Example
+
+This is a basic example which shows you how to the main function, i.e. `CrossClustering()` works:
+
+```{r example}
+## basic example code
+library(CrossClustering)
+
+#### method = "complete"
+### Generate simulated data
+toy <- matrix(NA, nrow = 10, ncol = 7)
+colnames(toy) <- paste("Sample", 1:ncol(toy), sep = "")
+rownames(toy) <- paste("Gene"  , 1:nrow(toy), sep = "")
+set.seed(123)
+
+toy[, 1:2] <- rnorm(n = nrow(toy) * 2, mean = 10, sd  = 0.1)
+toy[, 3:4] <- rnorm(n = nrow(toy) * 2, mean = 20, sd  = 0.1)
+toy[, 5:6] <- rnorm(n = nrow(toy) * 2, mean = 5 , sd  = 0.1)
+toy[,   7] <- runif(n = nrow(toy)    , min  = 0 , max = 1  )
+
+### toy is transposed as we want to cluster samples (columns of the original
+### matrix)
+d <- dist(t(toy), method = "euclidean")
+
+### Run CrossClustering
+toyres <- CrossClustering(d, k.w.min = 2, k.w.max = 5, k2.max = 6,
+out = TRUE)
+toyres
+```
+
+Another useful function worth to mention is `PermSignificanceARI`:
+```{r}
+CC_clusters <- sapply(seq_len(ncol(toy)),
+ which_cluster,
+ toyres$Cluster.list
+)
+PermSignificanceARI(
+  ground_truth = c(1, 1, 2, 2, 3, 3, 4),
+  partition    = CC_clusters
+)
+```
+
+
+## Install
+CrossClustering package is on CRAN, use the standard method to install it.
+`install.packages('CrossClustering')`
+
+## Feature request
+If you need some more features, please write to Paola Tellaroli
+<paola.tellaroli@unipd.it>
+
+
+
+## Bug reports
+If you encounter a bug, please file a
+[reprex](https://github.com/tidyverse/reprex) (minimal reproducible example) to
+Paola Tellaroli K<paola.tellaroli@unipd.it>
+

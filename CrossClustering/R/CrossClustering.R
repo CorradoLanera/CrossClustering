@@ -67,12 +67,19 @@
 #' d <- dist(twomoons[, 1:2], method = "euclidean")
 #' CCmoons <- CrossClustering(d, k.w.max = 9, k2.max = 10, method = 'single')
 #'
+#'
+#'
+#'
 #' my_col <- sapply(1:dim(twomoons)[1], which_cluster,
 #'   cluster_list = CCmoons$Cluster.list
 #' )
 #' my_col[my_col == "integer(0)"] <- 0
 #' my_col <- unlist(my_col)
 #' my_col <- my_col + 1
+#'
+#'
+#'
+#'
 #' plot(twomoons[, 1:2], pch  = 19, col = my_col, xlab = "", ylab = "",
 #'   main = "CrossClusteringSingle", cex.main = 1
 #' )
