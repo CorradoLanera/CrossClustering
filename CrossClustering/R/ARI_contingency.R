@@ -4,10 +4,23 @@
 #' @param mat The contingency table
 #' @param alpha The significance level
 #'
+#' @details
+#' The adjusted Rand Index (ARI) should be interpreted as follows:
+#'
+#' ARI >= 0.90 excellent recovery;
+#' 0.80 =< ARI < 0.90 good recovery;
+#' 0.65 =< ARI < 0.80 moderate recovery;
+#' ARI < 0.65 poor recovery.
+#'
+#' As the confidence interval is based on the approximation to the Normal
+#' distribution, it is recommended to trust in the confidence interval only
+#' in cases of total number of object clustered greater than 100.
+#'
 #' @return
 #' A vector of objects:
 #' \item{AdjustedRandIndex}{The adjusted Rand Index}
 #' \item{CI}{The confidence interval}
+#'
 #' @examples
 #' mat <- matrix(c(4,5,3,3,8,4),ncol=3,byrow = TRUE)
 #' ARI_contingency(mat, alpha = 0.05)
@@ -18,8 +31,12 @@
 #' @references
 #' L. Hubert and P. Arabie (1985) Comparing partitions, Journal of
 #' Classification, 2, 193-218.
+#'
 #' D. Steinley, M. J. Brusco, L. Hubert (2016) The Variance of the Adjusted
 #' Rand Index, Psychological Methods, 21(2), 261-272
+#'
+#' D. Steinley (2004) Properties of the Hubert-Arabie Adjusted Rand Index,
+#' Psychological Methods, 9(3), 386-396
 
 ARI_contingency <- function(mat, alpha){
   n_pox <- choose(sum(mat), 2)
