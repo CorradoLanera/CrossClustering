@@ -1,5 +1,5 @@
-#' Computes the adjusted Rand index and the confidence interval, comparing two
-#' classifications from a contingency table.
+#' Computes the adjusted Rand index and the confidence interval, comparing
+#' two classifications from a contingency table.
 #'
 #' @param mat The contingency table
 #' @param alpha The significance level
@@ -20,6 +20,8 @@
 #' A vector of objects:
 #' \item{AdjustedRandIndex}{The adjusted Rand Index}
 #' \item{CI}{The confidence interval}
+#'
+#' @export
 #'
 #' @examples
 #' mat <- matrix(c(4,5,3,3,8,4),ncol=3,byrow = TRUE)
@@ -77,8 +79,8 @@ ARI_contingency <- function(mat, alpha){
   var_ARI <- (n_pox^2*var_ad)/((n_pox^2-((a+b)*(a+c)+(b+d)*(c+d)))^2)
 
   ARI <- num/den
-  LL <- ARI-qnorm(p=(1-alpha/2))*sqrt(var_ARI)
-  UL <- ARI+qnorm(p=(1-alpha/2))*sqrt(var_ARI)
+  LL <- ARI-stats::qnorm(p=(1-alpha/2))*sqrt(var_ARI)
+  UL <- ARI+stats::qnorm(p=(1-alpha/2))*sqrt(var_ARI)
 
   c("AdjustedRandIndex" = round(ARI, digits = 2),
         "CI"   = paste(round(LL, digits = 2),

@@ -82,13 +82,7 @@ data(twomoons)
 plot(twomoons[, 1:2], pch = 19, col = "cornflowerblue")
 d <- dist(twomoons[, 1:2], method = "euclidean")
 CCmoons <- CrossClustering(d, k.w.max = 9, k2.max = 10, method = 'single')
-
-my_col <- sapply(1:dim(twomoons)[1], which_cluster,
-  cluster_list = CCmoons$Cluster.list
-)
-my_col[my_col == "integer(0)"] <- 0
-my_col <- unlist(my_col)
-my_col <- my_col + 1
+my_col <- which_cluster(CCmoons$Cluster.list, CCmoons$n.total)
 plot(twomoons[, 1:2], pch  = 19, col = my_col, xlab = "", ylab = "",
   main = "CrossClusteringSingle", cex.main = 1
 )
@@ -99,12 +93,7 @@ plot(worms[, 1:2], pch = 19, col = "cornflowerblue")
 d <- dist(worms[, 1:2], method = "euclidean")
 CCworms <- CrossClustering(d, k.w.max = 9, k2.max = 10, method = 'single')
 
-my_col <- sapply(seq_len(dim(worms)[1]), which_cluster,
-  cluster_list = CCworms$Cluster.list
-)
-my_col[my_col == "integer(0)"] <- 0
-my_col <- unlist(my_col)
-my_col <- my_col + 1
+my_col <-  which_cluster(CCworms$Cluster.list, CCworms$n.total)
 plot(worms[, 1:2], pch = 19, col = my_col, xlab = "", ylab = "",
   main = "CrossClusteringSingle", cex.main = 1
 )
@@ -117,12 +106,10 @@ CCchain_effect <- CrossClustering(d, k.w.max = 9, k2.max = 10,
   method = 'single'
 )
 
-my_col <- sapply(1:dim(chain_effect)[1], which_cluster,
-  cluster_list = CCchain_effect$Cluster.list
+my_col <- which_cluster(
+  CCchain_effect$Cluster.list,
+  CCchain_effect$n.total
 )
-my_col[my_col == "integer(0)"] <- 0
-my_col <- unlist(my_col)
-my_col <- my_col + 1
 plot(chain_effect, pch = 19, col = my_col, xlab = "",ylab = "",
   main = "CrossClusteringSingle", cex.main = 1
 )
