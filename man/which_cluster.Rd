@@ -2,22 +2,21 @@
 % Please edit documentation in R/which_cluster.R
 \name{which_cluster}
 \alias{which_cluster}
-\title{Provides - from a list of elements for each
-cluster - the list of clusters to which the elements belong.}
+\title{Provides the vector of clusters' ID to which each element belong to.}
 \usage{
-which_cluster(data, cluster_list)
+which_cluster(cluster_list, n_elem)
 }
 \arguments{
-\item{data}{elements to be clustered}
-
 \item{cluster_list}{list of clustered elements}
+
+\item{n_elem}{total number of elements clustered}
 }
 \value{
-The list of clusters to which the elements belong.
+An integer vector of clusters to which the elements belong (`1` for
+        the outliers, ID + 1 for the others).
 }
 \description{
-Provides - from a list of elements for each
-cluster - the list of clusters to which the elements belong.
+Provides the vector of clusters' ID to which each element belong to.
 }
 \examples{
 library(CrossClustering)
@@ -46,10 +45,7 @@ toyres <- CrossClustering(d,
 )
 
 ### which_cluster
-sapply(seq_len(ncol(toy)),
-  which_cluster,
-  toyres$Cluster.list
-)
+which_cluster(toyres$Cluster.list, toyres$n.total)
 
 }
 \references{

@@ -10,8 +10,8 @@ outliers}
 \describe{
    \item{\code{x}}{num} x coordinates
    \item{\code{y}}{num} y coordinates.
-   \item{\code{clusters}}{integer} cluster membership (outliers classified as
-                                   3rd cluster).
+   \item{\code{clusters}}{integer} cluster membership (outliers
+         classified as 3rd cluster).
 }}
 \usage{
 twomoons

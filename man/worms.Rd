@@ -10,8 +10,8 @@ outliers}
 \describe{
    \item{\code{x}}{num} x coordinates
    \item{\code{y}}{num} y coordinates.
-   \item{\code{cluster}}{integer} cluster membership (outliers classified as
-   3rd cluster).
+   \item{\code{cluster}}{integer} cluster membership (outliers classified
+         as 3rd cluster).
 }}
 \usage{
 worms

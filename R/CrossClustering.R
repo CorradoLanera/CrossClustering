@@ -66,20 +66,7 @@
 #' plot(twomoons[, 1:2], pch = 19, col = "cornflowerblue")
 #' d <- dist(twomoons[, 1:2], method = "euclidean")
 #' CCmoons <- CrossClustering(d, k.w.max = 9, k2.max = 10, method = 'single')
-#'
-#'
-#'
-#'
-#' my_col <- sapply(1:dim(twomoons)[1], which_cluster,
-#'   cluster_list = CCmoons$Cluster.list
-#' )
-#' my_col[my_col == "integer(0)"] <- 0
-#' my_col <- unlist(my_col)
-#' my_col <- my_col + 1
-#'
-#'
-#'
-#'
+#' my_col <- which_cluster(CCmoons$Cluster.list, CCmoons$n.total)
 #' plot(twomoons[, 1:2], pch  = 19, col = my_col, xlab = "", ylab = "",
 #'   main = "CrossClusteringSingle", cex.main = 1
 #' )
@@ -90,12 +77,7 @@
 #' d <- dist(worms[, 1:2], method = "euclidean")
 #' CCworms <- CrossClustering(d, k.w.max = 9, k2.max = 10, method = 'single')
 #'
-#' my_col <- sapply(seq_len(dim(worms)[1]), which_cluster,
-#'   cluster_list = CCworms$Cluster.list
-#' )
-#' my_col[my_col == "integer(0)"] <- 0
-#' my_col <- unlist(my_col)
-#' my_col <- my_col + 1
+#' my_col <-  which_cluster(CCworms$Cluster.list, CCworms$n.total)
 #' plot(worms[, 1:2], pch = 19, col = my_col, xlab = "", ylab = "",
 #'   main = "CrossClusteringSingle", cex.main = 1
 #' )
@@ -108,12 +90,10 @@
 #'   method = 'single'
 #' )
 #'
-#' my_col <- sapply(1:dim(chain_effect)[1], which_cluster,
-#'   cluster_list = CCchain_effect$Cluster.list
+#' my_col <- which_cluster(
+#'   CCchain_effect$Cluster.list,
+#'   CCchain_effect$n.total
 #' )
-#' my_col[my_col == "integer(0)"] <- 0
-#' my_col <- unlist(my_col)
-#' my_col <- my_col + 1
 #' plot(chain_effect, pch = 19, col = my_col, xlab = "",ylab = "",
 #'   main = "CrossClusteringSingle", cex.main = 1
 #' )
@@ -135,12 +115,17 @@
 #' December, Book of Abstracts (ISBN 978-9963-2227-4-2)
 
 
-CrossClustering <- function(d, k.w.min = 2, k.w.max, k2.max, out = TRUE, method = c('complete', 'single'))
-{
+CrossClustering <- function(d,
+                            k.w.min = 2,
+                            k.w.max,
+                            k2.max,
+                            out     = TRUE,
+                            method  = c('complete', 'single')
+) {
   method <- match.arg(method)
   n <- (1 + sqrt(1 + 8 * length(d))) / 2
 
-  beta.clu.ward     <- hclust(d, method = "ward.D")
+  beta.clu.ward    <- hclust(d, method = "ward.D")
   beta.clu.method2 <- hclust(d, method = method)
 
   grid <- as.matrix(expand.grid(k.w.min:k.w.max, k.w.min:k2.max))
@@ -170,26 +155,20 @@ CrossClustering <- function(d, k.w.min = 2, k.w.max, k2.max, out = TRUE, method 
   if(is.null(dim(k.star))){
     cluster.list <- max_proportion_function(k.star,
       beta.clu.ward     = beta.clu.ward,
-      beta.clu.method2 = beta.clu.method2,
+      beta.clu.method2  = beta.clu.method2,
       return.list       = TRUE
     )
-    clustz <- sapply(seq_len(n), which_cluster,
-      cluster_list = cluster.list$beta.list
-    )
+    clustz <- which_cluster(cluster.list$beta.list, n)
   } else {
     cluster.list <- apply(k.star, 1, max_proportion_function,
       beta.clu.ward     = beta.clu.ward,
-      beta.clu.method2 = beta.clu.method2,
+      beta.clu.method2  = beta.clu.method2,
       return.list       = TRUE
     )
     clustz <- sapply(cluster.list,
-      function(lasim) sapply(seq_len(n), which_cluster,
-        cluster_list = lasim$beta.list
-      )
+      function(lasim) which_cluster(lasim$beta.list, n)
     )
   }
-
-  clustz[clustz == "integer(0)"] <- 0
 
   if(is.null(dim(clustz))){
     clustz <- matrix(clustz, ncol = 1)

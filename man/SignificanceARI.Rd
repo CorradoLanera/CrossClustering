@@ -33,10 +33,7 @@ library(CrossClustering)
 data(twomoons)
 d <- dist(twomoons[, 1:2], method = "euclidean")
 CCmoons <- CrossClustering(d, k.w.max = 9, k2.max = 10, method = 'single')
-CCmoons_clusters <- sapply(seq_len(dim(twomoons)[1]), which_cluster,
-  cluster_list = CCmoons$Cluster.list)
-CCmoons_clusters[CCmoons_clusters == "integer(0)"] <- 0
-CCmoons_clusters <- unlist(CCmoons_clusters) + 1
+CCmoons_clusters <-  which_cluster(CCmoons$Cluster.list, CCmoons$n.total)
 
 SignificanceARI(twomoons[, 3], CCmoons_clusters)
 
