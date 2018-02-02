@@ -24,13 +24,12 @@ test_that("correct output class", {
 test_that("correct known result", {
   expected <- 6L
   actual   <- max_proportion_function(k, beta.clu.ward, beta.clu.method2)
+
   actual_list <- max_proportion_function(k, beta.clu.ward, beta.clu.method2,
     return.list = TRUE
   )
   expect_equal(actual, expected)
-  expect_equal_to_reference(actual_list,
-    here::here('tests', 'test-data', 'max_proportion_function-ref.RDS')
-  )
+  expect_equal_to_reference(actual_list, 'max_proportion_function-ref.RDS')
 })
 
 test_that("error for incorrect input", {
@@ -63,6 +62,3 @@ test_that("error for incorrect input", {
     'is_a_bool'
   )
 })
-
-max_proportion_function(
-  c(0, 2), beta.clu.ward, beta.clu.method2, return.list = TRUE)

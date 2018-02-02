@@ -27,9 +27,7 @@ test_that("correct known result", {
   partition    <- c(rep(3L, 22), rep(2L, 24), rep(1L, 5))
 
   actual <- SignificanceARI(ground_truth, partition)
-  expect_equal_to_reference(actual,
-    here::here('tests', 'test-data', 'SignificanceARI-ref.RDS')
-  )
+  expect_equal_to_reference(actual, 'SignificanceARI-ref.RDS')
 })
 
 test_that("error for incorrect input", {
