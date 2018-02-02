@@ -144,9 +144,9 @@ CrossClustering <- function(d,
   n.clu <- vector('list', length = nrow(grid))
 
   for(i in seq_len(nrow(grid))) {
-    n.clu[[i]] <- max_proportion_function(grid[i, ],
+    n.clu[[i]] <- max_proportion_function(grid[i, c(1, 2)],
       beta.clu.ward     = beta.clu.ward,
-      beta.clu.method2 = beta.clu.method2
+      beta.clu.method2  = beta.clu.method2
     )
   }
 
