@@ -26,11 +26,11 @@
 #' data(toy)
 #'
 #' ### toy is transposed as we want to cluster samples (columns of the
-#'     original matrix)
+#' ### original matrix)
 #' d <- dist(t(toy), method = "euclidean")
 #'
 #' ### Hierarchical clustering
-#' beta.clu.ward     <- hclust(d, method = "ward.D")
+#' beta.clu.ward    <- hclust(d, method = "ward.D")
 #' beta.clu.method2 <- hclust(d, method = "complete")
 #'
 #' ### max_proportion_function
@@ -50,9 +50,17 @@
 #' Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333.
 #' doi:10.1371/journal.pone.0152333
 
-max_proportion_function <- function(
-  k, beta.clu.ward, beta.clu.method2, return.list = FALSE
+max_proportion_function <- function(k,
+                                    beta.clu.ward,
+                                    beta.clu.method2,
+                                    return.list = FALSE
 ) {
+  assertive::assert_is_of_length(k, 2)
+  assertive::assert_is_numeric(k)
+  assertive::assert_is_any_of(beta.clu.ward, 'hclust')
+  assertive::assert_is_any_of(beta.clu.method2, 'hclust')
+  assertive::assert_is_a_bool(return.list)
+
   k.w = k[1]
   k.c = k[2]
   tree.ward     <- cutree(beta.clu.ward    , k = k.w)
@@ -95,5 +103,5 @@ max_proportion_function <- function(
     return(list("beta.list" = beta.list, "A.star" = A.star))
   }
 
-  sum(A.star)
+  as.integer(sum(A.star))
 }

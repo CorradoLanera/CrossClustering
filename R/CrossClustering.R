@@ -44,7 +44,7 @@
 #' data(toy)
 #'
 #' ### toy is transposed as we want to cluster samples (columns of the
-#'     original matrix)
+#' ### original matrix)
 #' d <- dist(t(toy), method = "euclidean")
 #'
 #' ### Run CrossClustering
