@@ -2,8 +2,8 @@
 #' random agreement (i.e., adjusted Rand Index equal to 0) between
 #' two partitions.
 #'
-#' @param ground_truth [int] A vector of the actual membership of elements in
-#'        clusters
+#' @param ground_truth [int] A vector of the actual membership of elements
+#'   in clusters
 #' @param partition The partition coming from a clustering algorithm
 #'
 #' @return A data.frame with two columns:
@@ -28,9 +28,9 @@
 #' Livio Finos, <livio [dot] finos [at] unipd [dot] it>
 #'
 #' @references
-#' Samuh M. H., Leisch F., and Finos L. (2014), Tests for Random Agreement in
-#' Cluster Analysis, Statistica Applicata-Italian Journal of Applied Statistics,
-#' vol. 26, no. 3, pp. 219-234.
+#' Samuh M. H., Leisch F., and Finos L. (2014), Tests for Random Agreement
+#' in Cluster Analysis, Statistica Applicata-Italian Journal of Applied
+#' Statistics, vol. 26, no. 3, pp. 219-234.
 #'
 #' L. Hubert and P. Arabie (1985) Comparing partitions, Journal of
 #' Classification, 2, 193-218.
