@@ -40,8 +40,11 @@ License: GPL (>=3)
 URL: http://CRAN.R-project.org/package=CrossClustering
 RoxygenNote: 6.0.1
 Depends: R (>= 3.4.3)
-Imports: cluster,
+Imports: 
+    cluster,
     mclust,
-    flip
+    flip,
+    magrittr
 Suggests: 
-    testthat
+    testthat,
+    covr
