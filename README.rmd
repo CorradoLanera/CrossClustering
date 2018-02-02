@@ -30,16 +30,7 @@ This is a basic example which shows you how to the main function, i.e. `CrossClu
 library(CrossClustering)
 
 #### method = "complete"
-### Generate simulated data
-toy <- matrix(NA, nrow = 10, ncol = 7)
-colnames(toy) <- paste("Sample", 1:ncol(toy), sep = "")
-rownames(toy) <- paste("Gene"  , 1:nrow(toy), sep = "")
-set.seed(123)
 
-toy[, 1:2] <- rnorm(n = nrow(toy) * 2, mean = 10, sd  = 0.1)
-toy[, 3:4] <- rnorm(n = nrow(toy) * 2, mean = 20, sd  = 0.1)
-toy[, 5:6] <- rnorm(n = nrow(toy) * 2, mean = 5 , sd  = 0.1)
-toy[,   7] <- runif(n = nrow(toy)    , min  = 0 , max = 1  )
 
 ### toy is transposed as we want to cluster samples (columns of the original
 ### matrix)

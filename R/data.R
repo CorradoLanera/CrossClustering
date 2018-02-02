@@ -38,3 +38,9 @@
 #' }
 #'
 "worms"
+
+#' A toy example matrix
+#'
+#' @format A matrix of 10 row and 7 columns
+#'
+"toy"
