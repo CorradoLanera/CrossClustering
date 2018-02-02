@@ -48,4 +48,6 @@ Imports:
     assertive
 Suggests: 
     testthat,
-    covr
+    covr,
+    purrr,
+    here

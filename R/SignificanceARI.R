@@ -44,6 +44,12 @@
 
 SignificanceARI <- function(ground_truth, partition) {
 
+  assertive::assert_is_numeric(ground_truth)
+  assertive::assert_is_numeric(partition)
+  assertive::assert_are_same_length(ground_truth, partition)
+  assertive::assert_all_are_not_na(partition)
+  assertive::assert_all_are_not_na(ground_truth)
+
   nitem <- length(ground_truth)
 
   Table <- table(ground_truth, partition)
