@@ -9,8 +9,8 @@ two partitions.}
 PermSignificanceARI(ground_truth, partition)
 }
 \arguments{
-\item{ground_truth}{[int] A vector of the actual membership of elements in
-clusters}
+\item{ground_truth}{[int] A vector of the actual membership of elements
+in clusters}
 
 \item{partition}{The partition coming from a clustering algorithm}
 }
@@ -37,9 +37,9 @@ PermSignificanceARI(twomoons[, 3], CCmoons_clusters)
 
 }
 \references{
-Samuh M. H., Leisch F., and Finos L. (2014), Tests for Random Agreement in
-Cluster Analysis, Statistica Applicata-Italian Journal of Applied Statistics,
-vol. 26, no. 3, pp. 219-234.
+Samuh M. H., Leisch F., and Finos L. (2014), Tests for Random Agreement
+in Cluster Analysis, Statistica Applicata-Italian Journal of Applied
+Statistics, vol. 26, no. 3, pp. 219-234.
 
 L. Hubert and P. Arabie (1985) Comparing partitions, Journal of
 Classification, 2, 193-218.

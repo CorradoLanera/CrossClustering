@@ -1,36 +1,38 @@
 #' A partial clustering algorithm with automatic estimation of
 #' the number of clusters and identification of outliers
 #'
-#' This function performs the CrossClustering algorithm. This method combines
-#' the Ward's minimum variance and Complete-linkage (default, useful for finding
-#' spherical clusters) or Single-linkage (useful for finding elongated clusters)
-#' algorithms, providing automatic estimation of a suitable number of clusters
-#' and identification of outlier elements.
+#' This function performs the CrossClustering algorithm. This method
+#' combines the Ward's minimum variance and Complete-linkage (default,
+#' useful for finding spherical clusters) or Single-linkage (useful for
+#' finding elongated clusters) algorithms, providing automatic estimation of
+#' a suitable number of clusters and identification of outlier elements.
 #'
-#' @param d A dissimilarity structure as produced by the function \code{dist}
+#' @param d A dissimilarity structure as produced by the function
+#'        \code{dist}
 #' @param k.w.min [int] Minimum number of clusters for the Ward's minimum
 #'        variance method. By default is set equal 2
 #' @param k.w.max [int] Maximum number of clusters for the Ward's minimum
 #'        variance method (see details)
 #' @param k2.max [int] Maximum number of clusters for the
-#'        Complete/Single-linkage method. It can not be equal or greater than
-#'        the number of elements to cluster (see details)
+#'        Complete/Single-linkage method. It can not be equal or greater
+#'        than the number of elements to cluster (see details)
 #' @param out [lgl] If \code{TRUE} (default) outliers must be searched (see
 #'        details)
 #' @param method [chr] "complete" (default) or "single". CrossClustering
-#'        combines Ward's algorithm with Complete-linkage if method is set to
-#'        "complete", otherwhise (if method is set to 'single') Single-linkage
-#'        will be used.
-#' @return A list of objects describing characteristics of the partitioning as
-#'         follows:
+#'        combines Ward's algorithm with Complete-linkage if method is set
+#'        to "complete", otherwhise (if method is set to 'single')
+#'        Single-linkage will be used.
+#' @return A list of objects describing characteristics of the partitioning
+#'         as follows:
 #'           \item{Optimal.cluster}{number of clusters}
-#'           \item{Cluster.list}{a list of clusters; each element of this lists
-#'             contains the indices of the elemenents belonging to the cluster}
+#'           \item{Cluster.list}{a list of clusters; each element of this
+#'           lists contains the indices of the elemenents belonging to the
+#'           cluster}
 #'           \item{Silhouette}{the average silhouette witdh over all the
 #'             clusters}
 #'           \item{n.total}{total number of input elements}
-#'           \item{n.clustered}{number of input elements that have actually been
-#'             clustered}
+#'           \item{n.clustered}{number of input elements that have actually
+#'             been clustered}
 #'
 #' @export
 #'
@@ -39,19 +41,10 @@
 #' library(CrossClustering)
 #'
 #' #### method = "complete"
-#' ### Generate simulated data
-#' toy <- matrix(NA, nrow = 10, ncol = 7)
-#' colnames(toy) <- paste("Sample", 1:ncol(toy), sep = "")
-#' rownames(toy) <- paste("Gene"  , 1:nrow(toy), sep = "")
-#' set.seed(123)
+#' data(toy)
 #'
-#' toy[, 1:2] <- rnorm(n = nrow(toy) * 2, mean = 10, sd  = 0.1)
-#' toy[, 3:4] <- rnorm(n = nrow(toy) * 2, mean = 20, sd  = 0.1)
-#' toy[, 5:6] <- rnorm(n = nrow(toy) * 2, mean = 5 , sd  = 0.1)
-#' toy[,   7] <- runif(n = nrow(toy)    , min  = 0 , max = 1  )
-#'
-#' ### toy is transposed as we want to cluster samples (columns of the original
-#' ### matrix)
+#' ### toy is transposed as we want to cluster samples (columns of the
+#'     original matrix)
 #' d <- dist(t(toy), method = "euclidean")
 #'
 #' ### Run CrossClustering
@@ -65,7 +58,11 @@
 #' data(twomoons)
 #' plot(twomoons[, 1:2], pch = 19, col = "cornflowerblue")
 #' d <- dist(twomoons[, 1:2], method = "euclidean")
-#' CCmoons <- CrossClustering(d, k.w.max = 9, k2.max = 10, method = 'single')
+#' CCmoons <- CrossClustering(d,
+#'   k.w.max = 9,
+#'   k2.max  = 10,
+#'   method  = 'single'
+#' )
 #' my_col <- which_cluster(CCmoons$Cluster.list, CCmoons$n.total)
 #' plot(twomoons[, 1:2], pch  = 19, col = my_col, xlab = "", ylab = "",
 #'   main = "CrossClusteringSingle", cex.main = 1
@@ -75,7 +72,11 @@
 #' data(worms)
 #' plot(worms[, 1:2], pch = 19, col = "cornflowerblue")
 #' d <- dist(worms[, 1:2], method = "euclidean")
-#' CCworms <- CrossClustering(d, k.w.max = 9, k2.max = 10, method = 'single')
+#' CCworms <- CrossClustering(d,
+#'   k.w.max = 9,
+#'   k2.max  = 10,
+#'   method  = 'single'
+#' )
 #'
 #' my_col <-  which_cluster(CCworms$Cluster.list, CCworms$n.total)
 #' plot(worms[, 1:2], pch = 19, col = my_col, xlab = "", ylab = "",
@@ -86,8 +87,10 @@
 #' data(chain_effect)
 #' plot(chain_effect, pch = 19, col = "cornflowerblue")
 #' d <- dist(chain_effect, method = "euclidean")
-#' CCchain_effect <- CrossClustering(d, k.w.max = 9, k2.max = 10,
-#'   method = 'single'
+#' CCchain_effect <- CrossClustering(d,
+#'   k.w.max = 9,
+#'   k2.max  = 10,
+#'   method  = 'single'
 #' )
 #'
 #' my_col <- which_cluster(
@@ -105,8 +108,8 @@
 #'
 #' @references
 #' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016).
-#' Cross-Clustering: A Partial Clustering Algorithm with Automatic Estimation of
-#' the Number of Clusters. PLoS ONE 11(3):   e0152333.
+#' Cross-Clustering: A Partial Clustering Algorithm with Automatic
+#' Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333.
 #' doi:10.1371/journal.pone.0152333
 #'
 #' #' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2017).

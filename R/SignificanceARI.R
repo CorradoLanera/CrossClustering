@@ -1,8 +1,8 @@
 #' A test for testing the null hypothesis of random
 #' agreement (i.e., adjusted Rand Index equal to 0) between two partitions.
 #'
-#' @param ground_truth [int] A vector of the actual membership of elements in
-#'        clusters
+#' @param ground_truth [int] A vector of the actual membership of elements
+#'        in clusters
 #' @param partition The partition coming from a clustering algorithm
 #'
 #' @return A list with six elements:
@@ -20,7 +20,11 @@
 #' ### Two moons data
 #' data(twomoons)
 #' d <- dist(twomoons[, 1:2], method = "euclidean")
-#' CCmoons <- CrossClustering(d, k.w.max = 9, k2.max = 10, method = 'single')
+#' CCmoons <- CrossClustering(d,
+#'   k.w.max = 9,
+#'   k2.max  = 10,
+#'   method  = 'single'
+#' )
 #' CCmoons_clusters <-  which_cluster(CCmoons$Cluster.list, CCmoons$n.total)
 #'
 #' SignificanceARI(twomoons[, 3], CCmoons_clusters)
@@ -31,8 +35,8 @@
 #'
 #' @references
 #' E.M. Qannari, P. Courcoux and Faye P. (2014) Significance test of the
-#' adjusted Rand index. Application to the free sorting task, Food Quality and
-#' Preference, (32)93-97
+#' adjusted Rand index. Application to the free sorting task, Food Quality
+#' and Preference, (32)93-97
 #'
 #' L. Hubert and P. Arabie (1985) Comparing partitions, Journal of
 #' Classification, 2, 193-218.
@@ -59,14 +63,16 @@ SignificanceARI <- function(ground_truth, partition) {
 
   n <- sum(Table * (Table - 1) / 2)
 
-  varB   <- (1 / t) +
-            (4 * Pprime * Qprime / (nitem * (nitem - 1) * (nitem-2) * P * Q)) +
-            (
+  varB   <- (1 / t) + (
+              4 * Pprime * Qprime /
+              (nitem * (nitem - 1) * (nitem-2) * P * Q)
+            ) + (
               (P - 2 - 4 * (Pprime / P)) *
               (Q - 2 - 4 * (Qprime / Q)) /
               (nitem * (nitem - 1) * (nitem - 2) * (nitem - 3))
-            ) -
-            (P * Q / (nitem^2 * (nitem - 1)^2))
+            ) - (
+              P * Q / (nitem^2 * (nitem - 1)^2)
+  )
 
   varRI  <- 4 * P * Q * varB / (nitem^2 * (nitem - 1)^2)
 

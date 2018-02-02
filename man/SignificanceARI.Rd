@@ -8,8 +8,8 @@ agreement (i.e., adjusted Rand Index equal to 0) between two partitions.}
 SignificanceARI(ground_truth, partition)
 }
 \arguments{
-\item{ground_truth}{[int] A vector of the actual membership of elements in
-clusters}
+\item{ground_truth}{[int] A vector of the actual membership of elements
+in clusters}
 
 \item{partition}{The partition coming from a clustering algorithm}
 }
@@ -32,7 +32,11 @@ library(CrossClustering)
 ### Two moons data
 data(twomoons)
 d <- dist(twomoons[, 1:2], method = "euclidean")
-CCmoons <- CrossClustering(d, k.w.max = 9, k2.max = 10, method = 'single')
+CCmoons <- CrossClustering(d,
+  k.w.max = 9,
+  k2.max  = 10,
+  method  = 'single'
+)
 CCmoons_clusters <-  which_cluster(CCmoons$Cluster.list, CCmoons$n.total)
 
 SignificanceARI(twomoons[, 3], CCmoons_clusters)
@@ -40,8 +44,8 @@ SignificanceARI(twomoons[, 3], CCmoons_clusters)
 }
 \references{
 E.M. Qannari, P. Courcoux and Faye P. (2014) Significance test of the
-adjusted Rand index. Application to the free sorting task, Food Quality and
-Preference, (32)93-97
+adjusted Rand index. Application to the free sorting task, Food Quality
+and Preference, (32)93-97
 
 L. Hubert and P. Arabie (1985) Comparing partitions, Journal of
 Classification, 2, 193-218.

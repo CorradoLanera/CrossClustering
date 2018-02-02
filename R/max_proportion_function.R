@@ -2,37 +2,31 @@
 #' variance and Complete-linkage (or Single-linkage) algorithms (i.e., the
 #' number of elements classified together by both algorithms) .
 #'
-#' @param k [int] a vector containing the number of clusters for Ward and for
-#'        Complete-linkage (or Single-linkage) algorithms, respectively
+#' @param k [int] a vector containing the number of clusters for Ward and
+#'        for Complete-linkage (or Single-linkage) algorithms, respectively
 #' @param beta.clu.ward an object of class hclust for the Ward algorithm
-#' @param beta.clu.method2 an object of class hclust for the Complete-linkage
-#'        (or Single-linkage) algorithm
-#' @param return.list [lgl] If TRUE the list of the elements belonging to each
-#'        cluster and the contingency table of the clustering are shown.
+#' @param beta.clu.method2 an object of class hclust for the
+#'        Complete-linkage (or Single-linkage) algorithm
+#' @param return.list [lgl] If TRUE the list of the elements belonging to
+#'        each cluster and the contingency table of the clustering are
+#'        shown.
 #'
-#' @return If return.list is FALSE (default) the number of elements classified.
-#'
+#' @return If return.list is FALSE (default) the number of elements
+#'         classified.
 #'         If return.list is TRUE, a list with the following elements:
-#'           \item{beta.list}{list of the elements belonging to each cluster};
+#'           \item{beta.list}{
+#'             list of the elements belonging to each cluster
+#'           };
 #'           \item{A.star}{contingency table of the clustering}.
 #'
 #'
 #' @examples
 #' library(CrossClustering)
 #'
-#' ### Generate simulated data
-#' toy <- matrix(NA, nrow = 10, ncol = 7)
-#' colnames(toy) <- paste("Sample", 1:ncol(toy), sep = "")
-#' rownames(toy) <- paste("Gene"  , 1:nrow(toy), sep = "")
-#' set.seed(123)
+#' data(toy)
 #'
-#' toy[, 1:2] <- rnorm(n = nrow(toy) * 2, mean = 10, sd  = 0.1)
-#' toy[, 3:4] <- rnorm(n = nrow(toy) * 2, mean = 20, sd  = 0.1)
-#' toy[, 5:6] <- rnorm(n = nrow(toy) * 2, mean = 5 , sd  = 0.1)
-#' toy[,   7] <- runif(n = nrow(toy)    , min  = 0 , max = 1  )
-#'
-#' ### toy is transposed as we want to cluster samples (columns of the original
-#' ### matrix)
+#' ### toy is transposed as we want to cluster samples (columns of the
+#'     original matrix)
 #' d <- dist(t(toy), method = "euclidean")
 #'
 #' ### Hierarchical clustering
@@ -52,8 +46,8 @@
 #'
 #' @references
 #' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016).
-#' Cross-Clustering: A Partial Clustering Algorithm with Automatic Estimation
-#' of the Number of Clusters. PLoS ONE 11(3):   e0152333.
+#' Cross-Clustering: A Partial Clustering Algorithm with Automatic
+#' Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333.
 #' doi:10.1371/journal.pone.0152333
 
 max_proportion_function <- function(
