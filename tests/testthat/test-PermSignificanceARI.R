@@ -1,5 +1,16 @@
 context("test-PermSignificanceARI.R")
 
+test_that("error for incorrect input", {
+  expect_error(PermSignificanceARI('a', 1), 'is_numeric')
+  expect_error(PermSignificanceARI(1, 'a'), 'is_numeric')
+  expect_error(PermSignificanceARI(c(1, 2), 2), 'are_same_length')
+  expect_error(PermSignificanceARI(1, NA), 'is_numeric')
+  expect_error(PermSignificanceARI(1, c(NA_real_)), 'is_not_na')
+  expect_error(PermSignificanceARI(1, NaN), 'is_not_na')
+  expect_error(PermSignificanceARI(c(NA_real_), 1), 'is_not_na')
+  expect_error(PermSignificanceARI(NaN, 1), 'is_not_na')
+})
+
 test_that("output class is a list", {
   ground_truth <- c(rep(1L, 22), rep(2L, 24), rep(3L, 5))
   partition    <- c(rep(3L, 22), rep(2L, 24), rep(1L, 5))
@@ -30,15 +41,4 @@ test_that("correct known result", {
   expected <- data.frame(Stat = 1, 'p-value' = 0.001, check.names = FALSE)
   actual <- PermSignificanceARI(ground_truth, partition)
   expect_equal(actual, expected)
-})
-
-test_that("error for incorrect input", {
-  expect_error(PermSignificanceARI('a', 1), 'is_numeric')
-  expect_error(PermSignificanceARI(1, 'a'), 'is_numeric')
-  expect_error(PermSignificanceARI(c(1, 2), 2), 'are_same_length')
-  expect_error(PermSignificanceARI(1, NA), 'is_numeric')
-  expect_error(PermSignificanceARI(1, c(NA_real_)), 'is_not_na')
-  expect_error(PermSignificanceARI(1, NaN), 'is_not_na')
-  expect_error(PermSignificanceARI(c(NA_real_), 1), 'is_not_na')
-  expect_error(PermSignificanceARI(NaN, 1), 'is_not_na')
 })

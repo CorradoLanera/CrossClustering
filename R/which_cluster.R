@@ -43,6 +43,7 @@ which_cluster <- function(cluster_list, n_elem) {
 
   assertive::assert_is_list(cluster_list)
   assertive::assert_is_a_number(n_elem)
+  assertive::assert_all_are_equal_to(n_elem, as.integer(n_elem))
 
   n_cluster <- length(cluster_list)
   elements  <- unlist(cluster_list)

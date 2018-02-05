@@ -1,5 +1,20 @@
 context("test-ARI_contingency.R")
 
+test_that("error for incorrect input", {
+  mat <- matrix(1)
+  expect_error(ARI_contingency('a', 1), 'is_matrix')
+  expect_error(ARI_contingency(matrix('a'), 1), 'is_numeric')
+  expect_error(ARI_contingency(matrix(-1), 1), 'is_positive')
+  expect_error(ARI_contingency(matrix(1.4), 1), 'is_equal_to')
+  expect_error(ARI_contingency(mat, 'a'), 'is_a_double')
+  expect_error(ARI_contingency(mat, 1), 'is_proportion')
+  expect_error(ARI_contingency(mat, 0), 'is_proportion')
+  expect_error(ARI_contingency(mat, 2), 'is_proportion')
+  expect_error(ARI_contingency(mat, -1), 'is_proportion')
+  expect_error(ARI_contingency(mat, 0.5, 'a'), 'is_a_number')
+  expect_error(ARI_contingency(mat, 0.5, -1), 'is_greater_than_or_equal_to')
+})
+
 test_that("correct output class", {
   mat   <- matrix(c(4,5))
   alpha <- 0.05
@@ -22,20 +37,4 @@ test_that("correct known result", {
   )
   actual    <- ARI_contingency(mat = mat)
   expect_equal(actual, reference)
-})
-
-
-test_that("error for incorrect input", {
-  mat <- matrix(1)
-  expect_error(ARI_contingency('a', 1), 'is_matrix')
-  expect_error(ARI_contingency(matrix('a'), 1), 'is_numeric')
-  expect_error(ARI_contingency(matrix(-1), 1), 'is_positive')
-  expect_error(ARI_contingency(matrix(1.4), 1), 'is_equal_to')
-  expect_error(ARI_contingency(mat, 'a'), 'is_a_double')
-  expect_error(ARI_contingency(mat, 1), 'is_proportion')
-  expect_error(ARI_contingency(mat, 0), 'is_proportion')
-  expect_error(ARI_contingency(mat, 2), 'is_proportion')
-  expect_error(ARI_contingency(mat, -1), 'is_proportion')
-  expect_error(ARI_contingency(mat, 0.5, 'a'), 'is_a_number')
-  expect_error(ARI_contingency(mat, 0.5, -1), 'is_greater_than_or_equal_to')
 })
