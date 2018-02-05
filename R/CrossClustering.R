@@ -120,8 +120,8 @@
 
 CrossClustering <- function(d,
                             k.w.min = 2,
-                            k.w.max,
-                            k2.max,
+                            k2.max  = (1 + sqrt(1 + 8 * length(d))) / 2 - 1,
+                            k.w.max = k2.max - 1,
                             out     = TRUE,
                             method  = c('complete', 'single')
 ) {

@@ -20,7 +20,8 @@ Complete-linkage (or Single-linkage) algorithm}
 
 \item{return.list}{[lgl] If TRUE the list of the elements belonging to
 each cluster and the contingency table of the clustering are
-shown.}
+shown. Otherwise, a numeric vector of lenght one reporting the
+number of element classified.}
 }
 \value{
 If return.list is FALSE (default) the number of elements

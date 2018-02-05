@@ -5,8 +5,8 @@
 \title{A partial clustering algorithm with automatic estimation of
 the number of clusters and identification of outliers}
 \usage{
-CrossClustering(d, k.w.min = 2, k.w.max, k2.max, out = TRUE,
-  method = c("complete", "single"))
+CrossClustering(d, k.w.min = 2, k2.max = (1 + sqrt(1 + 8 * length(d)))/2 -
+  1, k.w.max = k2.max - 1, out = TRUE, method = c("complete", "single"))
 }
 \arguments{
 \item{d}{A dissimilarity structure as produced by the function
@@ -15,12 +15,12 @@ CrossClustering(d, k.w.min = 2, k.w.max, k2.max, out = TRUE,
 \item{k.w.min}{[int] Minimum number of clusters for the Ward's minimum
 variance method. By default is set equal 2}
 
-\item{k.w.max}{[int] Maximum number of clusters for the Ward's minimum
-variance method (see details)}
-
 \item{k2.max}{[int] Maximum number of clusters for the
 Complete/Single-linkage method. It can not be equal or greater
 than the number of elements to cluster (see details)}
+
+\item{k.w.max}{[int] Maximum number of clusters for the Ward's minimum
+variance method (see details)}
 
 \item{out}{[lgl] If \code{TRUE} (default) outliers must be searched (see
 details)}

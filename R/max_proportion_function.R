@@ -9,7 +9,8 @@
 #'        Complete-linkage (or Single-linkage) algorithm
 #' @param return.list [lgl] If TRUE the list of the elements belonging to
 #'        each cluster and the contingency table of the clustering are
-#'        shown.
+#'        shown. Otherwise, a numeric vector of lenght one reporting the
+#'        number of element classified.
 #'
 #' @return If return.list is FALSE (default) the number of elements
 #'         classified.
@@ -51,9 +52,9 @@
 #' doi:10.1371/journal.pone.0152333
 
 max_proportion_function <- function(k,
-                                    beta.clu.ward,
-                                    beta.clu.method2,
-                                    return.list = FALSE
+  beta.clu.ward,
+  beta.clu.method2,
+  return.list = FALSE
 ) {
   assertive::assert_is_of_length(k, 2)
   assertive::assert_is_numeric(k)
@@ -89,18 +90,16 @@ max_proportion_function <- function(k,
     A[     , c.max] <- 0
   }
 
-  while (A.star[nrow(A.star), ncol(A.star)] == 0) {
-    A.star <- A.star[-(nrow(A.star)), -(ncol(A.star))]
-
-    if(return.list) {
-      beta.list <- beta.list[-length(beta.list)]
-    }
-
-    if(is.null(dim(A.star))) break
-  }
+  A.star <- prune_zero_tail(A.star)
 
   if(return.list) {
-    return(list("beta.list" = beta.list, "A.star" = A.star))
+    n_clusters <- length(diag(A.star))
+    beta.list <- beta.list[seq_len(n_clusters)]
+
+    return(list(
+      "beta.list" = beta.list,
+      "A.star"    = A.star
+    ))
   }
 
   as.integer(sum(A.star))
