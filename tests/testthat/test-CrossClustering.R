@@ -34,6 +34,33 @@ test_that("error for incorrect input", {
   expect_error(CrossClustering(d, 1.2, k.w.max, k2.max, out, 'complete'),
                'is_equal_to'
   )
+  expect_error(CrossClustering(d, k.w.min, -1, k2.max, out, 'complete'),
+               'is_less_than'
+  )
+  expect_error(CrossClustering(d, k.w.min, 3.2, k2.max, out, 'complete'),
+               'is_equal_to'
+  )
+  expect_error(CrossClustering(d, 3, 2, k2.max, out, 'complete'),
+               'is_less_than'
+  )
+  expect_error(CrossClustering(d, k.w.min, k.w.max, -1, out, 'complete'),
+               'is_less_than'
+  )
+  expect_error(CrossClustering(d, k.w.min, k.w.max, 3.2, out, 'complete'),
+               'is_equal_to'
+  )
+  expect_error(CrossClustering(d, 3, k.w.max, 2, out, 'complete'),
+               'is_less_than'
+  )
+  expect_error(CrossClustering(d, 3, k.w.max, k2.max, 5, 'complete'),
+               'is_a_bool'
+  )
+  expect_error(CrossClustering(d, 3, k.w.max, k2.max, out, 1),
+               'is_character'
+  )
+  expect_error(CrossClustering(d, 3, k.w.max, k2.max, out, 'a'),
+               'should be one of '
+  )
 })
 
 test_that("correct output class", {

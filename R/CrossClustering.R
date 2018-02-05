@@ -147,8 +147,7 @@ CrossClustering <- function(d,
   }
 
   assertive::assert_is_a_bool(out)
-  assertive::assert_all_are_non_missing_nor_empty_character(method)
-
+  assertive::assert_is_character(method)
 
   method <- match.arg(method)
 
