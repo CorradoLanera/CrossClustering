@@ -36,18 +36,27 @@
 #' Classification, 2, 193-218.
 
 PermSignificanceARI <- function(ground_truth, partition) {
-  my_fun <- function(ground_truth){
+
+  assertive::assert_is_numeric(ground_truth)
+  assertive::assert_is_numeric(partition)
+  assertive::assert_are_same_length(ground_truth, partition)
+  assertive::assert_all_are_not_na(ground_truth)
+  assertive::assert_all_are_not_na(partition)
+
+  ari_fixed_partition <- function(ground_truth){
     mclust::adjustedRandIndex(ground_truth, partition)
   }
 
-  tmp <- tempfile()
-  sink('tmp');
-  res_flip <- flip::flip(Y = matrix(ground_truth), X = matrix(partition),
-                         statTest = my_fun
+  # flip force to cut information of no interest for us
+  capture.output(
+    res_flip <- flip::flip(Y = matrix(ground_truth), X = matrix(partition),
+      statTest = ari_fixed_partition
+    )
   )
-  sink(NULL);
-  unlink('tmp')
 
-  res_flip@res[c('Stat', 'p-value')]
+  # original rownames has to be restored, i.e. numeric and not characted
+  res <- res_flip@res[c('Stat', 'p-value')]
+  rownames(res) <- NULL
+  res
 }
 

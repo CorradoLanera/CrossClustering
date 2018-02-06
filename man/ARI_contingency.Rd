@@ -5,12 +5,17 @@
 \title{Computes the adjusted Rand index and the confidence interval, comparing
 two classifications from a contingency table.}
 \usage{
-ARI_contingency(mat, alpha)
+ARI_contingency(mat, alpha = 0.05, digits = 2)
 }
 \arguments{
-\item{mat}{The contingency table}
+\item{mat}{A matrix of integers representing the contingency table of
+reference}
 
-\item{alpha}{The significance level}
+\item{alpha}{A single number strictly included between 0 and 1
+representing the significance level of interest. (default is 0.05)}
+
+\item{digits}{An integer for the returned significant digits to return
+(default is 2)}
 }
 \value{
 A vector of objects:
@@ -35,7 +40,7 @@ in cases of total number of object clustered greater than 100.
 }
 \examples{
 mat <- matrix(c(4,5,3,3,8,4),ncol=3,byrow = TRUE)
-ARI_contingency(mat, alpha = 0.05)
+ARI_contingency(mat)
 
 }
 \references{

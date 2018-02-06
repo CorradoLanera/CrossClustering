@@ -20,7 +20,8 @@ Complete-linkage (or Single-linkage) algorithm}
 
 \item{return.list}{[lgl] If TRUE the list of the elements belonging to
 each cluster and the contingency table of the clustering are
-shown.}
+shown. Otherwise, a numeric vector of lenght one reporting the
+number of element classified.}
 }
 \value{
 If return.list is FALSE (default) the number of elements
@@ -42,11 +43,11 @@ library(CrossClustering)
 data(toy)
 
 ### toy is transposed as we want to cluster samples (columns of the
-    original matrix)
+### original matrix)
 d <- dist(t(toy), method = "euclidean")
 
 ### Hierarchical clustering
-beta.clu.ward     <- hclust(d, method = "ward.D")
+beta.clu.ward    <- hclust(d, method = "ward.D")
 beta.clu.method2 <- hclust(d, method = "complete")
 
 ### max_proportion_function

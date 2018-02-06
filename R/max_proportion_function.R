@@ -9,7 +9,8 @@
 #'        Complete-linkage (or Single-linkage) algorithm
 #' @param return.list [lgl] If TRUE the list of the elements belonging to
 #'        each cluster and the contingency table of the clustering are
-#'        shown.
+#'        shown. Otherwise, a numeric vector of lenght one reporting the
+#'        number of element classified.
 #'
 #' @return If return.list is FALSE (default) the number of elements
 #'         classified.
@@ -26,11 +27,11 @@
 #' data(toy)
 #'
 #' ### toy is transposed as we want to cluster samples (columns of the
-#'     original matrix)
+#' ### original matrix)
 #' d <- dist(t(toy), method = "euclidean")
 #'
 #' ### Hierarchical clustering
-#' beta.clu.ward     <- hclust(d, method = "ward.D")
+#' beta.clu.ward    <- hclust(d, method = "ward.D")
 #' beta.clu.method2 <- hclust(d, method = "complete")
 #'
 #' ### max_proportion_function
@@ -50,9 +51,17 @@
 #' Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333.
 #' doi:10.1371/journal.pone.0152333
 
-max_proportion_function <- function(
-  k, beta.clu.ward, beta.clu.method2, return.list = FALSE
+max_proportion_function <- function(k,
+  beta.clu.ward,
+  beta.clu.method2,
+  return.list = FALSE
 ) {
+  assertive::assert_is_of_length(k, 2)
+  assertive::assert_is_numeric(k)
+  assertive::assert_is_any_of(beta.clu.ward, 'hclust')
+  assertive::assert_is_any_of(beta.clu.method2, 'hclust')
+  assertive::assert_is_a_bool(return.list)
+
   k.w = k[1]
   k.c = k[2]
   tree.ward     <- cutree(beta.clu.ward    , k = k.w)
@@ -81,19 +90,17 @@ max_proportion_function <- function(
     A[     , c.max] <- 0
   }
 
-  while (A.star[nrow(A.star), ncol(A.star)] == 0) {
-    A.star <- A.star[-(nrow(A.star)), -(ncol(A.star))]
-
-    if(return.list) {
-      beta.list <- beta.list[-length(beta.list)]
-    }
-
-    if(is.null(dim(A.star))) break
-  }
+  A.star <- prune_zero_tail(A.star)
 
   if(return.list) {
-    return(list("beta.list" = beta.list, "A.star" = A.star))
+    n_clusters <- length(diag(A.star))
+    beta.list <- beta.list[seq_len(n_clusters)]
+
+    return(list(
+      "beta.list" = beta.list,
+      "A.star"    = A.star
+    ))
   }
 
-  sum(A.star)
+  as.integer(sum(A.star))
 }

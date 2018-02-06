@@ -5,8 +5,8 @@
 \title{A partial clustering algorithm with automatic estimation of
 the number of clusters and identification of outliers}
 \usage{
-CrossClustering(d, k.w.min = 2, k.w.max, k2.max, out = TRUE,
-  method = c("complete", "single"))
+CrossClustering(d, k.w.min = 2, k.w.max = attr(d, "Size") - 2,
+  k2.max = k.w.max + 1, out = TRUE, method = c("complete", "single"))
 }
 \arguments{
 \item{d}{A dissimilarity structure as produced by the function
@@ -60,7 +60,7 @@ library(CrossClustering)
 data(toy)
 
 ### toy is transposed as we want to cluster samples (columns of the
-    original matrix)
+### original matrix)
 d <- dist(t(toy), method = "euclidean")
 
 ### Run CrossClustering

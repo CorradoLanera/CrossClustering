@@ -44,7 +44,7 @@
 #' data(toy)
 #'
 #' ### toy is transposed as we want to cluster samples (columns of the
-#'     original matrix)
+#' ### original matrix)
 #' d <- dist(t(toy), method = "euclidean")
 #'
 #' ### Run CrossClustering
@@ -119,14 +119,40 @@
 
 
 CrossClustering <- function(d,
-                            k.w.min = 2,
-                            k.w.max,
-                            k2.max,
-                            out     = TRUE,
-                            method  = c('complete', 'single')
+  k.w.min = 2,
+  k.w.max = attr(d, 'Size') - 2,
+  k2.max  = k.w.max + 1,
+  out     = TRUE,
+  method  = c('complete', 'single')
 ) {
+  # imput check
+  assertive::assert_is_any_of(d, 'dist')
+  assertive::assert_is_a_number(k.w.min)
+
+  assertive::assert_all_are_positive(k.w.min)
+  if (!assertive::assert_all_are_equal_to(k.w.min, as.integer(k.w.min))) {
+    stop(paste0('k.w.min must be an integer. It is: ', k.w.min, '.'))
+  }
+
+  assertive::assert_is_a_number(k.w.max)
+  assertive::assert_all_are_less_than(k.w.min, k.w.max)
+  if (!assertive::assert_all_are_equal_to(k.w.max, as.integer(k.w.max))) {
+    stop(paste0('k.w.max must be an integer. It is: ', k.w.max, '.'))
+  }
+
+  assertive::assert_is_a_number(k2.max)
+  assertive::assert_all_are_less_than(k.w.min, k2.max)
+  if (!assertive::assert_all_are_equal_to(k2.max, as.integer(k2.max))) {
+    stop(paste0('k2.max must be an integer. It is: ', k2.max, '.'))
+  }
+
+  assertive::assert_is_a_bool(out)
+  assertive::assert_is_character(method)
+
   method <- match.arg(method)
-  n <- (1 + sqrt(1 + 8 * length(d))) / 2
+
+    # n <- (1 + sqrt(1 + 8 * length(d))) / 2 # this is not an integer!!!!
+  n <- attr(d, 'Size')
 
   beta.clu.ward    <- hclust(d, method = "ward.D")
   beta.clu.method2 <- hclust(d, method = method)
@@ -144,9 +170,9 @@ CrossClustering <- function(d,
   n.clu <- vector('list', length = nrow(grid))
 
   for(i in seq_len(nrow(grid))) {
-    n.clu[[i]] <- max_proportion_function(grid[i, ],
+    n.clu[[i]] <- max_proportion_function(grid[i, c(1, 2)],
       beta.clu.ward     = beta.clu.ward,
-      beta.clu.method2 = beta.clu.method2
+      beta.clu.method2  = beta.clu.method2
     )
   }
 
@@ -197,8 +223,8 @@ CrossClustering <- function(d,
 
   list("Optimal.cluster" = length(cluster.list[[which.max(Sil)]]$beta.list),
        "Cluster.list"    = Cluster.list,
- #       "A.star"          = cluster.list[[which.max(Sil)]]$A.star,
        "Silhouette"      = max(unlist(Sil)),
        "n.total"         = n,
-       "n.clustered"     = n.clustered)
+       "n.clustered"     = n.clustered
+ )
 }

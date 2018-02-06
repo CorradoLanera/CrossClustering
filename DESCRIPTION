@@ -44,7 +44,10 @@ Imports:
     cluster,
     mclust,
     flip,
-    magrittr
+    magrittr,
+    assertive
 Suggests: 
     testthat,
-    covr
+    covr,
+    purrr,
+    utils
