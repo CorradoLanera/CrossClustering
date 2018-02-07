@@ -39,7 +39,7 @@ Description: CrossClustering is a partial clustering algorithm that combines
 License: GPL (>=3)
 URL: http://CRAN.R-project.org/package=CrossClustering
 RoxygenNote: 6.0.1
-Depends: R (>= 3.4.3)
+Depends: R (>= 3.1)
 Imports: 
     cluster,
     mclust,
