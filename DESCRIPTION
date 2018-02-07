@@ -3,8 +3,8 @@ Type: Package
 Title: A partial clustering algorithm with automatic estimation of the
        number of clusters and identification of outliers for spherical or
        elongated clusters
-Version: 1.2.0
-Date: 2018-01-19
+Version: 3.0.3
+Date: 2018-02-07
 Authors@R: c(
     person("Paola"  , "Tellaroli",
       email = "paola [dot] tellaroli [at] unipd [dot] it",
@@ -45,9 +45,9 @@ Imports:
     mclust,
     flip,
     magrittr,
+    purrr,
+    utils,
     assertive
 Suggests: 
     testthat,
-    covr,
-    purrr,
-    utils
+    covr
