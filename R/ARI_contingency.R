@@ -29,20 +29,23 @@
 #'
 #' @examples
 #'
-#' clu1 <- iris[-5] %>%
+#' #### This example compares the adjusted Rand Index as computed on the
+#' ### partitions given by Ward's algorithm with the ground truth on the famous
+#' ### Iris data set by the adjustedRandIndex function {mclust package} and by
+#' ### the ARI_contingency function
+#'
+#' clusters <- iris[-5] %>%
 #'   dist %>%
 #'   hclust(method = 'ward.D') %>%
 #'   cutree(k = 3)
 #'
-#' clu2 <- iris[-5] %>%
-#'   dist %>%
-#'   hclust(method = 'complete') %>%
-#'   cutree(k = 3)
+#' ground_truth <- iris[,5] %>%
+#' as.numeric()
 #'
-#' mc_ari <- mclust:::adjustedRandIndex(clu1, clu2)
+#' mc_ari <- mclust:::adjustedRandIndex(clusters, ground_truth)
 #' mc_ari
 #'
-#' mat <- table(clu1, clu2)
+#' mat <- table(ground_truth, clusters)
 #' cc_ari <- ARI_contingency(mat, digits = 7)
 #' ari_cc <- cc_ari['ari'] %>% unname
 #' all.equal(mc_ari, ari_cc)
@@ -138,8 +141,8 @@ ARI_contingency <- function(mat, alpha = 0.05, digits = 2){
 
   c(
     "ari"     = round(ARI, digits = digits),
-    "ci_low"  = round(LL,  digits = digits),
-    "ci_high" = round(UL,  digits = digits)
+    "ci_ll"  = round(LL,  digits = digits),
+    "ci_ul" = round(UL,  digits = digits)
   )
 }
 
