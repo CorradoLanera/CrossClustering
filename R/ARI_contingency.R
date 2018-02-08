@@ -29,12 +29,23 @@
 #'
 #' @examples
 #'
-#' clu1 <- cutree(hclust(dist(iris[-5]), method = "ward.D"), k=3)
-#' clu2 <- cutree(hclust(dist(iris[-5]), method = "complete"), k=3)
-#' mclust:::adjustedRandIndex(clu1, clu2)
+#' clu1 <- iris[-5] %>%
+#'   dist %>%
+#'   hclust(method = 'ward.D') %>%
+#'   cutree(k = 3)
+#'
+#' clu2 <- iris[-5] %>%
+#'   dist %>%
+#'   hclust(method = 'complete') %>%
+#'   cutree(k = 3)
+#'
+#' mc_ari <- mclust:::adjustedRandIndex(clu1, clu2)
+#' mc_ari
 #'
 #' mat <- table(clu1, clu2)
-#' ARI_contingency(mat)
+#' cc_ari <- ARI_contingency(mat, digits = 7)
+#' ari_cc <- cc_ari['ari'] %>% unname
+#' all.equal(mc_ari, ari_cc)
 #'
 #' @author
 #' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
