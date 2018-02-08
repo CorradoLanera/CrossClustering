@@ -1,10 +1,12 @@
 context("test-ARI_contingency.R")
 
-test_that("error for incorrect input", {
-  mat <- matrix(1)
+test_that("error (only) for incorrect input", {
+  mat      <- matrix(1)
+  mat_zero <- matrix(c(1, 0, 1, 1), 2, 2)
+
   expect_error(ARI_contingency('a', 1), 'is_matrix')
   expect_error(ARI_contingency(matrix('a'), 1), 'is_numeric')
-  expect_error(ARI_contingency(matrix(-1), 1), 'is_positive')
+  expect_error(ARI_contingency(matrix(-1), 1), 'is_greater_than_or_equal_to')
   expect_error(ARI_contingency(matrix(1.4), 1), 'is_equal_to')
   expect_error(ARI_contingency(mat, 'a'), 'is_a_double')
   expect_error(ARI_contingency(mat, 1), 'is_proportion')
@@ -13,6 +15,8 @@ test_that("error for incorrect input", {
   expect_error(ARI_contingency(mat, -1), 'is_proportion')
   expect_error(ARI_contingency(mat, 0.5, 'a'), 'is_a_number')
   expect_error(ARI_contingency(mat, 0.5, -1), 'is_greater_than_or_equal_to')
+
+  expect_type(ARI_contingency(mat_zero), 'double')
 })
 
 test_that("correct output class", {
