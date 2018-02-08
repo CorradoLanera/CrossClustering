@@ -28,7 +28,12 @@
 #' @export
 #'
 #' @examples
-#' mat <- matrix(c(4,5,3,3,8,4),ncol=3,byrow = TRUE)
+#'
+#' clu1 <- cutree(hclust(dist(iris[-5]), method = "ward.D"), k=3)
+#' clu2 <- cutree(hclust(dist(iris[-5]), method = "complete"), k=3)
+#' mclust:::adjustedRandIndex(clu1, clu2)
+#'
+#' mat <- table(clu1, clu2)
 #' ARI_contingency(mat)
 #'
 #' @author
