@@ -47,7 +47,7 @@
 ARI_contingency <- function(mat, alpha = 0.05, digits = 2){
   assertive::assert_is_matrix(mat)
   assertive::assert_is_numeric(mat)
-  assertive::assert_all_are_positive(mat)
+  assertive::assert_all_are_greater_than_or_equal_to(mat, 0)
   assertive::assert_all_are_equal_to(mat, as.integer(mat))
   assertive::assert_is_a_double(alpha)
   assertive::assert_all_are_proportions(alpha,
