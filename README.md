@@ -2,36 +2,30 @@
 CrossClustering
 ===============
 
+[![Build Status](https://travis-ci.com/CorradoLanera/CrossClustering.svg?branch=develop)](https://travis-ci.com/CorradoLanera/CrossClustering) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/CorradoLanera/CrossClustering?branch=develop&svg=true)](https://ci.appveyor.com/project/CorradoLanera/CrossClustering) <!-- [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/CrossClustering)](http://cran.r-project.org/package=CrossClustering) --> [![Coverage Status](https://codecov.io/gh/CorradoLanera/CrossClustering/branch/develop/graph/badge.svg)](https://codecov.io/gh/CorradoLanera/CrossClustering?branch=develop)
+
 CrossClustering is a partial clustering algorithm that combines the Ward's minimum variance and Complete Linkage algorithms, providing automatic estimation of a suitable number of clusters and identification of outlier elements.
 
 Example
 -------
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows you how to the main function, i.e. `CrossClustering()` works:
 
 ``` r
 ## basic example code
 library(CrossClustering)
 
 #### method = "complete"
-### Generate simulated data
-toy <- matrix(NA, nrow = 10, ncol = 7)
-colnames(toy) <- paste("Sample", 1:ncol(toy), sep = "")
-rownames(toy) <- paste("Gene"  , 1:nrow(toy), sep = "")
-set.seed(123)
-
-toy[, 1:2] <- rnorm(n = nrow(toy) * 2, mean = 10, sd  = 0.1)
-toy[, 3:4] <- rnorm(n = nrow(toy) * 2, mean = 20, sd  = 0.1)
-toy[, 5:6] <- rnorm(n = nrow(toy) * 2, mean = 5 , sd  = 0.1)
-toy[,   7] <- runif(n = nrow(toy)    , min  = 0 , max = 1  )
+data(toy)
 
 ### toy is transposed as we want to cluster samples (columns of the original
 ### matrix)
 d <- dist(t(toy), method = "euclidean")
 
 ### Run CrossClustering
-CrossClustering(d, k.w.min = 2, k.w.max = 5, k2.max = 6,
+toyres <- CrossClustering(d, k.w.min = 2, k.w.max = 5, k2.max = 6,
 out = TRUE)
+toyres
 #> $Optimal.cluster
 #> [1] 3
 #> 
@@ -54,6 +48,18 @@ out = TRUE)
 #> 
 #> $n.clustered
 #> [1] 6
+```
+
+Another useful function worth to mention is `PermSignificanceARI`:
+
+``` r
+CC_clusters <- which_cluster(toyres$Cluster.list, toyres$n.total)
+PermSignificanceARI(
+  ground_truth = c(1, 1, 2, 2, 3, 3, 4),
+  partition    = CC_clusters
+)
+#>   Stat p-value
+#> 1    1   0.014
 ```
 
 Install

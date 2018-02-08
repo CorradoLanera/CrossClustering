@@ -17,5 +17,5 @@
 * Added `utils.R` for utility functions
 * Restyled all the code
 * Adde tests modulus for all the funcitons
-* Added support for Travis and codecov CI 
+* Added support for Travis, Appveyor and Codecov CI 
 * Added a `NEWS.md` file to track changes to the package.
