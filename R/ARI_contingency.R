@@ -141,8 +141,8 @@ ARI_contingency <- function(mat, alpha = 0.05, digits = 2){
 
   c(
     "ari"     = round(ARI, digits = digits),
-    "ci_ll"  = round(LL,  digits = digits),
-    "ci_ul" = round(UL,  digits = digits)
+    "ci_low"  = round(LL,  digits = digits),
+    "ci_high" = round(UL,  digits = digits)
   )
 }
 
