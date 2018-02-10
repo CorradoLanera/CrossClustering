@@ -2,7 +2,7 @@
 CrossClustering
 ===============
 
-[![Build Status](https://travis-ci.com/CorradoLanera/CrossClustering.svg?branch=develop)](https://travis-ci.com/CorradoLanera/CrossClustering) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/CorradoLanera/CrossClustering?branch=develop&svg=true)](https://ci.appveyor.com/project/CorradoLanera/CrossClustering) <!-- [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/CrossClustering)](http://cran.r-project.org/package=CrossClustering) --> [![Coverage Status](https://codecov.io/gh/CorradoLanera/CrossClustering/branch/develop/graph/badge.svg)](https://codecov.io/gh/CorradoLanera/CrossClustering?branch=develop)
+[![Travis Build Status](https://travis-ci.com/CorradoLanera/CrossClustering.svg?branch=develop)](https://travis-ci.com/CorradoLanera/CrossClustering) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/CorradoLanera/CrossClustering?branch=develop&svg=true)](https://ci.appveyor.com/project/CorradoLanera/CrossClustering) <!-- [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/CrossClustering)](http://cran.r-project.org/package=CrossClustering) --> [![Coverage Status](https://codecov.io/gh/CorradoLanera/CrossClustering/branch/develop/graph/badge.svg)](https://codecov.io/gh/CorradoLanera/CrossClustering?branch=develop)
 
 CrossClustering is a partial clustering algorithm that combines the Ward's minimum variance and Complete Linkage algorithms, providing automatic estimation of a suitable number of clusters and identification of outlier elements.
 
@@ -59,7 +59,7 @@ PermSignificanceARI(
   partition    = CC_clusters
 )
 #>   Stat p-value
-#> 1    1   0.014
+#> 1    1   0.004
 ```
 
 Install
