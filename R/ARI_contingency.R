@@ -34,20 +34,24 @@
 #' ### Iris data set by the adjustedRandIndex function {mclust package} and by
 #' ### the ARI_contingency function
 #'
+#' library(CrossClustering)
+#' library(mclust)
+#'
 #' clusters <- iris[-5] %>%
 #'   dist %>%
 #'   hclust(method = 'ward.D') %>%
 #'   cutree(k = 3)
 #'
-#' ground_truth <- iris[,5] %>%
-#' as.numeric()
+#' ground_truth <- iris[[5]] %>% as.numeric()
 #'
-#' mc_ari <- mclust:::adjustedRandIndex(clusters, ground_truth)
+#' mc_ari <- adjustedRandIndex(clusters, ground_truth)
 #' mc_ari
 #'
-#' mat <- table(ground_truth, clusters)
-#' cc_ari <- ARI_contingency(mat, digits = 7)
-#' ari_cc <- cc_ari['ari'] %>% unname
+#' ari_cc <- table(ground_truth, clusters) %>%
+#'   ARI_contingency(digits = 7)
+#'
+#' ari_cc <- ari_cc['ari'] %>% unname
+#'
 #' all.equal(mc_ari, ari_cc)
 #'
 #' @author

@@ -29,17 +29,14 @@ agreement (i.e., adjusted Rand Index equal to 0) between two partitions.
 \examples{
 library(CrossClustering)
 
-### Two moons data
-data(twomoons)
-d <- dist(twomoons[, 1:2], method = "euclidean")
-CCmoons <- CrossClustering(d,
-  k.w.max = 9,
-  k2.max  = 10,
-  method  = 'single'
-)
-CCmoons_clusters <-  which_cluster(CCmoons$Cluster.list, CCmoons$n.total)
+clusters <- iris[-5] \%>\%
+  dist \%>\%
+  hclust(method = 'ward.D') \%>\%
+  cutree(k = 3)
 
-SignificanceARI(twomoons[, 3], CCmoons_clusters)
+ground_truth <- iris[[5]] \%>\% as.numeric()
+
+SignificanceARI(ground_truth, clusters)
 
 }
 \references{

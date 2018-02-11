@@ -22,8 +22,7 @@
 #'   hclust(method = 'ward.D') %>%
 #'   cutree(k = 3)
 #'
-#' ground_truth <- iris[,5] %>%
-#' as.numeric()
+#' ground_truth <- iris[[5]] %>% as.numeric()
 #'
 #' SignificanceARI(ground_truth, clusters)
 #'
