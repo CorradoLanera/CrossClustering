@@ -2,9 +2,11 @@ Package: CrossClustering
 Type: Package
 Title: A partial clustering algorithm with automatic estimation of the
        number of clusters and identification of outliers for spherical or
-       elongated clusters
-Version: 3.0.3
-Date: 2018-02-07
+       elongated clusters, with two tests for the significance of the 
+       adjusted Rand Index and the computation of it and its confidence 
+       interval from contingency tables 
+Version: 3.1.34
+Date: 2018-02-12
 Authors@R: c(
     person("Paola"  , "Tellaroli",
       email = "paola [dot] tellaroli [at] unipd [dot] it",

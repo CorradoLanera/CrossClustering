@@ -28,8 +28,31 @@
 #' @export
 #'
 #' @examples
-#' mat <- matrix(c(4,5,3,3,8,4),ncol=3,byrow = TRUE)
-#' ARI_contingency(mat)
+#'
+#' #### This example compares the adjusted Rand Index as computed on the
+#' ### partitions given by Ward's algorithm with the ground truth on the famous
+#' ### Iris data set by the adjustedRandIndex function {mclust package} and by
+#' ### the ARI_contingency function
+#'
+#' library(CrossClustering)
+#' library(mclust)
+#'
+#' clusters <- iris[-5] %>%
+#'   dist %>%
+#'   hclust(method = 'ward.D') %>%
+#'   cutree(k = 3)
+#'
+#' ground_truth <- iris[[5]] %>% as.numeric()
+#'
+#' mc_ari <- adjustedRandIndex(clusters, ground_truth)
+#' mc_ari
+#'
+#' ari_cc <- table(ground_truth, clusters) %>%
+#'   ARI_contingency(digits = 7)
+#'
+#' ari_cc <- ari_cc['ari'] %>% unname
+#'
+#' all.equal(mc_ari, ari_cc)
 #'
 #' @author
 #' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;

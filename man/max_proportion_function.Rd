@@ -44,11 +44,12 @@ data(toy)
 
 ### toy is transposed as we want to cluster samples (columns of the
 ### original matrix)
-d <- dist(t(toy), method = "euclidean")
+toy_dist <- t(toy) \%>\% dist(method = "euclidean")
 
 ### Hierarchical clustering
-beta.clu.ward    <- hclust(d, method = "ward.D")
-beta.clu.method2 <- hclust(d, method = "complete")
+beta.clu.ward    <- toy_dist \%>\% hclust(method = "ward.D")
+beta.clu.method2 <- toy_dist \%>\% hclust(method = "complete")
+
 
 ### max_proportion_function
 CrossClustering:::max_proportion_function(c(3, 4),

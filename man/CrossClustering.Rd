@@ -56,65 +56,131 @@ See cited document for more details.
 \examples{
 library(CrossClustering)
 
+#### Example of Cross-Clustering as in reference paper
 #### method = "complete"
+
 data(toy)
 
 ### toy is transposed as we want to cluster samples (columns of the
 ### original matrix)
-d <- dist(t(toy), method = "euclidean")
+d <- t(toy) \%>\%
+  dist(method = "euclidean")
 
 ### Run CrossClustering
-CrossClustering(d, k.w.min = 2, k.w.max = 5, k2.max = 6,
-out = TRUE)
+CrossClustering(d, k.w.min = 2, k.w.max = 5, k2.max = 6, out = TRUE)
+
+#### Simulated data as in reference paper
+#### method = "complete"
+set.seed(10)
+sg <- c(500, 250, 700, 300, 100)
+
+# 5 clusters
+
+t <- matrix(0, nrow = 5, ncol = 5)
+t[1, ] <- rep(6, 5)
+t[2, ] <- c( 0,  5, 12, 13, 15)
+t[3, ] <- c(15, 11,  9,  5,  0)
+t[4, ] <- c( 6, 12, 15, 10,  5)
+t[5, ] <- c(12, 17,  3,  7, 10)
+
+t_mat <- NULL
+for (i in seq_len(nrow(t))){
+  t_mat <- rbind(
+    t_mat,
+    matrix(rep(t[i, ], sg[i]), nrow = sg[i], byrow = TRUE)
+  )
+}
+
+data_15 <- matrix(NA, nrow = 2000, ncol = 5)
+data_15[1:1850, ] <- matrix(abs(rnorm(sum(sg) * 5, sd = 1.5)),
+  nrow = sum(sg),
+  ncol = 5
+) + t_mat
+
+set.seed(100) # simulate outliers
+data_15[1851:2000, ] <- matrix(
+  runif(n = 150 * 5, min = 0, max = max(data_15, na.rm = TRUE)),
+  nrow = 150,
+  ncol = 5
+)
+
+### Run CrossClustering
+CrossClustering(dist(data_15),
+  k.w.min = 2,
+  k.w.max = 19,
+  k2.max  = 20,
+  out     = TRUE
+)
+
+
+
+
 
 
 #### method = "single"
 ### Example on a famous shape data set
 ### Two moons data
+
 data(twomoons)
-plot(twomoons[, 1:2], pch = 19, col = "cornflowerblue")
-d <- dist(twomoons[, 1:2], method = "euclidean")
-CCmoons <- CrossClustering(d,
+
+moons_dist <- twomoons[, 1:2] \%>\%
+  dist(method = "euclidean")
+
+cc_moons <- CrossClustering(moons_dist,
   k.w.max = 9,
   k2.max  = 10,
   method  = 'single'
 )
-my_col <- which_cluster(CCmoons$Cluster.list, CCmoons$n.total)
-plot(twomoons[, 1:2], pch  = 19, col = my_col, xlab = "", ylab = "",
-  main = "CrossClusteringSingle", cex.main = 1
+
+moons_col <- which_cluster(cc_moons$Cluster.list, cc_moons$n.total)
+plot(twomoons[, 1:2], col = moons_col,
+  pch      = 19,
+  xlab     = "",
+  ylab     = "",
+  main     = "CrossClusteringSingle"
 )
 
 ### Worms data
 data(worms)
-plot(worms[, 1:2], pch = 19, col = "cornflowerblue")
-d <- dist(worms[, 1:2], method = "euclidean")
-CCworms <- CrossClustering(d,
+
+worms_dist <- worms[, 1:2] \%>\%
+  dist(method = "euclidean")
+
+cc_worms <- CrossClustering(worms_dist,
   k.w.max = 9,
   k2.max  = 10,
   method  = 'single'
 )
 
-my_col <-  which_cluster(CCworms$Cluster.list, CCworms$n.total)
-plot(worms[, 1:2], pch = 19, col = my_col, xlab = "", ylab = "",
-  main = "CrossClusteringSingle", cex.main = 1
+worms_col <-  which_cluster(cc_worms$Cluster.list, cc_worms$n.total)
+
+plot(worms[, 1:2], col = worms_col,
+  pch      = 19,
+  xlab     = "",
+  ylab     = "",
+  main     = "CrossClusteringSingle"
 )
+
 
 ### CrossClusteringSingle is not affected to chain-effect problem
+
 data(chain_effect)
-plot(chain_effect, pch = 19, col = "cornflowerblue")
-d <- dist(chain_effect, method = "euclidean")
-CCchain_effect <- CrossClustering(d,
+
+chain_dist <- chain_effect \%>\%
+  dist(method = "euclidean")
+cc_chain <- CrossClustering(chain_dist,
   k.w.max = 9,
   k2.max  = 10,
   method  = 'single'
 )
 
-my_col <- which_cluster(
-  CCchain_effect$Cluster.list,
-  CCchain_effect$n.total
-)
-plot(chain_effect, pch = 19, col = my_col, xlab = "",ylab = "",
-  main = "CrossClusteringSingle", cex.main = 1
+chain_col <- which_cluster(cc_chain$Cluster.list, cc_chain$n.total)
+
+plot(chain_effect, col = chain_col,
+  pch  = 19,
+  xlab = "",
+  ylab = "",
+  main = "CrossClusteringSingle"
 )
 
 }

@@ -15,13 +15,14 @@
 #' @examples
 #' library(CrossClustering)
 #'
-#' ### Two moons data
-#' data(twomoons)
-#' d <- dist(twomoons[,1:2], method = "euclidean")
-#' CCmoons <- CrossClustering(d, k.w.max=9, k2.max=10, method = 'single')
-#' CCmoons_clusters <- which_cluster(CCmoons$Cluster.list, CCmoons$n.total)
+#' clusters <- iris[-5] %>%
+#'   dist %>%
+#'   hclust(method = 'ward.D') %>%
+#'   cutree(k = 3)
 #'
-#' PermSignificanceARI(twomoons[, 3], CCmoons_clusters)
+#' ground_truth <- iris[[5]] %>% as.numeric()
+#'
+#' PermSignificanceARI(ground_truth, clusters)
 #'
 #' @author
 #' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;
