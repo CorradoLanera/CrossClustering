@@ -1,5 +1,6 @@
-# CrossClustering 3.0.3
+# CrossClustering 3.1.34
 
+* Added examples to main functions
 * Adopted a verb-like style for the function names
 * Added `data/`, `data-raw/` and `R/data.R` to include example data into the
   package.

@@ -5,8 +5,8 @@ Title: A partial clustering algorithm with automatic estimation of the
        elongated clusters, with two tests for the significance of the 
        adjusted Rand Index and the computation of it and its confidence 
        interval from contingency tables 
-Version: 3.0.3
-Date: 2018-02-07
+Version: 3.1.34
+Date: 2018-02-12
 Authors@R: c(
     person("Paola"  , "Tellaroli",
       email = "paola [dot] tellaroli [at] unipd [dot] it",

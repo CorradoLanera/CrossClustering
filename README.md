@@ -59,7 +59,7 @@ PermSignificanceARI(
   partition    = CC_clusters
 )
 #>   Stat p-value
-#> 1    1   0.014
+#> 1    1   0.009
 ```
 
 Install
