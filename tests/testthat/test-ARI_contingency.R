@@ -42,3 +42,14 @@ test_that("correct known result", {
   actual    <- ARI_contingency(mat = mat)
   expect_equal(actual, reference)
 })
+
+test_that("Steinley known result", {
+  mat <- matrix(c(2, 1, 0, 0, 2, 1), ncol = 3, byrow = TRUE)
+
+  reference <- structure(
+    c(0.1176, -0.4107, 0.6460),
+    .Names = c("ari", "ci_low", "ci_high")
+  )
+  actual    <- ARI_contingency(mat = mat, digits = 4)
+  expect_equal(actual, reference)
+})
