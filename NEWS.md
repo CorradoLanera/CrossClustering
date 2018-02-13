@@ -1,8 +1,9 @@
-# CrossClustering 3.1.37
+# CrossClustering 3.1.42
 
-* Renamed `CrossClustering()` to `cc_crossclustering()`
-* Renamed `CrossClustering()` to `cc_crossclustering()`
-* Renamed `CrossClustering()` to `cc_crossclustering()`
+* Renamed `which_cluster()` to `cc_get_cluster()`
+* Renamed `SignificanceARI()` to `cc_test_ari()`
+* Renamed `PermSignificanceARI()` to `cc_test_ari_permutation()`
+* Renamed `max_proportion_function()` to `cc_max_proportion()`
 * Renamed `CrossClustering()` to `cc_crossclustering()`
 * Renamed `ARI_contingency()` to `cc_ari_contingency()`
 
