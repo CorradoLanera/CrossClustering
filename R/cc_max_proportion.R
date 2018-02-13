@@ -35,8 +35,8 @@
 #' beta.clu.method2 <- toy_dist %>% hclust(method = "complete")
 #'
 #'
-#' ### max_proportion_function
-#' CrossClustering:::max_proportion_function(c(3, 4),
+#' ### cc_max_proportion
+#' CrossClustering:::cc_max_proportion(c(3, 4),
 #'   beta.clu.ward,
 #'   beta.clu.method2
 #' )
@@ -52,7 +52,7 @@
 #' Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333.
 #' doi:10.1371/journal.pone.0152333
 
-max_proportion_function <- function(k,
+cc_max_proportion <- function(k,
   beta.clu.ward,
   beta.clu.method2,
   return.list = FALSE
