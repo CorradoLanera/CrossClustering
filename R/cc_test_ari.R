@@ -24,7 +24,7 @@
 #'
 #' ground_truth <- iris[[5]] %>% as.numeric()
 #'
-#' SignificanceARI(ground_truth, clusters)
+#' cc_test_ari(ground_truth, clusters)
 #'
 #' @author
 #' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;
@@ -39,7 +39,7 @@
 #' Classification, 2, 193-218.
 
 
-SignificanceARI <- function(ground_truth, partition) {
+cc_test_ari <- function(ground_truth, partition) {
 
   assertive::assert_is_numeric(ground_truth)
   assertive::assert_is_numeric(partition)
