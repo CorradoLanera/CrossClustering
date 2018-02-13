@@ -9,7 +9,7 @@ CrossClustering is a partial clustering algorithm that combines the Ward's minim
 Example
 -------
 
-This is a basic example which shows you how to the main function, i.e. `CrossClustering()` works:
+This is a basic example which shows you how to the main function, i.e. `cc_crossclustering()` works:
 
 ``` r
 ## basic example code
@@ -23,7 +23,7 @@ data(toy)
 d <- dist(t(toy), method = "euclidean")
 
 ### Run CrossClustering
-toyres <- CrossClustering(d, k.w.min = 2, k.w.max = 5, k2.max = 6,
+toyres <- cc_crossclustering(d, k.w.min = 2, k.w.max = 5, k2.max = 6,
 out = TRUE)
 toyres
 #> $Optimal.cluster
@@ -59,7 +59,7 @@ PermSignificanceARI(
   partition    = CC_clusters
 )
 #>   Stat p-value
-#> 1    1   0.009
+#> 1    1   0.013
 ```
 
 Install

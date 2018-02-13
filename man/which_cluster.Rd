@@ -28,7 +28,7 @@ data(toy)
 toy_dist <- t(toy) \%>\% dist(method = "euclidean")
 
 ### Run CrossClustering
-toyres <- CrossClustering(toy_dist,
+toyres <- cc_crossclustering(toy_dist,
   k.w.min = 2,
   k.w.max = 5,
   k2.max  = 6,

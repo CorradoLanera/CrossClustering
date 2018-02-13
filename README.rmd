@@ -28,7 +28,8 @@ elements.
 
 ## Example
 
-This is a basic example which shows you how to the main function, i.e. `CrossClustering()` works:
+This is a basic example which shows you how to the main function, i.e. 
+`cc_crossclustering()` works:
 
 ```{r example}
 ## basic example code
@@ -42,7 +43,7 @@ data(toy)
 d <- dist(t(toy), method = "euclidean")
 
 ### Run CrossClustering
-toyres <- CrossClustering(d, k.w.min = 2, k.w.max = 5, k2.max = 6,
+toyres <- cc_crossclustering(d, k.w.min = 2, k.w.max = 5, k2.max = 6,
 out = TRUE)
 toyres
 ```

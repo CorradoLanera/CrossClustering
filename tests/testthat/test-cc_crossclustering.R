@@ -1,4 +1,4 @@
-context("test-CrossClustering.R")
+context("test-cc_crossclustering.R")
 
 # Provide high computational data
 data(toy)
@@ -25,46 +25,46 @@ expected <-  structure(list(
 
 test_that("error for incorrect input", {
   expect_error(
-    CrossClustering(1, k.w.min, k.w.max, k2.max, out, 'complete'),
+    cc_crossclustering(1, k.w.min, k.w.max, k2.max, out, 'complete'),
     'is not in any of the classes'
   )
-  expect_error(CrossClustering(d, -1, k.w.max, k2.max, out, 'complete'),
+  expect_error(cc_crossclustering(d, -1, k.w.max, k2.max, out, 'complete'),
                'is_positive'
   )
-  expect_error(CrossClustering(d, 1.2, k.w.max, k2.max, out, 'complete'),
+  expect_error(cc_crossclustering(d, 1.2, k.w.max, k2.max, out, 'complete'),
                'is_equal_to'
   )
-  expect_error(CrossClustering(d, k.w.min, -1, k2.max, out, 'complete'),
+  expect_error(cc_crossclustering(d, k.w.min, -1, k2.max, out, 'complete'),
                'is_less_than'
   )
-  expect_error(CrossClustering(d, k.w.min, 3.2, k2.max, out, 'complete'),
+  expect_error(cc_crossclustering(d, k.w.min, 3.2, k2.max, out, 'complete'),
                'is_equal_to'
   )
-  expect_error(CrossClustering(d, 3, 2, k2.max, out, 'complete'),
+  expect_error(cc_crossclustering(d, 3, 2, k2.max, out, 'complete'),
                'is_less_than'
   )
-  expect_error(CrossClustering(d, k.w.min, k.w.max, -1, out, 'complete'),
+  expect_error(cc_crossclustering(d, k.w.min, k.w.max, -1, out, 'complete'),
                'is_less_than'
   )
-  expect_error(CrossClustering(d, k.w.min, k.w.max, 3.2, out, 'complete'),
+  expect_error(cc_crossclustering(d, k.w.min, k.w.max, 3.2, out, 'complete'),
                'is_equal_to'
   )
-  expect_error(CrossClustering(d, 3, k.w.max, 2, out, 'complete'),
+  expect_error(cc_crossclustering(d, 3, k.w.max, 2, out, 'complete'),
                'is_less_than'
   )
-  expect_error(CrossClustering(d, 3, k.w.max, k2.max, 5, 'complete'),
+  expect_error(cc_crossclustering(d, 3, k.w.max, k2.max, 5, 'complete'),
                'is_a_bool'
   )
-  expect_error(CrossClustering(d, 3, k.w.max, k2.max, out, 1),
+  expect_error(cc_crossclustering(d, 3, k.w.max, k2.max, out, 1),
                'is_character'
   )
-  expect_error(CrossClustering(d, 3, k.w.max, k2.max, out, 'a'),
+  expect_error(cc_crossclustering(d, 3, k.w.max, k2.max, out, 'a'),
                'should be one of '
   )
 })
 
 test_that("correct output class", {
-  current <- CrossClustering(d, k.w.min, k.w.max, k2.max, out, 'complete')
+  current <- cc_crossclustering(d, k.w.min, k.w.max, k2.max, out, 'complete')
 
   expect_type(current, 'list')
   expect_equal(names(current),

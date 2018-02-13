@@ -51,7 +51,7 @@
 #'   dist(method = "euclidean")
 #'
 #' ### Run CrossClustering
-#' CrossClustering(d, k.w.min = 2, k.w.max = 5, k2.max = 6, out = TRUE)
+#' cc_crossclustering(d, k.w.min = 2, k.w.max = 5, k2.max = 6, out = TRUE)
 #'
 #' #### Simulated data as in reference paper
 #' #### method = "complete"
@@ -89,7 +89,7 @@
 #' )
 #'
 #' ### Run CrossClustering
-#' CrossClustering(dist(data_15),
+#' cc_crossclustering(dist(data_15),
 #'   k.w.min = 2,
 #'   k.w.max = 19,
 #'   k2.max  = 20,
@@ -110,7 +110,7 @@
 #' moons_dist <- twomoons[, 1:2] %>%
 #'   dist(method = "euclidean")
 #'
-#' cc_moons <- CrossClustering(moons_dist,
+#' cc_moons <- cc_crossclustering(moons_dist,
 #'   k.w.max = 9,
 #'   k2.max  = 10,
 #'   method  = 'single'
@@ -121,7 +121,7 @@
 #'   pch      = 19,
 #'   xlab     = "",
 #'   ylab     = "",
-#'   main     = "CrossClusteringSingle"
+#'   main     = "CrossClustering-Single"
 #' )
 #'
 #' ### Worms data
@@ -130,7 +130,7 @@
 #' worms_dist <- worms[, 1:2] %>%
 #'   dist(method = "euclidean")
 #'
-#' cc_worms <- CrossClustering(worms_dist,
+#' cc_worms <- cc_crossclustering(worms_dist,
 #'   k.w.max = 9,
 #'   k2.max  = 10,
 #'   method  = 'single'
@@ -142,18 +142,18 @@
 #'   pch      = 19,
 #'   xlab     = "",
 #'   ylab     = "",
-#'   main     = "CrossClusteringSingle"
+#'   main     = "CrossClustering-Single"
 #' )
 #'
 #'
-#' ### CrossClusteringSingle is not affected to chain-effect problem
+#' ### CrossClustering-Single is not affected to chain-effect problem
 #'
 #' data(chain_effect)
 #'
 #' chain_dist <- chain_effect %>%
 #'   dist(method = "euclidean")
 
-#' cc_chain <- CrossClustering(chain_dist,
+#' cc_chain <- cc_crossclustering(chain_dist,
 #'   k.w.max = 9,
 #'   k2.max  = 10,
 #'   method  = 'single'
@@ -165,7 +165,7 @@
 #'   pch  = 19,
 #'   xlab = "",
 #'   ylab = "",
-#'   main = "CrossClusteringSingle"
+#'   main = "CrossClustering-Single"
 #' )
 #'
 #' @author
@@ -185,7 +185,7 @@
 #' December, Book of Abstracts (ISBN 978-9963-2227-4-2)
 
 
-CrossClustering <- function(d,
+cc_crossclustering <- function(d,
   k.w.min = 2,
   k.w.max = attr(d, 'Size') - 2,
   k2.max  = k.w.max + 1,
@@ -237,7 +237,7 @@ CrossClustering <- function(d,
   n.clu <- vector('list', length = nrow(grid))
 
   for(i in seq_len(nrow(grid))) {
-    n.clu[[i]] <- max_proportion_function(grid[i, c(1, 2)],
+    n.clu[[i]] <- cc_max_proportion(grid[i, c(1, 2)],
       beta.clu.ward     = beta.clu.ward,
       beta.clu.method2  = beta.clu.method2
     )
@@ -249,14 +249,14 @@ CrossClustering <- function(d,
   k.star    <- rbind(grid[grid.star, 1:2])
 
   if(is.null(dim(k.star))){
-    cluster.list <- max_proportion_function(k.star,
+    cluster.list <- cc_max_proportion(k.star,
       beta.clu.ward     = beta.clu.ward,
       beta.clu.method2  = beta.clu.method2,
       return.list       = TRUE
     )
     clustz <- which_cluster(cluster.list$beta.list, n)
   } else {
-    cluster.list <- apply(k.star, 1, max_proportion_function,
+    cluster.list <- apply(k.star, 1, cc_max_proportion,
       beta.clu.ward     = beta.clu.ward,
       beta.clu.method2  = beta.clu.method2,
       return.list       = TRUE
