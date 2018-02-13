@@ -32,7 +32,7 @@
 #' #### This example compares the adjusted Rand Index as computed on the
 #' ### partitions given by Ward's algorithm with the ground truth on the famous
 #' ### Iris data set by the adjustedRandIndex function {mclust package} and by
-#' ### the ARI_contingency function
+#' ### the cc_ari_contingency function
 #'
 #' library(CrossClustering)
 #' library(mclust)
@@ -48,7 +48,7 @@
 #' mc_ari
 #'
 #' ari_cc <- table(ground_truth, clusters) %>%
-#'   ARI_contingency(digits = 7)
+#'   cc_ari_contingency(digits = 7)
 #'
 #' ari_cc <- ari_cc['ari'] %>% unname
 #'
@@ -67,7 +67,7 @@
 #' D. Steinley (2004) Properties of the Hubert-Arabie Adjusted Rand Index,
 #' Psychological Methods, 9(3), 386-396
 
-ARI_contingency <- function(mat, alpha = 0.05, digits = 2){
+cc_ari_contingency <- function(mat, alpha = 0.05, digits = 2){
   assertive::assert_is_matrix(mat)
   assertive::assert_is_numeric(mat)
   assertive::assert_all_are_greater_than_or_equal_to(mat, 0)
