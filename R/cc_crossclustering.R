@@ -116,7 +116,7 @@
 #'   method  = 'single'
 #' )
 #'
-#' moons_col <- which_cluster(cc_moons$Cluster.list, cc_moons$n.total)
+#' moons_col <- cc_get_cluster(cc_moons$Cluster.list, cc_moons$n.total)
 #' plot(twomoons[, 1:2], col = moons_col,
 #'   pch      = 19,
 #'   xlab     = "",
@@ -136,7 +136,7 @@
 #'   method  = 'single'
 #' )
 #'
-#' worms_col <-  which_cluster(cc_worms$Cluster.list, cc_worms$n.total)
+#' worms_col <-  cc_get_cluster(cc_worms$Cluster.list, cc_worms$n.total)
 #'
 #' plot(worms[, 1:2], col = worms_col,
 #'   pch      = 19,
@@ -159,7 +159,7 @@
 #'   method  = 'single'
 #' )
 #'
-#' chain_col <- which_cluster(cc_chain$Cluster.list, cc_chain$n.total)
+#' chain_col <- cc_get_cluster(cc_chain$Cluster.list, cc_chain$n.total)
 #'
 #' plot(chain_effect, col = chain_col,
 #'   pch  = 19,
@@ -254,7 +254,7 @@ cc_crossclustering <- function(d,
       beta.clu.method2  = beta.clu.method2,
       return.list       = TRUE
     )
-    clustz <- which_cluster(cluster.list$beta.list, n)
+    clustz <- cc_get_cluster(cluster.list$beta.list, n)
   } else {
     cluster.list <- apply(k.star, 1, cc_max_proportion,
       beta.clu.ward     = beta.clu.ward,
@@ -262,7 +262,7 @@ cc_crossclustering <- function(d,
       return.list       = TRUE
     )
     clustz <- sapply(cluster.list,
-      function(lasim) which_cluster(lasim$beta.list, n)
+      function(lasim) cc_get_cluster(lasim$beta.list, n)
     )
   }
 

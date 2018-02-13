@@ -25,8 +25,8 @@
 #'   out     = TRUE
 #' )
 #'
-#' ### which_cluster
-#' which_cluster(toyres$Cluster.list, toyres$n.total)
+#' ### cc_get_cluster
+#' cc_get_cluster(toyres$Cluster.list, toyres$n.total)
 #'
 #' @author
 #' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
@@ -39,7 +39,7 @@
 #' Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333.
 #' doi:10.1371/journal.pone.0152333
 
-which_cluster <- function(cluster_list, n_elem) {
+cc_get_cluster <- function(cluster_list, n_elem) {
 
   assertive::assert_is_list(cluster_list)
   assertive::assert_is_a_number(n_elem)

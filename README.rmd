@@ -50,7 +50,7 @@ toyres
 
 Another useful function worth to mention is `cc_test_ari_permutation`:
 ```{r}
-CC_clusters <- which_cluster(toyres$Cluster.list, toyres$n.total)
+CC_clusters <- cc_get_cluster(toyres$Cluster.list, toyres$n.total)
 cc_test_ari_permutation(
   ground_truth = c(1, 1, 2, 2, 3, 3, 4),
   partition    = CC_clusters

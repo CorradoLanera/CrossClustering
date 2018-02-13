@@ -132,7 +132,7 @@ cc_moons <- cc_crossclustering(moons_dist,
   method  = 'single'
 )
 
-moons_col <- which_cluster(cc_moons$Cluster.list, cc_moons$n.total)
+moons_col <- cc_get_cluster(cc_moons$Cluster.list, cc_moons$n.total)
 plot(twomoons[, 1:2], col = moons_col,
   pch      = 19,
   xlab     = "",
@@ -152,7 +152,7 @@ cc_worms <- cc_crossclustering(worms_dist,
   method  = 'single'
 )
 
-worms_col <-  which_cluster(cc_worms$Cluster.list, cc_worms$n.total)
+worms_col <-  cc_get_cluster(cc_worms$Cluster.list, cc_worms$n.total)
 
 plot(worms[, 1:2], col = worms_col,
   pch      = 19,
@@ -174,7 +174,7 @@ cc_chain <- cc_crossclustering(chain_dist,
   method  = 'single'
 )
 
-chain_col <- which_cluster(cc_chain$Cluster.list, cc_chain$n.total)
+chain_col <- cc_get_cluster(cc_chain$Cluster.list, cc_chain$n.total)
 
 plot(chain_effect, col = chain_col,
   pch  = 19,

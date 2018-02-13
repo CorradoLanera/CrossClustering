@@ -1,6 +1,9 @@
 # CrossClustering 3.1.37
 
 * Renamed `CrossClustering()` to `cc_crossclustering()`
+* Renamed `CrossClustering()` to `cc_crossclustering()`
+* Renamed `CrossClustering()` to `cc_crossclustering()`
+* Renamed `CrossClustering()` to `cc_crossclustering()`
 * Renamed `ARI_contingency()` to `cc_ari_contingency()`
 
 # CrossClustering 3.1.35
