@@ -22,7 +22,7 @@
 #'
 #' ground_truth <- iris[[5]] %>% as.numeric()
 #'
-#' PermSignificanceARI(ground_truth, clusters)
+#' cc_test_ari_permutation(ground_truth, clusters)
 #'
 #' @author
 #' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;
@@ -36,7 +36,7 @@
 #' L. Hubert and P. Arabie (1985) Comparing partitions, Journal of
 #' Classification, 2, 193-218.
 
-PermSignificanceARI <- function(ground_truth, partition) {
+cc_test_ari_permutation <- function(ground_truth, partition) {
 
   assertive::assert_is_numeric(ground_truth)
   assertive::assert_is_numeric(partition)
