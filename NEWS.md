@@ -1,5 +1,6 @@
 # CrossClustering 3.2.14
 
+* Added OSX on Travis-CI
 * Updated README
 * Minor style changes
 * Changed al unnecessary use of dot (`.`) to underscore (`_`)
