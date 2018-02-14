@@ -2,7 +2,7 @@
 CrossClustering
 ===============
 
-[![Travis Build Status](https://travis-ci.org/CorradoLanera/CrossClustering_svg?branch=develop)](https://travis-ci.org/CorradoLanera/CrossClustering) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/CorradoLanera/CrossClustering?branch=develop&svg=true)](https://ci.appveyor.com/project/CorradoLanera/CrossClustering) <!-- [![CRAN Status Badge](http://www.r-pkg.org/badges/version/CrossClustering)](http://cran.R-project.org/package=CrossClustering) --> [![Coverage Status](https://codecov.io/gh/CorradoLanera/CrossClustering/branch/develop/graph/badge_svg)](https://codecov.io/gh/CorradoLanera/CrossClustering?branch=develop)
+[![Travis Build Status](https://travis-ci.org/CorradoLanera/CrossClustering.svg?branch=develop)](https://travis-ci.org/CorradoLanera/CrossClustering) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/CorradoLanera/CrossClustering?branch=develop&svg=true)](https://ci.appveyor.com/project/CorradoLanera/CrossClustering) <!-- [![CRAN Status Badge](http://www.r-pkg.org/badges/version/CrossClustering)](http://cran.R-project.org/package=CrossClustering) --> [![Coverage Status](https://codecov.io/gh/CorradoLanera/CrossClustering/branch/develop/graph/badge.svg)](https://codecov.io/gh/CorradoLanera/CrossClustering?branch=develop)
 
 CrossClustering is a partial clustering algorithm that combines the Ward's minimum variance and Complete Linkage algorithms, providing automatic estimation of a suitable number of clusters and identification of outlier elements.
 
@@ -59,7 +59,7 @@ cc_test_ari_permutation(
   partition    = CC_clusters
 )
 #>   Stat p-value
-#> 1    1   0.007
+#> 1    1   0.014
 ```
 
 Install
@@ -76,8 +76,6 @@ To install the develop branch of CrossClastering package, use:
 ``` r
 # install.packages(devtools)
 devtools::install_github('CorradoLanera/CrossClustering', ref = 'develop')
-#> Skipping install of 'CrossClustering' from a github remote, the SHA1 (af01990d) has not changed since last install.
-#>   Use `force = TRUE` to force installation
 ```
 
 Bug reports
