@@ -29,14 +29,14 @@ toy_dist <- t(toy) \%>\% dist(method = "euclidean")
 
 ### Run CrossClustering
 toyres <- cc_crossclustering(toy_dist,
-  k.w.min = 2,
-  k.w.max = 5,
-  k2.max  = 6,
+  k_w_min = 2,
+  k_w_max = 5,
+  k2_max  = 6,
   out     = TRUE
 )
 
 ### cc_get_cluster
-cc_get_cluster(toyres$Cluster.list, toyres$n.total)
+cc_get_cluster(toyres$Cluster_list, toyres$n_total)
 
 }
 \references{

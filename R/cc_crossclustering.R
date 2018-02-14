@@ -7,13 +7,13 @@
 #' finding elongated clusters) algorithms, providing automatic estimation of
 #' a suitable number of clusters and identification of outlier elements.
 #'
-#' @param d A dissimilarity structure as produced by the function
+#' @param dist A dissimilarity structure as produced by the function
 #'        \code{dist}
-#' @param k.w.min [int] Minimum number of clusters for the Ward's minimum
+#' @param k_w_min [int] Minimum number of clusters for the Ward's minimum
 #'        variance method. By default is set equal 2
-#' @param k.w.max [int] Maximum number of clusters for the Ward's minimum
+#' @param k_w_max [int] Maximum number of clusters for the Ward's minimum
 #'        variance method (see details)
-#' @param k2.max [int] Maximum number of clusters for the
+#' @param k2_max [int] Maximum number of clusters for the
 #'        Complete/Single-linkage method. It can not be equal or greater
 #'        than the number of elements to cluster (see details)
 #' @param out [lgl] If \code{TRUE} (default) outliers must be searched (see
@@ -24,14 +24,14 @@
 #'        Single-linkage will be used.
 #' @return A list of objects describing characteristics of the partitioning
 #'         as follows:
-#'           \item{Optimal.cluster}{number of clusters}
-#'           \item{Cluster.list}{a list of clusters; each element of this
+#'           \item{Optimal_cluster}{number of clusters}
+#'           \item{Cluster_list}{a list of clusters; each element of this
 #'           lists contains the indices of the elemenents belonging to the
 #'           cluster}
 #'           \item{Silhouette}{the average silhouette witdh over all the
 #'             clusters}
-#'           \item{n.total}{total number of input elements}
-#'           \item{n.clustered}{number of input elements that have actually
+#'           \item{n_total}{total number of input elements}
+#'           \item{n_clustered}{number of input elements that have actually
 #'             been clustered}
 #'
 #' @export
@@ -47,11 +47,16 @@
 #'
 #' ### toy is transposed as we want to cluster samples (columns of the
 #' ### original matrix)
-#' d <- t(toy) %>%
+#' toy_dist <- t(toy) %>%
 #'   dist(method = "euclidean")
 #'
 #' ### Run CrossClustering
-#' cc_crossclustering(d, k.w.min = 2, k.w.max = 5, k2.max = 6, out = TRUE)
+#' cc_crossclustering(toy_dist,
+#'   k_w_min = 2,
+#'   k_w_max = 5,
+#'   k2_max  = 6,
+#'   out     = TRUE
+#' )
 #'
 #' #### Simulated data as in reference paper
 #' #### method = "complete"
@@ -90,9 +95,9 @@
 #'
 #' ### Run CrossClustering
 #' cc_crossclustering(dist(data_15),
-#'   k.w.min = 2,
-#'   k.w.max = 19,
-#'   k2.max  = 20,
+#'   k_w_min = 2,
+#'   k_w_max = 19,
+#'   k2_max  = 20,
 #'   out     = TRUE
 #' )
 #'
@@ -111,12 +116,12 @@
 #'   dist(method = "euclidean")
 #'
 #' cc_moons <- cc_crossclustering(moons_dist,
-#'   k.w.max = 9,
-#'   k2.max  = 10,
+#'   k_w_max = 9,
+#'   k2_max  = 10,
 #'   method  = 'single'
 #' )
 #'
-#' moons_col <- cc_get_cluster(cc_moons$Cluster.list, cc_moons$n.total)
+#' moons_col <- cc_get_cluster(cc_moons$Cluster_list, cc_moons$n_total)
 #' plot(twomoons[, 1:2], col = moons_col,
 #'   pch      = 19,
 #'   xlab     = "",
@@ -131,12 +136,12 @@
 #'   dist(method = "euclidean")
 #'
 #' cc_worms <- cc_crossclustering(worms_dist,
-#'   k.w.max = 9,
-#'   k2.max  = 10,
+#'   k_w_max = 9,
+#'   k2_max  = 10,
 #'   method  = 'single'
 #' )
 #'
-#' worms_col <-  cc_get_cluster(cc_worms$Cluster.list, cc_worms$n.total)
+#' worms_col <-  cc_get_cluster(cc_worms$Cluster_list, cc_worms$n_total)
 #'
 #' plot(worms[, 1:2], col = worms_col,
 #'   pch      = 19,
@@ -154,12 +159,12 @@
 #'   dist(method = "euclidean")
 
 #' cc_chain <- cc_crossclustering(chain_dist,
-#'   k.w.max = 9,
-#'   k2.max  = 10,
+#'   k_w_max = 9,
+#'   k2_max  = 10,
 #'   method  = 'single'
 #' )
 #'
-#' chain_col <- cc_get_cluster(cc_chain$Cluster.list, cc_chain$n.total)
+#' chain_col <- cc_get_cluster(cc_chain$Cluster_list, cc_chain$n_total)
 #'
 #' plot(chain_effect, col = chain_col,
 #'   pch  = 19,
@@ -185,32 +190,32 @@
 #' December, Book of Abstracts (ISBN 978-9963-2227-4-2)
 
 
-cc_crossclustering <- function(d,
-  k.w.min = 2,
-  k.w.max = attr(d, 'Size') - 2,
-  k2.max  = k.w.max + 1,
+cc_crossclustering <- function(dist,
+  k_w_min = 2,
+  k_w_max = attr(dist, 'Size') - 2,
+  k2_max  = k_w_max + 1,
   out     = TRUE,
   method  = c('complete', 'single')
 ) {
   # imput check
-  assertive::assert_is_any_of(d, 'dist')
-  assertive::assert_is_a_number(k.w.min)
+  assertive::assert_is_any_of(dist, 'dist')
+  assertive::assert_is_a_number(k_w_min)
 
-  assertive::assert_all_are_positive(k.w.min)
-  if (!assertive::assert_all_are_equal_to(k.w.min, as.integer(k.w.min))) {
-    stop(paste0('k.w.min must be an integer. It is: ', k.w.min, '.'))
+  assertive::assert_all_are_positive(k_w_min)
+  if (!assertive::assert_all_are_equal_to(k_w_min, as.integer(k_w_min))) {
+    stop(paste0('k_w_min must be an integer. It is: ', k_w_min, '.'))
   }
 
-  assertive::assert_is_a_number(k.w.max)
-  assertive::assert_all_are_less_than(k.w.min, k.w.max)
-  if (!assertive::assert_all_are_equal_to(k.w.max, as.integer(k.w.max))) {
-    stop(paste0('k.w.max must be an integer. It is: ', k.w.max, '.'))
+  assertive::assert_is_a_number(k_w_max)
+  assertive::assert_all_are_less_than(k_w_min, k_w_max)
+  if (!assertive::assert_all_are_equal_to(k_w_max, as.integer(k_w_max))) {
+    stop(paste0('k_w_max must be an integer. It is: ', k_w_max, '.'))
   }
 
-  assertive::assert_is_a_number(k2.max)
-  assertive::assert_all_are_less_than(k.w.min, k2.max)
-  if (!assertive::assert_all_are_equal_to(k2.max, as.integer(k2.max))) {
-    stop(paste0('k2.max must be an integer. It is: ', k2.max, '.'))
+  assertive::assert_is_a_number(k2_max)
+  assertive::assert_all_are_less_than(k_w_min, k2_max)
+  if (!assertive::assert_all_are_equal_to(k2_max, as.integer(k2_max))) {
+    stop(paste0('k2_max must be an integer. It is: ', k2_max, '.'))
   }
 
   assertive::assert_is_a_bool(out)
@@ -218,51 +223,50 @@ cc_crossclustering <- function(d,
 
   method <- match.arg(method)
 
-    # n <- (1 + sqrt(1 + 8 * length(d))) / 2 # this is not an integer!!!!
-  n <- attr(d, 'Size')
+    # n <- (1 + sqrt(1 + 8 * length(dist))) / 2 # this is not an integer!!!!
+  n <- attr(dist, 'Size')
 
-  beta.clu.ward    <- hclust(d, method = "ward.D")
-  beta.clu.method2 <- hclust(d, method = method)
+  beta_clu_ward    <- hclust(dist, method = "ward.D")
+  beta_clu_method2 <- hclust(dist, method = method)
 
-  grid <- as.matrix(expand.grid(k.w.min:k.w.max, k.w.min:k2.max))
+  grid <- as.matrix(expand.grid(k_w_min:k_w_max, k_w_min:k2_max))
 
   if (out) {
     grid <- grid[grid[, 2] >  grid[, 1], ]
   } else {
     grid <- grid[grid[, 2] >= grid[, 1], ]
   }
-  grid <- cbind(grid, 0)
-  colnames(grid) <- c("Ward", method, "N. classified")
 
-  n.clu <- vector('list', length = nrow(grid))
+  n_clu <- vector('list', length = nrow(grid))
 
   for(i in seq_len(nrow(grid))) {
-    n.clu[[i]] <- cc_max_proportion(grid[i, c(1, 2)],
-      beta.clu.ward     = beta.clu.ward,
-      beta.clu.method2  = beta.clu.method2
+    n_clu[[i]] <- cc_max_proportion(grid[i, ],
+      beta_clu_ward     = beta_clu_ward,
+      beta_clu_method2  = beta_clu_method2
     )
   }
 
-  grid[, 3] <- unlist(n.clu)
+  grid <- cbind(grid, unlist(n_clu))
+  colnames(grid) <- c("Ward", method, "N. classified")
 
-  grid.star <- which(grid == max(grid[, 3]), arr.ind = TRUE)[, 1]
-  k.star    <- rbind(grid[grid.star, 1:2])
+  grid_star <- which(grid == max(grid[, 3]), arr.ind = TRUE)[, 1]
+  k_star    <- rbind(grid[grid_star, 1:2])
 
-  if(is.null(dim(k.star))){
-    cluster.list <- cc_max_proportion(k.star,
-      beta.clu.ward     = beta.clu.ward,
-      beta.clu.method2  = beta.clu.method2,
-      return.list       = TRUE
+  if(is.null(dim(k_star))){
+    cluster_list <- cc_max_proportion(k_star,
+      beta_clu_ward     = beta_clu_ward,
+      beta_clu_method2  = beta_clu_method2,
+      return_list       = TRUE
     )
-    clustz <- cc_get_cluster(cluster.list$beta.list, n)
+    clustz <- cc_get_cluster(cluster_list$beta_list, n)
   } else {
-    cluster.list <- apply(k.star, 1, cc_max_proportion,
-      beta.clu.ward     = beta.clu.ward,
-      beta.clu.method2  = beta.clu.method2,
-      return.list       = TRUE
+    cluster_list <- apply(k_star, 1, cc_max_proportion,
+      beta_clu_ward     = beta_clu_ward,
+      beta_clu_method2  = beta_clu_method2,
+      return_list       = TRUE
     )
-    clustz <- sapply(cluster.list,
-      function(lasim) cc_get_cluster(lasim$beta.list, n)
+    clustz <- sapply(cluster_list,
+      function(lasim) cc_get_cluster(lasim$beta_list, n)
     )
   }
 
@@ -272,26 +276,25 @@ cc_crossclustering <- function(d,
 
   Sil <- vector('double', length = ncol(clustz))
 
-
   for (c in seq_len(ncol(clustz))) {
     Sil[[c]] <- mean(
-      cluster::silhouette(as.numeric(clustz[, c]), dist = d)[, 3]
+      cluster::silhouette(as.numeric(clustz[, c]), dist = dist)[, 3]
     )
   }
 
-  if(is.null(dim(k.star))) {
-    k.star.star <- k.star[which.max(Sil)]
+  if(is.null(dim(k_star))) {
+    k_star_star <- k_star[which.max(Sil)]
   } else {
-    k.star.star <- k.star[which.max(Sil), ]
+    k_star_star <- k_star[which.max(Sil), ]
   }
 
-  Cluster.list <- cluster.list[[which.max(Sil)]]$beta.list
-  n.clustered  <- length(unlist(Cluster.list))
+  Cluster_list <- cluster_list[[which.max(Sil)]]$beta_list
+  n_clustered  <- length(unlist(Cluster_list))
 
-  list("Optimal.cluster" = length(cluster.list[[which.max(Sil)]]$beta.list),
-       "Cluster.list"    = Cluster.list,
+  list("Optimal_cluster" = length(cluster_list[[which.max(Sil)]]$beta_list),
+       "Cluster_list"    = Cluster_list,
        "Silhouette"      = max(unlist(Sil)),
-       "n.total"         = n,
-       "n.clustered"     = n.clustered
+       "n_total"         = n,
+       "n_clustered"     = n_clustered
  )
 }

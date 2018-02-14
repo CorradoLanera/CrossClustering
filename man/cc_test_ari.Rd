@@ -40,7 +40,7 @@ cc_test_ari(ground_truth, clusters)
 
 }
 \references{
-E.M. Qannari, P. Courcoux and Faye P. (2014) Significance test of the
+E_M. Qannari, P. Courcoux and Faye P. (2014) Significance test of the
 adjusted Rand index. Application to the free sorting task, Food Quality
 and Preference, (32)93-97
 

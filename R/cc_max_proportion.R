@@ -4,21 +4,21 @@
 #'
 #' @param k [int] a vector containing the number of clusters for Ward and
 #'        for Complete-linkage (or Single-linkage) algorithms, respectively
-#' @param beta.clu.ward an object of class hclust for the Ward algorithm
-#' @param beta.clu.method2 an object of class hclust for the
+#' @param beta_clu_ward an object of class hclust for the Ward algorithm
+#' @param beta_clu_method2 an object of class hclust for the
 #'        Complete-linkage (or Single-linkage) algorithm
-#' @param return.list [lgl] If TRUE the list of the elements belonging to
+#' @param return_list [lgl] If TRUE the list of the elements belonging to
 #'        each cluster and the contingency table of the clustering are
 #'        shown. Otherwise, a numeric vector of lenght one reporting the
 #'        number of element classified.
 #'
-#' @return If return.list is FALSE (default) the number of elements
+#' @return If return_list is FALSE (default) the number of elements
 #'         classified.
-#'         If return.list is TRUE, a list with the following elements:
-#'           \item{beta.list}{
+#'         If return_list is TRUE, a list with the following elements:
+#'           \item{beta_list}{
 #'             list of the elements belonging to each cluster
 #'           };
-#'           \item{A.star}{contingency table of the clustering}.
+#'           \item{A_star}{contingency table of the clustering}.
 #'
 #'
 #' @examples
@@ -31,14 +31,14 @@
 #' toy_dist <- t(toy) %>% dist(method = "euclidean")
 #'
 #' ### Hierarchical clustering
-#' beta.clu.ward    <- toy_dist %>% hclust(method = "ward.D")
-#' beta.clu.method2 <- toy_dist %>% hclust(method = "complete")
+#' beta_clu_ward    <- toy_dist %>% hclust(method = "ward.D")
+#' beta_clu_method2 <- toy_dist %>% hclust(method = "complete")
 #'
 #'
 #' ### cc_max_proportion
 #' CrossClustering:::cc_max_proportion(c(3, 4),
-#'   beta.clu.ward,
-#'   beta.clu.method2
+#'   beta_clu_ward,
+#'   beta_clu_method2
 #' )
 #'
 #' @author
@@ -53,55 +53,54 @@
 #' doi:10.1371/journal.pone.0152333
 
 cc_max_proportion <- function(k,
-  beta.clu.ward,
-  beta.clu.method2,
-  return.list = FALSE
+  beta_clu_ward,
+  beta_clu_method2,
+  return_list = FALSE
 ) {
   assertive::assert_is_of_length(k, 2)
   assertive::assert_is_numeric(k)
-  assertive::assert_is_any_of(beta.clu.ward, 'hclust')
-  assertive::assert_is_any_of(beta.clu.method2, 'hclust')
-  assertive::assert_is_a_bool(return.list)
+  assertive::assert_is_any_of(beta_clu_ward, 'hclust')
+  assertive::assert_is_any_of(beta_clu_method2, 'hclust')
+  assertive::assert_is_a_bool(return_list)
 
-  k.w = k[1]
-  k.c = k[2]
-  tree.ward     <- cutree(beta.clu.ward    , k = k.w)
-  tree.complete <- cutree(beta.clu.method2 , k = k.c)
-  N <- sum(tree.ward * 0 + 1)
-  A <- table(tree.ward, tree.complete)
-  A.star <- diag(0, k.w)
+  k_w = k[1]
+  k_c = k[2]
+  tree_ward     <- cutree(beta_clu_ward    , k = k_w)
+  tree.complete <- cutree(beta_clu_method2 , k = k_c)
+  N <- sum(tree_ward * 0 + 1)
+  A <- table(tree_ward, tree.complete)
+  A_star <- diag(0, k_w)
 
-  if(return.list) {
-    beta.list <- vector('list', length = length(k.w))
+  if(return_list) {
+    beta_list <- vector('list', length = length(k_w))
   }
 
-  # i <- 1
-  for(i in seq_len(k.w)) {
-    A.star[i, i] <- max(A)
-    A.max        <- which(A == max(A), arr.ind = TRUE)[1, ]
-    r.max        <- A.max[1]
-    c.max        <- A.max[2]
+  for(i in seq_len(k_w)) {
+    A_star[i, i] <- max(A)
+    A_max        <- which(A == max(A), arr.ind = TRUE)[1, ]
+    r_max        <- A_max[1]
+    c_max        <- A_max[2]
 
-    if(return.list) {
-      beta.list[[i]] <- (seq_len(N))[(tree.ward     == r.max) &
-                                     (tree.complete == c.max)
+    if(return_list) {
+      beta_list[[i]] <- (seq_len(N))[(tree_ward     == r_max) &
+                                     (tree.complete == c_max)
                         ]
     }
-    A[r.max,      ] <- 0
-    A[     , c.max] <- 0
+    A[r_max,      ] <- 0
+    A[     , c_max] <- 0
   }
 
-  A.star <- prune_zero_tail(A.star)
+  A_star <- prune_zero_tail(A_star)
 
-  if(return.list) {
-    n_clusters <- length(diag(A.star))
-    beta.list <- beta.list[seq_len(n_clusters)]
+  if(return_list) {
+    n_clusters <- length(diag(A_star))
+    beta_list  <- beta_list[seq_len(n_clusters)]
 
     return(list(
-      "beta.list" = beta.list,
-      "A.star"    = A.star
+      "beta_list" = beta_list,
+      "A_star"    = A_star
     ))
   }
 
-  as.integer(sum(A.star))
+  as.integer(sum(A_star))
 }

@@ -6,7 +6,7 @@
 #'   in clusters
 #' @param partition The partition coming from a clustering algorithm
 #'
-#' @return A data.frame with two columns:
+#' @return A data_frame with two columns:
 #'   \item{Stat}{the adjusted Rand Index}
 #'   \item{p-value}{the p-value of the test}
 #'

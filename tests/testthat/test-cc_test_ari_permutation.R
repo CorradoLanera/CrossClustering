@@ -1,10 +1,10 @@
 context("test-cc_test_ari_permutation.R")
 
 test_that("error for incorrect input", {
-  expect_error(cc_test_ari_permutation('a', 1), 'is_numeric')
-  expect_error(cc_test_ari_permutation(1, 'a'), 'is_numeric')
+  expect_error(cc_test_ari_permutation('a', 1), 'is.numeric')
+  expect_error(cc_test_ari_permutation(1, 'a'), 'is.numeric')
   expect_error(cc_test_ari_permutation(c(1, 2), 2), 'are_same_length')
-  expect_error(cc_test_ari_permutation(1, NA), 'is_numeric')
+  expect_error(cc_test_ari_permutation(1, NA), 'is.numeric')
   expect_error(cc_test_ari_permutation(1, c(NA_real_)), 'is_not_na')
   expect_error(cc_test_ari_permutation(1, NaN), 'is_not_na')
   expect_error(cc_test_ari_permutation(c(NA_real_), 1), 'is_not_na')

@@ -5,20 +5,20 @@
 \title{A partial clustering algorithm with automatic estimation of
 the number of clusters and identification of outliers}
 \usage{
-cc_crossclustering(d, k.w.min = 2, k.w.max = attr(d, "Size") - 2,
-  k2.max = k.w.max + 1, out = TRUE, method = c("complete", "single"))
+cc_crossclustering(dist, k_w_min = 2, k_w_max = attr(dist, "Size") - 2,
+  k2_max = k_w_max + 1, out = TRUE, method = c("complete", "single"))
 }
 \arguments{
-\item{d}{A dissimilarity structure as produced by the function
+\item{dist}{A dissimilarity structure as produced by the function
 \code{dist}}
 
-\item{k.w.min}{[int] Minimum number of clusters for the Ward's minimum
+\item{k_w_min}{[int] Minimum number of clusters for the Ward's minimum
 variance method. By default is set equal 2}
 
-\item{k.w.max}{[int] Maximum number of clusters for the Ward's minimum
+\item{k_w_max}{[int] Maximum number of clusters for the Ward's minimum
 variance method (see details)}
 
-\item{k2.max}{[int] Maximum number of clusters for the
+\item{k2_max}{[int] Maximum number of clusters for the
 Complete/Single-linkage method. It can not be equal or greater
 than the number of elements to cluster (see details)}
 
@@ -33,14 +33,14 @@ Single-linkage will be used.}
 \value{
 A list of objects describing characteristics of the partitioning
         as follows:
-          \item{Optimal.cluster}{number of clusters}
-          \item{Cluster.list}{a list of clusters; each element of this
+          \item{Optimal_cluster}{number of clusters}
+          \item{Cluster_list}{a list of clusters; each element of this
           lists contains the indices of the elemenents belonging to the
           cluster}
           \item{Silhouette}{the average silhouette witdh over all the
             clusters}
-          \item{n.total}{total number of input elements}
-          \item{n.clustered}{number of input elements that have actually
+          \item{n_total}{total number of input elements}
+          \item{n_clustered}{number of input elements that have actually
             been clustered}
 }
 \description{
@@ -63,11 +63,16 @@ data(toy)
 
 ### toy is transposed as we want to cluster samples (columns of the
 ### original matrix)
-d <- t(toy) \%>\%
+toy_dist <- t(toy) \%>\%
   dist(method = "euclidean")
 
 ### Run CrossClustering
-cc_crossclustering(d, k.w.min = 2, k.w.max = 5, k2.max = 6, out = TRUE)
+cc_crossclustering(toy_dist,
+  k_w_min = 2,
+  k_w_max = 5,
+  k2_max  = 6,
+  out     = TRUE
+)
 
 #### Simulated data as in reference paper
 #### method = "complete"
@@ -106,9 +111,9 @@ data_15[1851:2000, ] <- matrix(
 
 ### Run CrossClustering
 cc_crossclustering(dist(data_15),
-  k.w.min = 2,
-  k.w.max = 19,
-  k2.max  = 20,
+  k_w_min = 2,
+  k_w_max = 19,
+  k2_max  = 20,
   out     = TRUE
 )
 
@@ -127,12 +132,12 @@ moons_dist <- twomoons[, 1:2] \%>\%
   dist(method = "euclidean")
 
 cc_moons <- cc_crossclustering(moons_dist,
-  k.w.max = 9,
-  k2.max  = 10,
+  k_w_max = 9,
+  k2_max  = 10,
   method  = 'single'
 )
 
-moons_col <- cc_get_cluster(cc_moons$Cluster.list, cc_moons$n.total)
+moons_col <- cc_get_cluster(cc_moons$Cluster_list, cc_moons$n_total)
 plot(twomoons[, 1:2], col = moons_col,
   pch      = 19,
   xlab     = "",
@@ -147,12 +152,12 @@ worms_dist <- worms[, 1:2] \%>\%
   dist(method = "euclidean")
 
 cc_worms <- cc_crossclustering(worms_dist,
-  k.w.max = 9,
-  k2.max  = 10,
+  k_w_max = 9,
+  k2_max  = 10,
   method  = 'single'
 )
 
-worms_col <-  cc_get_cluster(cc_worms$Cluster.list, cc_worms$n.total)
+worms_col <-  cc_get_cluster(cc_worms$Cluster_list, cc_worms$n_total)
 
 plot(worms[, 1:2], col = worms_col,
   pch      = 19,
@@ -169,12 +174,12 @@ data(chain_effect)
 chain_dist <- chain_effect \%>\%
   dist(method = "euclidean")
 cc_chain <- cc_crossclustering(chain_dist,
-  k.w.max = 9,
-  k2.max  = 10,
+  k_w_max = 9,
+  k2_max  = 10,
   method  = 'single'
 )
 
-chain_col <- cc_get_cluster(cc_chain$Cluster.list, cc_chain$n.total)
+chain_col <- cc_get_cluster(cc_chain$Cluster_list, cc_chain$n_total)
 
 plot(chain_effect, col = chain_col,
   pch  = 19,

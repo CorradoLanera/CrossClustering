@@ -6,30 +6,30 @@
 variance and Complete-linkage (or Single-linkage) algorithms (i.e., the
 number of elements classified together by both algorithms) .}
 \usage{
-cc_max_proportion(k, beta.clu.ward, beta.clu.method2, return.list = FALSE)
+cc_max_proportion(k, beta_clu_ward, beta_clu_method2, return_list = FALSE)
 }
 \arguments{
 \item{k}{[int] a vector containing the number of clusters for Ward and
 for Complete-linkage (or Single-linkage) algorithms, respectively}
 
-\item{beta.clu.ward}{an object of class hclust for the Ward algorithm}
+\item{beta_clu_ward}{an object of class hclust for the Ward algorithm}
 
-\item{beta.clu.method2}{an object of class hclust for the
+\item{beta_clu_method2}{an object of class hclust for the
 Complete-linkage (or Single-linkage) algorithm}
 
-\item{return.list}{[lgl] If TRUE the list of the elements belonging to
+\item{return_list}{[lgl] If TRUE the list of the elements belonging to
 each cluster and the contingency table of the clustering are
 shown. Otherwise, a numeric vector of lenght one reporting the
 number of element classified.}
 }
 \value{
-If return.list is FALSE (default) the number of elements
+If return_list is FALSE (default) the number of elements
         classified.
-        If return.list is TRUE, a list with the following elements:
-          \item{beta.list}{
+        If return_list is TRUE, a list with the following elements:
+          \item{beta_list}{
             list of the elements belonging to each cluster
           };
-          \item{A.star}{contingency table of the clustering}.
+          \item{A_star}{contingency table of the clustering}.
 }
 \description{
 Computes the consensus between Ward's minimum
@@ -46,14 +46,14 @@ data(toy)
 toy_dist <- t(toy) \%>\% dist(method = "euclidean")
 
 ### Hierarchical clustering
-beta.clu.ward    <- toy_dist \%>\% hclust(method = "ward.D")
-beta.clu.method2 <- toy_dist \%>\% hclust(method = "complete")
+beta_clu_ward    <- toy_dist \%>\% hclust(method = "ward.D")
+beta_clu_method2 <- toy_dist \%>\% hclust(method = "complete")
 
 
 ### cc_max_proportion
 CrossClustering:::cc_max_proportion(c(3, 4),
-  beta.clu.ward,
-  beta.clu.method2
+  beta_clu_ward,
+  beta_clu_method2
 )
 
 }
