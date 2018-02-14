@@ -236,19 +236,17 @@ cc_crossclustering <- function(dist,
   } else {
     grid <- grid[grid[, 2] >= grid[, 1], ]
   }
-  grid <- cbind(grid, 0)
-  colnames(grid) <- c("Ward", method, "N. classified")
-
   n_clu <- vector('list', length = nrow(grid))
 
   for(i in seq_len(nrow(grid))) {
-    n_clu[[i]] <- cc_max_proportion(grid[i, c(1, 2)],
+    n_clu[[i]] <- cc_max_proportion(grid[i, ],
       beta_clu_ward     = beta_clu_ward,
       beta_clu_method2  = beta_clu_method2
     )
   }
 
-  grid[, 3] <- unlist(n_clu)
+  grid <- cbind(grid, unlist(n_clu))
+  colnames(grid) <- c("Ward", method, "N. classified")
 
   grid_star <- which(grid == max(grid[, 3]), arr.ind = TRUE)[, 1]
   k_star    <- rbind(grid[grid_star, 1:2])
