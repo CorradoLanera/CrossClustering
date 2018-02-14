@@ -59,20 +59,28 @@ cc_test_ari_permutation(
   partition    = CC_clusters
 )
 #>   Stat p-value
-#> 1    1   0.006
+#> 1    1   0.007
 ```
 
 Install
 -------
 
+### CRAN version
+
 CrossClustering package is on CRAN, use the standard method to install it. `install_packages('CrossClustering')`
 
-Feature request
----------------
+### develop version
 
-If you need some more features, please write to Paola Tellaroli <paola.tellaroli@unipd.it>
+To install the develop branch of CrossClastering package, use:
+
+``` r
+# install.packages(devtools)
+devtools::install_github('CorradoLanera/CrossClustering', ref = 'develop')
+#> Skipping install of 'CrossClustering' from a github remote, the SHA1 (af01990d) has not changed since last install.
+#>   Use `force = TRUE` to force installation
+```
 
 Bug reports
 -----------
 
-If you encounter a bug, please file a [reprex](https://github.com/tidyverse/reprex) (minimal reproducible example) to Paola Tellaroli K<paola.tellaroli@unipd.it>
+If you encounter a bug, please file a [reprex](https://github.com/tidyverse/reprex) (minimal reproducible example) to <https://github.com/CorradoLanera/CrossClustering/issues>

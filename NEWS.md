@@ -1,5 +1,6 @@
 # CrossClustering 3.2.14
 
+* Updated README
 * Minor style changes
 * Changed al unnecessary use of dot (`.`) to underscore (`_`)
 
