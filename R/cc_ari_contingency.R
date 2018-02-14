@@ -134,19 +134,19 @@ cc_ari_contingency <- function(mat, alpha = 0.05, digits = 2){
               (N * (N - 1) * (N - 2) * (N - 3))
             )
 
-  var_ARI <- (n_pox^2 * var_ad) /
+  var_ari <- (n_pox^2 * var_ad) /
              (
                (n_pox^2 - ((a + b) * (a + c) + (b + d) * (c + d)))^2
              )
 
-  ARI <- num/den
-  LL <- ARI - stats::qnorm(p = (1 - alpha / 2)) * sqrt(var_ARI)
-  UL <- ARI + stats::qnorm(p = (1 - alpha / 2)) * sqrt(var_ARI)
+  ari     <- num/den
+  ci.low  <- ari - stats::qnorm(p = (1 - alpha / 2)) * sqrt(var_ari)
+  ci.high <- ari + stats::qnorm(p = (1 - alpha / 2)) * sqrt(var_ari)
 
   c(
-    "ari"     = round(ARI, digits = digits),
-    "ci_low"  = round(LL,  digits = digits),
-    "ci_high" = round(UL,  digits = digits)
+    "ari"     = round(ari,      digits = digits),
+    "ci.low"  = round(ci.low,   digits = digits),
+    "ci.high" = round(ci.high,  digits = digits)
   )
 }
 

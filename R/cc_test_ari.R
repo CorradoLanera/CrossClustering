@@ -31,7 +31,7 @@
 #' Philippe Courcoux, <philippe [dot] courcoux [at] oniris-nantes [dot] fr>
 #'
 #' @references
-#' E.M. Qannari, P. Courcoux and Faye P. (2014) Significance test of the
+#' E_M. Qannari, P. Courcoux and Faye P. (2014) Significance test of the
 #' adjusted Rand index. Application to the free sorting task, Food Quality
 #' and Preference, (32)93-97
 #'
@@ -89,7 +89,7 @@ cc_test_ari <- function(ground_truth, partition) {
   RandAdjusted <- (R - expR) / (1 - expR)
 
   NARI      <- RandAdjusted / sqrt(varARI)
-  p.valNARI <- 1 - pnorm(q = NARI)
+  p_valNARI <- 1 - pnorm(q = NARI)
 
   list(
     Rand         = R,
@@ -97,7 +97,7 @@ cc_test_ari <- function(ground_truth, partition) {
     AdjustedRand = RandAdjusted,
     varARI       = varARI,
     NARI         = NARI,
-    p.value      = p.valNARI
+    p_value      = p_valNARI
   )
 }
 

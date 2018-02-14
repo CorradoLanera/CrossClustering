@@ -19,14 +19,14 @@
 #'
 #' ### Run CrossClustering
 #' toyres <- cc_crossclustering(toy_dist,
-#'   k.w.min = 2,
-#'   k.w.max = 5,
-#'   k2.max  = 6,
+#'   k_w_min = 2,
+#'   k_w_max = 5,
+#'   k2_max  = 6,
 #'   out     = TRUE
 #' )
 #'
 #' ### cc_get_cluster
-#' cc_get_cluster(toyres$Cluster.list, toyres$n.total)
+#' cc_get_cluster(toyres$Cluster_list, toyres$n_total)
 #'
 #' @author
 #' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
@@ -37,7 +37,7 @@
 #' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016).
 #' Cross-Clustering: A Partial Clustering Algorithm with Automatic
 #' Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333.
-#' doi:10.1371/journal.pone.0152333
+#' doi:10.1371/journal_pone_0152333
 
 cc_get_cluster <- function(cluster_list, n_elem) {
 

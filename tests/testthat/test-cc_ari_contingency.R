@@ -5,7 +5,7 @@ test_that("error (only) for incorrect input", {
   mat_zero <- matrix(c(1, 0, 1, 1), 2, 2)
 
   expect_error(cc_ari_contingency('a', 1), 'is_matrix')
-  expect_error(cc_ari_contingency(matrix('a'), 1), 'is_numeric')
+  expect_error(cc_ari_contingency(matrix('a'), 1), 'is.numeric')
   expect_error(cc_ari_contingency(matrix(-1), 1), 'is_greater_than_or_equal_to')
   expect_error(cc_ari_contingency(matrix(1.4), 1), 'is_equal_to')
   expect_error(cc_ari_contingency(mat, 'a'), 'is_a_double')
@@ -37,7 +37,7 @@ test_that("correct known result", {
 
   reference <- structure(
     c(-0.03, -0.13, 0.07),
-    .Names = c("ari", "ci_low", "ci_high")
+    .Names = c("ari", "ci.low", "ci.high")
   )
   actual    <- cc_ari_contingency(mat = mat)
   expect_equal(actual, reference)
@@ -48,7 +48,7 @@ test_that("Steinley known result", {
 
   reference <- structure(
     c(0.1176, -0.4107, 0.6460),
-    .Names = c("ari", "ci_low", "ci_high")
+    .Names = c("ari", "ci.low", "ci.high")
   )
   actual    <- cc_ari_contingency(mat = mat, digits = 4)
   expect_equal(actual, reference)
