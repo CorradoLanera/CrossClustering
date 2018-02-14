@@ -50,7 +50,7 @@
 #' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016).
 #' Cross-Clustering: A Partial Clustering Algorithm with Automatic
 #' Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333.
-#' doi:10.1371/journal_pone_0152333
+#' doi:10.1371/journal.pone.0152333
 
 cc_max_proportion <- function(k,
   beta_clu_ward,
@@ -75,7 +75,6 @@ cc_max_proportion <- function(k,
     beta_list <- vector('list', length = length(k_w))
   }
 
-  # i <- 1
   for(i in seq_len(k_w)) {
     A_star[i, i] <- max(A)
     A_max        <- which(A == max(A), arr.ind = TRUE)[1, ]

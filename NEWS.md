@@ -1,3 +1,8 @@
+# CrossClustering 3.2.14
+
+* Minor style changes
+* Changed al unnecessary use of dot (`.`) to underscore (`_`)
+
 # CrossClustering 3.1.42
 
 * Renamed `which_cluster()` to `cc_get_cluster()`

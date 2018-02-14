@@ -43,7 +43,7 @@ cc_get_cluster(toyres$Cluster_list, toyres$n_total)
 Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016).
 Cross-Clustering: A Partial Clustering Algorithm with Automatic
 Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333.
-doi:10.1371/journal_pone_0152333
+doi:10.1371/journal.pone.0152333
 }
 \author{
 Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;

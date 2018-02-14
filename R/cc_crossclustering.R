@@ -182,7 +182,7 @@
 #' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016).
 #' Cross-Clustering: A Partial Clustering Algorithm with Automatic
 #' Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333.
-#' doi:10.1371/journal_pone_0152333
+#' doi:10.1371/journal.pone.0152333
 #'
 #' #' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2017).
 #' E1829: Cross-Clustering: A Partial Clustering Algorithm with Automatic
@@ -236,6 +236,7 @@ cc_crossclustering <- function(dist,
   } else {
     grid <- grid[grid[, 2] >= grid[, 1], ]
   }
+
   n_clu <- vector('list', length = nrow(grid))
 
   for(i in seq_len(nrow(grid))) {
@@ -274,7 +275,6 @@ cc_crossclustering <- function(dist,
   }
 
   Sil <- vector('double', length = ncol(clustz))
-
 
   for (c in seq_len(ncol(clustz))) {
     Sil[[c]] <- mean(
