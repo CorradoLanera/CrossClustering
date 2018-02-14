@@ -59,7 +59,7 @@ cc_test_ari_permutation(
   partition    = CC_clusters
 )
 #>   Stat p-value
-#> 1    1   0.014
+#> 1    1   0.013
 ```
 
 Install
@@ -82,3 +82,10 @@ Bug reports
 -----------
 
 If you encounter a bug, please file a [reprex](https://github.com/tidyverse/reprex) (minimal reproducible example) to <https://github.com/CorradoLanera/CrossClustering/issues>
+
+References
+----------
+
+**Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016). Cross-Clustering: A Partial Clustering Algorithm with Automatic Estimation of the Number of Clusters. PLoS ONE 11(3): e0152333. <doi:10.1371/journal.pone.0152333>**
+
+**Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2017). E1829: Cross-Clustering: A Partial Clustering Algorithm with Automatic Estimation of the Number of Clusters. CMStatistics 2017, London 16-18 December, Book of Abstracts (ISBN 978-9963-2227-4-2)**
