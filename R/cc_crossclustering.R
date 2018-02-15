@@ -102,6 +102,12 @@
 #' )
 #'
 #'
+#' #### Correlation-based distance is often used in gene expression time-series
+#' ### data analysis. Here there is an example, using the "complete" method.
+#'
+#' data(nb_data)
+#' nb_dist <- as.dist(1 - abs(cor(t(nb_data))))
+#' cc_crossclustering(dist = nb_dist)
 #'
 #'
 #'
