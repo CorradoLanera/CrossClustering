@@ -137,7 +137,7 @@ cc_crossclustering(dist(data_15),
 
 data(nb_data)
 nb_dist <- as.dist(1 - abs(cor(t(nb_data))))
-cc_crossclustering(dist = nb_dist)
+cc_crossclustering(dist = nb_dist, k_w_max = 20, k2_max = 19)
 
 
 

@@ -2,14 +2,27 @@
 % Please edit documentation in R/cc_get_cluster.R
 \name{cc_get_cluster}
 \alias{cc_get_cluster}
+\alias{cc_get_cluster.default}
+\alias{cc_get_cluster.crossclustering}
 \title{Provides the vector of clusters' ID to which each element belong to.}
 \usage{
-cc_get_cluster(cluster_list, n_elem)
+cc_get_cluster(x, ...)
+
+\method{cc_get_cluster}{default}(cluster_list, n_elem)
+
+\method{cc_get_cluster}{crossclustering}(crossclustering)
 }
 \arguments{
+\item{x}{list of clustered elements or a \code{crossclustering} object}
+
+\item{...}{furter input for the function (e.g. total number of elements
+clustered if it is not provided a crosscustering object)}
+
 \item{cluster_list}{list of clustered elements}
 
 \item{n_elem}{total number of elements clustered}
+
+\item{crossclustering}{an object of class crossclustering}
 }
 \value{
 An integer vector of clusters to which the elements belong (`1`
@@ -18,6 +31,13 @@ An integer vector of clusters to which the elements belong (`1`
 \description{
 Provides the vector of clusters' ID to which each element belong to.
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{default}: default method for \code{\link{cc_get_cluster}}.
+
+\item \code{crossclustering}: automatically extract inputs from a \code{crossclustering} object
+}}
+
 \examples{
 library(CrossClustering)
 
@@ -36,8 +56,11 @@ toyres <- cc_crossclustering(toy_dist,
 )
 
 ### cc_get_cluster
-cc_get_cluster(toyres, attr(toyres, 'n_total'))
+cc_get_cluster(toyres[], 7)
 
+
+### cc_get_cluster directly from a crossclustering object
+cc_get_cluster(toyres)
 }
 \references{
 Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016).
