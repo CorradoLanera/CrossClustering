@@ -94,7 +94,8 @@ cc_max_proportion <- function(k,
 
   if(return_list) {
     n_clusters <- length(diag(A_star))
-    beta_list  <- beta_list[seq_len(n_clusters)]
+    beta_list  <- beta_list[seq_len(n_clusters)] %>%
+      stats::setNames(paste("cluster", seq_along(.), sep = "_"))
 
     return(list(
       "beta_list" = beta_list,

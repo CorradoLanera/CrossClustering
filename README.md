@@ -2,7 +2,9 @@
 CrossClustering
 ===============
 
+[![CRAN status](https://www.r-pkg.org/badges/version/CrossClustering)](https://cran.r-project.org/package=CrossClustering)
 [![Travis Build Status](https://travis-ci.org/CorradoLanera/CrossClustering.svg?branch=develop)](https://travis-ci.org/CorradoLanera/CrossClustering) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/CorradoLanera/CrossClustering?branch=develop&svg=true)](https://ci.appveyor.com/project/CorradoLanera/CrossClustering) <!-- [![CRAN Status Badge](http://www.r-pkg.org/badges/version/CrossClustering)](http://cran.R-project.org/package=CrossClustering) --> [![Coverage Status](https://codecov.io/gh/CorradoLanera/CrossClustering/branch/develop/graph/badge.svg)](https://codecov.io/gh/CorradoLanera/CrossClustering?branch=develop)
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 
 CrossClustering is a partial clustering algorithm that combines the Ward's minimum variance and Complete Linkage algorithms, providing automatic estimation of a suitable number of clusters and identification of outlier elements.
 

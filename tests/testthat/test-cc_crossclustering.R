@@ -9,16 +9,41 @@ k2_max  <- 6
 out     <- TRUE
 
 
-expected <-  structure(list(
-  Optimal_cluster = 3L,
-  Cluster_list    = list(1:2, 3:4, 5:6),
-  Silhouette      = 0.840520401573931,
-  n_total         = 7L,
-  n_clustered     = 6L
-),
-.Names = c("Optimal_cluster", "Cluster_list", "Silhouette", "n_total",
-           "n_clustered"
-))
+expected <-
+  structure(list(cluster_1 = 1:2, cluster_2 = 3:4, cluster_3 = 5:6),
+    optimal_cluster = 3L,
+    silhouette      = 0.840520401573931,
+    n_total         = 7L,
+    n_clustered     = 6L,
+    input           = list(
+      dist = structure(
+        c( 0.278767553844071, 31.4684914051983, 31.7017423869459,
+          15.8457009710004,   15.7691512786285, 30.4151785838636,
+          31.4269010762807,   31.6601486681976, 15.8880937927878,
+          15.8118612631759,   30.4564427729642,  0.444267526306529,
+          47.3045592447933,   47.2321271743607, 61.8775059744892,
+          47.5400523222032,   47.4667735359252, 62.1119298535437,
+           0.387650341413089, 14.6042509896801, 14.6614841506956
+        ),
+        Size   = 7L,
+        Labels = c(
+          "Sample1","Sample2", "Sample3", "Sample4", "Sample5", "Sample6",
+          "Sample7"
+        ),
+        Diag   = FALSE,
+        Upper  = FALSE,
+        method = "euclidean",
+        call   = quote(dist(x = t(toy), method = "euclidean")),
+        class  = "dist"
+      ),
+      k_w_min = 2,
+      k_w_max = 5,
+      k2_max  = 6,
+      out     = TRUE,
+      method  = "complete"
+    ),
+    class = "crossclustering"
+  )
 
 
 
@@ -80,17 +105,14 @@ test_that("correct output class", {
   )
 
   expect_type(current, 'list')
+  expect_is(current, 'crossclustering')
   expect_equal(names(current),
-    c(
-      "Optimal_cluster", "Cluster_list", "Silhouette", "n_total",
-      "n_clustered"
-    )
+    paste('cluster', seq_along(current), sep = "_")
   )
 
-  expect_type(current[['Optimal_cluster']], 'integer')
-  expect_type(current[['Cluster_list']], 'list')
-  expect_type(current[['Silhouette']], 'double')
-  expect_type(current[['n_total']], 'integer')
-  expect_type(current[['n_clustered']], 'integer')
+  expect_type(attr(current, 'optimal_cluster'), 'integer')
+  expect_type(attr(current, 'silhouette'), 'double')
+  expect_type(attr(current, 'n_total'), 'integer')
+  expect_type(attr(current, 'n_clustered'), 'integer')
   expect_equal(current, expected)
 })

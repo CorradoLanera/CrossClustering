@@ -36,7 +36,7 @@ toyres <- cc_crossclustering(toy_dist,
 )
 
 ### cc_get_cluster
-cc_get_cluster(toyres$Cluster_list, toyres$n_total)
+cc_get_cluster(toyres, attr(toyres, 'n_total'))
 
 }
 \references{

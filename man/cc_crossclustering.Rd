@@ -2,11 +2,14 @@
 % Please edit documentation in R/cc_crossclustering.R
 \name{cc_crossclustering}
 \alias{cc_crossclustering}
+\alias{print.crossclustering}
 \title{A partial clustering algorithm with automatic estimation of
 the number of clusters and identification of outliers}
 \usage{
 cc_crossclustering(dist, k_w_min = 2, k_w_max = attr(dist, "Size") - 2,
   k2_max = k_w_max + 1, out = TRUE, method = c("complete", "single"))
+
+\method{print}{crossclustering}(x, ...)
 }
 \arguments{
 \item{dist}{A dissimilarity structure as produced by the function
@@ -29,6 +32,10 @@ details)}
 combines Ward's algorithm with Complete-linkage if method is set
 to "complete", otherwhise (if method is set to 'single')
 Single-linkage will be used.}
+
+\item{x}{an object used to select a method.}
+
+\item{...}{further arguments passed to or from other methods.}
 }
 \value{
 A list of objects describing characteristics of the partitioning
@@ -49,10 +56,17 @@ combines the Ward's minimum variance and Complete-linkage (default,
 useful for finding spherical clusters) or Single-linkage (useful for
 finding elongated clusters) algorithms, providing automatic estimation of
 a suitable number of clusters and identification of outlier elements.
+
+print method for crossclustering class
 }
 \details{
 See cited document for more details.
 }
+\section{Methods (by generic)}{
+\itemize{
+\item \code{print}: 
+}}
+
 \examples{
 library(CrossClustering)
 
@@ -137,7 +151,7 @@ cc_moons <- cc_crossclustering(moons_dist,
   method  = 'single'
 )
 
-moons_col <- cc_get_cluster(cc_moons$Cluster_list, cc_moons$n_total)
+moons_col <- cc_get_cluster(cc_moons, attr(cc_moons, 'n_total'))
 plot(twomoons[, 1:2], col = moons_col,
   pch      = 19,
   xlab     = "",
@@ -157,7 +171,7 @@ cc_worms <- cc_crossclustering(worms_dist,
   method  = 'single'
 )
 
-worms_col <-  cc_get_cluster(cc_worms$Cluster_list, cc_worms$n_total)
+worms_col <-  cc_get_cluster(cc_worms, attr(cc_worms, 'n_total'))
 
 plot(worms[, 1:2], col = worms_col,
   pch      = 19,
@@ -179,7 +193,7 @@ cc_chain <- cc_crossclustering(chain_dist,
   method  = 'single'
 )
 
-chain_col <- cc_get_cluster(cc_chain$Cluster_list, cc_chain$n_total)
+chain_col <- cc_get_cluster(cc_chain, attr(cc_chain, 'n_total'))
 
 plot(chain_effect, col = chain_col,
   pch  = 19,

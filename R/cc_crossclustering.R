@@ -121,7 +121,7 @@
 #'   method  = 'single'
 #' )
 #'
-#' moons_col <- cc_get_cluster(cc_moons$Cluster_list, cc_moons$n_total)
+#' moons_col <- cc_get_cluster(cc_moons, attr(cc_moons, 'n_total'))
 #' plot(twomoons[, 1:2], col = moons_col,
 #'   pch      = 19,
 #'   xlab     = "",
@@ -141,7 +141,7 @@
 #'   method  = 'single'
 #' )
 #'
-#' worms_col <-  cc_get_cluster(cc_worms$Cluster_list, cc_worms$n_total)
+#' worms_col <-  cc_get_cluster(cc_worms, attr(cc_worms, 'n_total'))
 #'
 #' plot(worms[, 1:2], col = worms_col,
 #'   pch      = 19,
@@ -164,7 +164,7 @@
 #'   method  = 'single'
 #' )
 #'
-#' chain_col <- cc_get_cluster(cc_chain$Cluster_list, cc_chain$n_total)
+#' chain_col <- cc_get_cluster(cc_chain, attr(cc_chain, 'n_total'))
 #'
 #' plot(chain_effect, col = chain_col,
 #'   pch  = 19,
@@ -223,7 +223,6 @@ cc_crossclustering <- function(dist,
 
   method <- match.arg(method)
 
-    # n <- (1 + sqrt(1 + 8 * length(dist))) / 2 # this is not an integer!!!!
   n <- attr(dist, 'Size')
 
   beta_clu_ward    <- hclust(dist, method = "ward.D")
@@ -288,13 +287,64 @@ cc_crossclustering <- function(dist,
     k_star_star <- k_star[which.max(Sil), ]
   }
 
-  Cluster_list <- cluster_list[[which.max(Sil)]]$beta_list
+  Cluster_list <- cluster_list[[which.max(Sil)]]$beta_list %>%
+    stats::setNames(paste("cluster", seq_along(.), sep = "_"))
+
   n_clustered  <- length(unlist(Cluster_list))
 
-  list("Optimal_cluster" = length(cluster_list[[which.max(Sil)]]$beta_list),
-       "Cluster_list"    = Cluster_list,
-       "Silhouette"      = max(unlist(Sil)),
-       "n_total"         = n,
-       "n_clustered"     = n_clustered
- )
+
+
+  structure(Cluster_list,
+    optimal_cluster = length(cluster_list[[which.max(Sil)]]$beta_list),
+    silhouette      = max(unlist(Sil)),
+    n_total         = n,
+    n_clustered     = n_clustered,
+    input           = list(
+      dist    = dist,
+      k_w_min = k_w_min,
+      k_w_max = k_w_max,
+      k2_max  = k2_max,
+      out     = out,
+      method  = method
+    ),
+    class = "crossclustering"
+  )
+}
+
+
+#' print method for crossclustering class
+#'
+#' @inheritParams base::print
+#' @describeIn cc_crossclustering
+#'
+#' @export
+print.crossclustering <- function(x, ...) {
+  cat(paste0("\n",
+    "    CrossClustering with method ",
+         crayon::green(attr(x, 'input')[['method']]), ".\n",
+    "\n"
+  ))
+  cat(paste0("Parameter used:\n",
+    "  - Interval for the number of cluster of Ward's algorithm: [",
+       crayon::green(attr(x, 'input')[['k_w_min']]), ", ",
+       crayon::green(attr(x, 'input')[['k_w_max']]), "].\n",
+    "  - Interval for the number of cluster of the ",
+       crayon::green(attr(x, 'input')[['method']]),
+       " algorithm: [", crayon::green(attr(x, 'input')[['k_w_min']]), ", ",
+       crayon::green(attr(x, 'input')[['k2_max']]), "].\n"
+  ))
+  cat(paste0("  - Outliers ", crayon::green('are '),
+    if(!attr(x, 'input')[['out']]) crayon::red('NOT '), "considered.",
+    "\n\n"
+  ))
+  cat(paste0("Number of clusters found: ",
+    crayon::blue(attr(x, 'optimal_cluster')), ".\n",
+    "Leading to an avarage silhouette width of: ",
+     crayon::blue(round(attr(x, 'silhouette'), 4)), ".\n",
+    "\n"
+  ))
+  cat(paste0("A total of ",
+    crayon::blue(attr(x, 'n_clustered')), " elements clustered out of ",
+    crayon::blue(attr(x, 'n_total')), " elements considered."
+  ))
 }

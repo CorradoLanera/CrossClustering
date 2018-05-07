@@ -1,3 +1,10 @@
+# CrossClustering 3.3.01
+
+
+* Update `DESCRIPTION`
+* Add Lifecycle badge
+* Add CRAN badge
+
 # CrossClustering 3.2.14
 
 * Added OSX on Travis-CI
