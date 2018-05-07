@@ -6,23 +6,17 @@
 \alias{cc_get_cluster.crossclustering}
 \title{Provides the vector of clusters' ID to which each element belong to.}
 \usage{
-cc_get_cluster(x, ...)
+cc_get_cluster(x, n_elem)
 
-\method{cc_get_cluster}{default}(cluster_list, n_elem)
+\method{cc_get_cluster}{default}(x, n_elem)
 
-\method{cc_get_cluster}{crossclustering}(crossclustering)
+\method{cc_get_cluster}{crossclustering}(x, n_elem)
 }
 \arguments{
 \item{x}{list of clustered elements or a \code{crossclustering} object}
 
-\item{...}{furter input for the function (e.g. total number of elements
-clustered if it is not provided a crosscustering object)}
-
-\item{cluster_list}{list of clustered elements}
-
-\item{n_elem}{total number of elements clustered}
-
-\item{crossclustering}{an object of class crossclustering}
+\item{n_elem}{total number of elements clustered (ignored if x
+is of class \code{crossclustering})}
 }
 \value{
 An integer vector of clusters to which the elements belong (`1`
