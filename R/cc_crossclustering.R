@@ -127,7 +127,7 @@
 #'   method  = 'single'
 #' )
 #'
-#' moons_col <- cc_get_cluster(cc_moons, attr(cc_moons, 'n_total'))
+#' moons_col <- cc_get_cluster(cc_moons)
 #' plot(twomoons[, 1:2], col = moons_col,
 #'   pch      = 19,
 #'   xlab     = "",
@@ -147,7 +147,7 @@
 #'   method  = 'single'
 #' )
 #'
-#' worms_col <-  cc_get_cluster(cc_worms, attr(cc_worms, 'n_total'))
+#' worms_col <-  cc_get_cluster(cc_worms)
 #'
 #' plot(worms[, 1:2], col = worms_col,
 #'   pch      = 19,
@@ -170,7 +170,7 @@
 #'   method  = 'single'
 #' )
 #'
-#' chain_col <- cc_get_cluster(cc_chain, attr(cc_chain, 'n_total'))
+#' chain_col <- cc_get_cluster(cc_chain)
 #'
 #' plot(chain_effect, col = chain_col,
 #'   pch  = 19,

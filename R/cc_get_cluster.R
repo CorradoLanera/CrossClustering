@@ -1,12 +1,23 @@
 #' Provides the vector of clusters' ID to which each element belong to.
 #'
-#' @param cluster_list list of clustered elements
-#' @param n_elem total number of elements clustered
+#' @param x list of clustered elements or a \code{crossclustering} object
+#' @param n_elem total number of elements clustered (ignored if x
+#'        is of class \code{crossclustering})
 #'
 #' @return An integer vector of clusters to which the elements belong (`1`
 #'         for the outliers, ID + 1 for the others).
+#' @export
+cc_get_cluster <- function(x, n_elem) {
+  UseMethod('cc_get_cluster', x)
+}
+
+
+
+#' @inheritParams cc_get_cluster
 #'
 #' @export
+#'
+#' @describeIn cc_get_cluster default method for \code{\link{cc_get_cluster}}.
 #'
 #' @examples
 #' library(CrossClustering)
@@ -26,7 +37,7 @@
 #' )
 #'
 #' ### cc_get_cluster
-#' cc_get_cluster(toyres, attr(toyres, 'n_total'))
+#' cc_get_cluster(toyres[], 7)
 #'
 #' @author
 #' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
@@ -38,15 +49,14 @@
 #' Cross-Clustering: A Partial Clustering Algorithm with Automatic
 #' Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333.
 #' doi:10.1371/journal.pone.0152333
+cc_get_cluster.default <- function(x, n_elem) {
 
-cc_get_cluster <- function(cluster_list, n_elem) {
-
-  assertive::assert_is_list(cluster_list)
+  assertive::assert_is_list(x)
   assertive::assert_is_a_number(n_elem)
   assertive::assert_all_are_equal_to(n_elem, as.integer(n_elem))
 
-  n_cluster <- length(cluster_list)
-  elements  <- unlist(cluster_list)
+  n_cluster <- length(x)
+  elements  <- unlist(x)
 
   if (n_elem < length(elements)) {
     stop('n_elem has to be at least the number of clustered elements')
@@ -56,7 +66,7 @@ cc_get_cluster <- function(cluster_list, n_elem) {
 
   clustered_cluster <- vapply(elements,
     function(element) {
-      which(vapply(cluster_list,
+      which(vapply(x,
         function(cluster) element %in% cluster,
         logical(1L)
       ))
@@ -68,4 +78,20 @@ cc_get_cluster <- function(cluster_list, n_elem) {
   res[elements] <- clustered_cluster + 1L
   res[outliers] <- 1L
   res
+}
+
+
+#' @inheritParams cc_get_cluster
+#'
+#' @describeIn cc_get_cluster automatically extract inputs from a \code{crossclustering} object
+#'
+#' @export
+#'
+#' @examples
+#'
+#' ### cc_get_cluster directly from a crossclustering object
+#' cc_get_cluster(toyres)
+cc_get_cluster.crossclustering <- function(x, n_elem) {
+  assertive::assert_is_inherited_from(x, 'crossclustering')
+  cc_get_cluster.default(x, attr(x, 'n_total'))
 }
