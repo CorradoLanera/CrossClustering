@@ -77,5 +77,5 @@ D. Steinley (2004) Properties of the Hubert-Arabie Adjusted Rand Index,
 Psychological Methods, 9(3), 386-396
 }
 \author{
-Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
+Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;
 }
