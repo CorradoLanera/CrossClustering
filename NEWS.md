@@ -1,5 +1,8 @@
 # CrossClustering 3.3.01
 
+* Reference updated
+* Removed exported function `cc_test_ari()` and `cc_test_ari_permutation()`
+  because now included in `ari()`
 * Adapted code and test to the new structures and conventions
 * Added dependencies for package `dplyr`
 * Changed and renamed `cc_max_proportion()` in `consensus_cluster()` as 
