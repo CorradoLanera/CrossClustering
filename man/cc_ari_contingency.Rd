@@ -41,9 +41,9 @@ in cases of total number of object clustered greater than 100.
 \examples{
 
 #### This example compares the adjusted Rand Index as computed on the
-### partitions given by Ward's algorithm with the ground truth on the famous
-### Iris data set by the adjustedRandIndex function {mclust package} and by
-### the cc_ari_contingency function
+### partitions given by Ward's algorithm with the ground truth on the
+### famous Iris data set by the adjustedRandIndex function
+### {mclust package} and by the cc_ari_contingency function.
 
 library(CrossClustering)
 library(mclust)
@@ -77,5 +77,5 @@ D. Steinley (2004) Properties of the Hubert-Arabie Adjusted Rand Index,
 Psychological Methods, 9(3), 386-396
 }
 \author{
-Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
+Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;
 }
