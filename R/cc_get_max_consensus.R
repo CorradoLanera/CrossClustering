@@ -1,6 +1,8 @@
-#' Computes the consensus between Ward's minimum
-#' variance and Complete-linkage (or Single-linkage) algorithms (i.e., the
-#' number of elements classified together by both algorithms) .
+#' Get clusters which reach max consensus
+#'
+#' Computes the consensus between Ward's minimum variance and
+#' Complete-linkage (or Single-linkage) algorithms (i.e., the number of
+#' elements classified together by both algorithms).
 #'
 #' @param k [int] a vector containing the number of clusters for Ward and
 #'        for Complete-linkage (or Single-linkage) algorithms, respectively
@@ -35,8 +37,8 @@
 #' cluster_other <- toy_dist %>% hclust(method = "complete")
 #'
 #'
-#' ### cc_max_proportion
-#' CrossClustering:::cc_max_proportion(c(3, 4),
+#' ### cc_get_max_consensus
+#' CrossClustering:::cc_get_max_consensus(c(3, 4),
 #'   cluster_ward,
 #'   cluster_other
 #' )
@@ -52,7 +54,7 @@
 #' Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333.
 #' doi:10.1371/journal.pone.0152333
 
-cc_max_proportion <- function(k,
+cc_get_max_consensus <- function(k,
   cluster_ward,
   cluster_other,
   return_list = FALSE

@@ -245,7 +245,7 @@ cc_crossclustering <- function(dist,
   n_clu <- vector('list', length = nrow(grid))
 
   for(i in seq_len(nrow(grid))) {
-    n_clu[[i]] <- cc_max_proportion(grid[i, ],
+    n_clu[[i]] <- cc_get_max_consensus(grid[i, ],
       cluster_ward     = cluster_ward,
       cluster_other  = cluster_other
     )
@@ -258,14 +258,14 @@ cc_crossclustering <- function(dist,
   k_star    <- rbind(grid[grid_star, 1:2])
 
   if(is.null(dim(k_star))){
-    cluster_list <- cc_max_proportion(k_star,
+    cluster_list <- cc_get_max_consensus(k_star,
       cluster_ward     = cluster_ward,
       cluster_other  = cluster_other,
       return_list       = TRUE
     )
     clustz <- cc_get_cluster(cluster_list$beta_list, n)
   } else {
-    cluster_list <- apply(k_star, 1, cc_max_proportion,
+    cluster_list <- apply(k_star, 1, cc_get_max_consensus,
       cluster_ward     = cluster_ward,
       cluster_other  = cluster_other,
       return_list       = TRUE
