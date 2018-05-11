@@ -21,9 +21,9 @@
 #' in cases of total number of object clustered greater than 100.
 #'
 #' @return
-#' A vector of objects:
-#' \item{AdjustedRandIndex}{The adjusted Rand Index}
-#' \item{CI}{The confidence interval}
+#' An object of class \code{ari} with the following elements:
+#'   \item{AdjustedRandIndex}{The adjusted Rand Index}
+#'   \item{CI}{The confidence interval}
 #'
 #' @export
 #'
@@ -32,7 +32,7 @@
 #' #### This example compares the adjusted Rand Index as computed on the
 #' ### partitions given by Ward's algorithm with the ground truth on the
 #' ### famous Iris data set by the adjustedRandIndex function
-#' ### {mclust package} and by the cc_ari_contingency function.
+#' ### {mclust package} and by the ari function.
 #'
 #' library(CrossClustering)
 #' library(mclust)
@@ -48,11 +48,10 @@
 #' mc_ari
 #'
 #' ari_cc <- table(ground_truth, clusters) %>%
-#'   cc_ari_contingency(digits = 7)
+#'   ari(digits = 7)
+#' ari_cc
 #'
-#' ari_cc <- ari_cc['ari'] %>% unname
-#'
-#' all.equal(mc_ari, ari_cc)
+#' all.equal(mc_ari, unclass(ari_cc), check.attributes = FALSE)
 #'
 #' @author
 #' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;
@@ -67,7 +66,7 @@
 #' D. Steinley (2004) Properties of the Hubert-Arabie Adjusted Rand Index,
 #' Psychological Methods, 9(3), 386-396
 
-cc_ari_contingency <- function(mat, alpha = 0.05, digits = 2){
+ari <- function(mat, alpha = 0.05, digits = 2){
   assertive::assert_is_matrix(mat)
   assertive::assert_is_numeric(mat)
   assertive::assert_all_are_greater_than_or_equal_to(mat, 0)
@@ -80,6 +79,10 @@ cc_ari_contingency <- function(mat, alpha = 0.05, digits = 2){
   assertive::assert_is_a_number(digits)
   assertive::assert_all_are_greater_than_or_equal_to(digits, 0)
 
+  if(sum(mat) < 100) warning(paste0('\n',
+    "Sum of elements of ", crayon::blue("mat"), " is less than 100,\n",
+    "  confidence interval should not be trusted."
+  ))
 
   n_pox <- choose(sum(mat), 2)
   N     <- sum(mat)
@@ -139,14 +142,101 @@ cc_ari_contingency <- function(mat, alpha = 0.05, digits = 2){
                (n_pox^2 - ((a + b) * (a + c) + (b + d) * (c + d)))^2
              )
 
-  ari     <- num/den
-  ci.low  <- ari - stats::qnorm(p = (1 - alpha / 2)) * sqrt(var_ari)
-  ci.high <- ari + stats::qnorm(p = (1 - alpha / 2)) * sqrt(var_ari)
+  ari   <- num/den
+  lower <- ari - stats::qnorm(p = (1 - alpha / 2)) * sqrt(var_ari)
+  upper <- ari + stats::qnorm(p = (1 - alpha / 2)) * sqrt(var_ari)
 
-  c(
-    "ari"     = round(ari,      digits = digits),
-    "ci.low"  = round(ci.low,   digits = digits),
-    "ci.high" = round(ci.high,  digits = digits)
+  partitions <- reverse_table(mat)
+
+  structure(
+    list(
+      ari = structure(
+        round(ari, digits = digits),
+        ci = c(
+          "lower" = round(lower,   digits = digits),
+          "upper" = round(upper,  digits = digits)
+        )
+      ),
+      input      = list(
+        mat   = mat,
+        alpha = alpha
+      ),
+      partitions = partitions,
+      p_values   = c(
+        'test_ari'             = cc_test_ari(partitions[[1]], partitions[[2]])[['p_value']],
+        'test_ari_permutation' = cc_test_ari_permutation(
+          partitions[[1]],
+          partitions[[2]]
+        )[['p_value']]
+      )
+    ),
+    class   = "ari"
   )
 }
 
+
+#' print method for ari class
+#'
+#' @inheritParams base::print
+#' @describeIn ari
+#'
+#' @export
+print.ari <- function(x, ...) {
+  judge_ari <- dplyr::case_when(
+    x[['ari']] >= 0.9  ~ crayon::green("excellent recovery"),
+    x[['ari']] >= 0.8  ~ crayon::blue("good recovery"),
+    x[['ari']] >= 0.65 ~ crayon::blue("moderate recovery"),
+    TRUE               ~ crayon::red("poor recovery")
+  )
+
+  judge_lower <- attr(x[['ari']], 'ci')[['lower']]
+  judge_lower <- dplyr::case_when(
+    judge_lower >= 0.9  ~ crayon::green(judge_lower),
+    judge_lower >= 0.8  ~ crayon::blue( judge_lower),
+    judge_lower >= 0.65 ~ crayon::blue( judge_lower),
+    TRUE                ~ crayon::red(  judge_lower)
+  )
+
+  judge_upper <- attr(x[['ari']], 'ci')[['upper']]
+  judge_upper <- dplyr::case_when(
+    judge_upper >= 0.9  ~ crayon::green(judge_upper),
+    judge_upper >= 0.8  ~ crayon::blue( judge_upper),
+    judge_upper >= 0.65 ~ crayon::blue( judge_upper),
+    TRUE                ~ crayon::red(  judge_upper)
+  )
+
+  qannari_p <- x[['p_values']][['test_ari']]
+  qannari_p <- dplyr::case_when(
+    qannari_p < 0.001 ~ crayon::green("< 0.001"),
+    qannari_p > 0.05  ~ crayon::red( " ", qannari_p),
+    TRUE              ~ crayon::blue(" ", qannari_p)
+  )
+
+  permutation_p <- x[['p_values']][['test_ari_permutation']]
+  permutation_p <- dplyr::case_when(
+    permutation_p < 0.001 ~ crayon::green("< 0.001"),
+    permutation_p > 0.05  ~ crayon::red( " ", permutation_p),
+    TRUE                  ~ crayon::blue(" ", permutation_p)
+  )
+
+  cli::cat_line(
+    "    Adjusted Rand Index (alpha = ",
+      crayon::blue(x[['input']][['alpha']]), ")",
+    "\n"
+  )
+  cli::cat_line(
+    "ARI                  = ", crayon::blue(x[['ari']]),
+      " (", judge_ari, ")"
+  )
+  cli::cat_line(
+    "Confidence interval  = [", judge_lower, ", ", judge_upper, "]"
+  )
+  cli::cat_line()
+  cli::cat_line("p-values:")
+  cli::cat_line(
+    "  * Qannari test     = ", qannari_p
+  )
+  cli::cat_line(
+    "  * Permutation test = ", permutation_p
+  )
+}

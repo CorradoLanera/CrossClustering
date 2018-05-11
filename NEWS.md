@@ -1,6 +1,16 @@
 # CrossClustering 3.3.01
 
-
+* Adapted code and test to the new structures and conventions
+* Added dependencies for package `dplyr`
+* Changed and renamed `cc_max_proportion()` in `consensus_cluster()` as 
+  a costructor of object of class consensus_cluster
+* Created `reverse_table()` to come back from a contingency table to the
+  unrolled vector of elements (issue #13)
+* Changes made in `cc_get_clust()` and `cc_crossclustering()` (issue #15)
+* Added examples for correlation (issue #14)
+* Changed and Renamed `cc_ari_contingency()` to `ari` as a costructor of
+  objects of class ari (issue #12)
+* Added package `cli` into the dependencies
 * Update `DESCRIPTION`
 * Add Lifecycle badge
 * Add CRAN badge

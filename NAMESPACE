@@ -2,9 +2,10 @@
 
 S3method(cc_get_cluster,crossclustering)
 S3method(cc_get_cluster,default)
+S3method(print,ari)
 S3method(print,crossclustering)
 export("%>%")
-export(cc_ari_contingency)
+export(ari)
 export(cc_crossclustering)
 export(cc_get_cluster)
 export(cc_test_ari)

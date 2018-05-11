@@ -7,8 +7,8 @@
 #' @param partition The partition coming from a clustering algorithm
 #'
 #' @return A data_frame with two columns:
-#'   \item{Stat}{the adjusted Rand Index}
-#'   \item{p-value}{the p-value of the test}
+#'   \item{ari}{the adjusted Rand Index}
+#'   \item{p_value}{the p-value of the test}
 #'
 #' @export
 #'
@@ -58,6 +58,7 @@ cc_test_ari_permutation <- function(ground_truth, partition) {
   # original rownames has to be restored, i.e. numeric and not characted
   res <- res_flip@res[c('Stat', 'p-value')]
   rownames(res) <- NULL
+  colnames(res) <- c('ari', 'p_value')
   res
 }
 

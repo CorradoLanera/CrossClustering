@@ -52,7 +52,9 @@ Imports:
     utils,
     assertive,
     crayon,
-    glue
+    glue,
+    cli,
+    dplyr
 Suggests: 
     testthat,
     covr,
