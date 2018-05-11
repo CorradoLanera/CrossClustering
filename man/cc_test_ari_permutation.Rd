@@ -16,8 +16,8 @@ in clusters}
 }
 \value{
 A data_frame with two columns:
-  \item{Stat}{the adjusted Rand Index}
-  \item{p-value}{the p-value of the test}
+  \item{ari}{the adjusted Rand Index}
+  \item{p_value}{the p-value of the test}
 }
 \description{
 A permutation test for testing the null hypothesis of
