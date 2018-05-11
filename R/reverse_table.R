@@ -15,7 +15,7 @@ reverse_table <- function(x) {
   # input check
   assertive::is_integer(x)
 
-  setNames(
+  stats::setNames(
     list(
       rep(seq_len(nrow(x)), margin.table(x, 1L)),
       rep(seq_len(ncol(x)), margin.table(x, 2L))

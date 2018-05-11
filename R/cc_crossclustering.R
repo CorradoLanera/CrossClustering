@@ -231,7 +231,7 @@ cc_crossclustering <- function(dist,
 
   n <- attr(dist, 'Size')
 
-  cluster_ward    <- hclust(dist, method = "ward.D")
+  cluster_ward  <- hclust(dist, method = "ward.D")
   cluster_other <- hclust(dist, method = method)
 
   grid <- as.matrix(expand.grid(k_w_min:k_w_max, k_w_min:k2_max))
@@ -291,8 +291,10 @@ cc_crossclustering <- function(dist,
     k_star_star <- k_star[which.max(Sil), ]
   }
 
-  Cluster_list <- cluster_list[[which.max(Sil)]]$elements %>%
-    stats::setNames(paste("cluster", seq_along(.), sep = "_"))
+  Cluster_list <- cluster_list[[which.max(Sil)]]$elements
+  Cluster_list <- stats::setNames(Cluster_list,
+    paste("cluster", seq_along(Cluster_list), sep = "_")
+  )
 
   n_clustered  <- length(unlist(Cluster_list))
 

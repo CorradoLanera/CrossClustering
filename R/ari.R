@@ -60,11 +60,19 @@
 #' L. Hubert and P. Arabie (1985) Comparing partitions, Journal of
 #' Classification, 2, 193-218.
 #'
-#' D. Steinley, M. J. Brusco, L. Hubert (2016) The Variance of the Adjusted
-#' Rand Index, Psychological Methods, 21(2), 261-272
+#' E.M. Qannari, P. Courcoux and Faye P. (2014) Significance test of the
+#' adjusted Rand index. Application to the free sorting task, Food Quality
+#' and Preference, (32)93-97
+#'
+#' M.H. Samuh, F. Leisch, and L. Finos (2014), Tests for Random Agreement
+#' in Cluster Analysis, Statistica Applicata-Italian Journal of Applied
+#' Statistics, vol. 26, no. 3, pp. 219-234.
 #'
 #' D. Steinley (2004) Properties of the Hubert-Arabie Adjusted Rand Index,
 #' Psychological Methods, 9(3), 386-396
+#'
+#' D. Steinley, M.J. Brusco, L. Hubert (2016) The Variance of the Adjusted
+#' Rand Index, Psychological Methods, 21(2), 261-272
 
 ari <- function(mat, alpha = 0.05, digits = 2){
   assertive::assert_is_matrix(mat)

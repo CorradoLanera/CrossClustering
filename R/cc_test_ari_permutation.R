@@ -10,8 +10,6 @@
 #'   \item{ari}{the adjusted Rand Index}
 #'   \item{p_value}{the p-value of the test}
 #'
-#' @export
-#'
 #' @examples
 #' library(CrossClustering)
 #'
@@ -22,7 +20,7 @@
 #'
 #' ground_truth <- iris[[5]] %>% as.numeric()
 #'
-#' cc_test_ari_permutation(ground_truth, clusters)
+#' CrossClustering:::cc_test_ari_permutation(ground_truth, clusters)
 #'
 #' @author
 #' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;

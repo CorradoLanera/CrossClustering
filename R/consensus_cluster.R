@@ -89,8 +89,10 @@ consensus_cluster <- function(k,
 
 
   n_clusters   <- length(diag(A_star))
-  elements <- elements[seq_len(n_clusters)] %>%
-      stats::setNames(paste("cluster", seq_along(.), sep = "_"))
+  elements <- elements[seq_len(n_clusters)]
+  elements <- stats::setNames(elements,
+    paste("cluster", seq_along(elements), sep = "_")
+  )
 
   list(
     "elements"      = elements,
