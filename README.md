@@ -2,16 +2,26 @@
 CrossClustering
 ===============
 
-[![CRAN status](https://www.r-pkg.org/badges/version/CrossClustering)](https://cran.r-project.org/package=CrossClustering)
-[![Travis Build Status](https://travis-ci.org/CorradoLanera/CrossClustering.svg?branch=develop)](https://travis-ci.org/CorradoLanera/CrossClustering) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/CorradoLanera/CrossClustering?branch=develop&svg=true)](https://ci.appveyor.com/project/CorradoLanera/CrossClustering) <!-- [![CRAN Status Badge](http://www.r-pkg.org/badges/version/CrossClustering)](http://cran.R-project.org/package=CrossClustering) --> [![Coverage Status](https://codecov.io/gh/CorradoLanera/CrossClustering/branch/develop/graph/badge.svg)](https://codecov.io/gh/CorradoLanera/CrossClustering?branch=develop)
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Travis Build
+Status](https://travis-ci.org/CorradoLanera/CrossClustering.svg?branch=develop)](https://travis-ci.org/CorradoLanera/CrossClustering)
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/CorradoLanera/CrossClustering?branch=develop&svg=true)](https://ci.appveyor.com/project/CorradoLanera/CrossClustering)
+[![CRAN Status
+Badge](http://www.r-pkg.org/badges/version/CrossClustering)](http://cran.R-project.org/package=CrossClustering)
+[![Coverage
+Status](https://codecov.io/gh/CorradoLanera/CrossClustering/branch/develop/graph/badge.svg)](https://codecov.io/gh/CorradoLanera/CrossClustering?branch=develop)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 
-CrossClustering is a partial clustering algorithm that combines the Ward's minimum variance and Complete Linkage algorithms, providing automatic estimation of a suitable number of clusters and identification of outlier elements.
+CrossClustering is a partial clustering algorithm that combines the
+Ward’s minimum variance and Complete Linkage algorithms, providing
+automatic estimation of a suitable number of clusters and identification
+of outlier elements.
 
 Example
 -------
 
-This is a basic example which shows you how to the main function, i.e. `cc_crossclustering()` works:
+This is a basic example which shows you how to the main function, i.e.
+`cc_crossclustering()` works:
 
 ``` r
 ## basic example code
@@ -28,40 +38,41 @@ d <- dist(t(toy), method = "euclidean")
 toyres <- cc_crossclustering(d, k_w_min = 2, k_w_max = 5, k2_max = 6,
 out = TRUE)
 toyres
-#> $Optimal_cluster
-#> [1] 3
 #> 
-#> $Cluster_list
-#> $Cluster_list[[1]]
-#> [1] 1 2
+#>     CrossClustering with method complete.
 #> 
-#> $Cluster_list[[2]]
-#> [1] 3 4
+#> Parameter used:
+#>   - Interval for the number of cluster of Ward's algorithm: [2, 5].
+#>   - Interval for the number of cluster of the complete algorithm: [2, 6].
+#>   - Outliers are considered.
 #> 
-#> $Cluster_list[[3]]
-#> [1] 5 6
+#> Number of clusters found: 3.
+#> Leading to an avarage silhouette width of: 0.8405.
 #> 
-#> 
-#> $Silhouette
-#> [1] 0.8405204
-#> 
-#> $n_total
-#> [1] 7
-#> 
-#> $n_clustered
-#> [1] 6
+#> A total of 6 elements clustered out of 7 elements considered.
 ```
 
-Another useful function worth to mention is `cc_test_ari_permutation`:
+Another useful function worth to mention is `ari`:
 
 ``` r
-CC_clusters <- cc_get_cluster(toyres$Cluster_list, toyres$n_total)
-cc_test_ari_permutation(
-  ground_truth = c(1, 1, 2, 2, 3, 3, 4),
-  partition    = CC_clusters
-)
-#>   Stat p-value
-#> 1    1   0.013
+clusters <- iris[-5] %>%
+ dist() %>%
+ hclust(method = 'ward.D') %>%
+ cutree(k = 3)
+
+ground_truth <- iris[[5]] %>%
+  as.numeric()
+
+table(ground_truth, clusters) %>% 
+  ari()
+#>     Adjusted Rand Index (alpha = 0.05)
+#> 
+#> ARI                  = 0.76 (moderate recovery)
+#> Confidence interval  = [0.74, 0.78]
+#> 
+#> p-values:
+#>   * Qannari test     = < 0.001
+#>   * Permutation test =   0.001
 ```
 
 Install
@@ -69,7 +80,8 @@ Install
 
 ### CRAN version
 
-CrossClustering package is on CRAN, use the standard method to install it. `install_packages('CrossClustering')`
+CrossClustering package is on CRAN, use the standard method to install
+it. `install_packages('CrossClustering')`
 
 ### develop version
 
@@ -83,11 +95,19 @@ devtools::install_github('CorradoLanera/CrossClustering', ref = 'develop')
 Bug reports
 -----------
 
-If you encounter a bug, please file a [reprex](https://github.com/tidyverse/reprex) (minimal reproducible example) to <https://github.com/CorradoLanera/CrossClustering/issues>
+If you encounter a bug, please file a
+[reprex](https://github.com/tidyverse/reprex) (minimal reproducible
+example) to <https://github.com/CorradoLanera/CrossClustering/issues>
 
 References
 ----------
 
-**Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016). Cross-Clustering: A Partial Clustering Algorithm with Automatic Estimation of the Number of Clusters. PLoS ONE 11(3): e0152333. <doi:10.1371/journal.pone.0152333>**
+**Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016).
+Cross-Clustering: A Partial Clustering Algorithm with Automatic
+Estimation of the Number of Clusters. PLoS ONE 11(3): e0152333.
+<doi:10.1371/journal.pone.0152333>**
 
-**Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2017). E1829: Cross-Clustering: A Partial Clustering Algorithm with Automatic Estimation of the Number of Clusters. CMStatistics 2017, London 16-18 December, Book of Abstracts (ISBN 978-9963-2227-4-2)**
+**Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2017).
+E1829: Cross-Clustering: A Partial Clustering Algorithm with Automatic
+Estimation of the Number of Clusters. CMStatistics 2017, London 16-18
+December, Book of Abstracts (ISBN 978-9963-2227-4-2)**

@@ -18,8 +18,9 @@ knitr::opts_chunk$set(
 
 [![Travis Build Status](https://travis-ci.org/CorradoLanera/CrossClustering.svg?branch=develop)](https://travis-ci.org/CorradoLanera/CrossClustering)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/CorradoLanera/CrossClustering?branch=develop&svg=true)](https://ci.appveyor.com/project/CorradoLanera/CrossClustering)
-<!-- [![CRAN Status Badge](http://www.r-pkg.org/badges/version/CrossClustering)](http://cran.R-project.org/package=CrossClustering) -->
+[![CRAN Status Badge](http://www.r-pkg.org/badges/version/CrossClustering)](http://cran.R-project.org/package=CrossClustering)
 [![Coverage Status](https://codecov.io/gh/CorradoLanera/CrossClustering/branch/develop/graph/badge.svg)](https://codecov.io/gh/CorradoLanera/CrossClustering?branch=develop)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 
 CrossClustering is a partial clustering algorithm that combines the Ward's
 minimum variance and Complete Linkage algorithms, providing automatic
@@ -48,13 +49,18 @@ out = TRUE)
 toyres
 ```
 
-Another useful function worth to mention is `cc_test_ari_permutation`:
+Another useful function worth to mention is `ari`:
 ```{r}
-CC_clusters <- cc_get_cluster(toyres$Cluster_list, toyres$n_total)
-cc_test_ari_permutation(
-  ground_truth = c(1, 1, 2, 2, 3, 3, 4),
-  partition    = CC_clusters
-)
+clusters <- iris[-5] %>%
+ dist() %>%
+ hclust(method = 'ward.D') %>%
+ cutree(k = 3)
+
+ground_truth <- iris[[5]] %>%
+  as.numeric()
+
+table(ground_truth, clusters) %>% 
+  ari()
 ```
 
 
