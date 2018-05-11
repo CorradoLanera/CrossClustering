@@ -245,10 +245,10 @@ cc_crossclustering <- function(dist,
   n_clu <- vector('list', length = nrow(grid))
 
   for(i in seq_len(nrow(grid))) {
-    n_clu[[i]] <- cc_get_max_consensus(grid[i, ],
-      cluster_ward     = cluster_ward,
-      cluster_other  = cluster_other
-    )
+    n_clu[[i]] <- consensus_cluster(grid[i, ],
+      cluster_ward  = cluster_ward,
+      cluster_other = cluster_other
+    )[['max_consensus']]
   }
 
   grid <- cbind(grid, unlist(n_clu))
@@ -258,20 +258,18 @@ cc_crossclustering <- function(dist,
   k_star    <- rbind(grid[grid_star, 1:2])
 
   if(is.null(dim(k_star))){
-    cluster_list <- cc_get_max_consensus(k_star,
-      cluster_ward     = cluster_ward,
-      cluster_other  = cluster_other,
-      return_list       = TRUE
+    cluster_list <- consensus_cluster(k_star,
+      cluster_ward  = cluster_ward,
+      cluster_other = cluster_other
     )
-    clustz <- cc_get_cluster(cluster_list$beta_list, n)
+    clustz <- cc_get_cluster(cluster_list$elements, n)
   } else {
-    cluster_list <- apply(k_star, 1, cc_get_max_consensus,
-      cluster_ward     = cluster_ward,
-      cluster_other  = cluster_other,
-      return_list       = TRUE
+    cluster_list <- apply(k_star, 1, consensus_cluster,
+      cluster_ward  = cluster_ward,
+      cluster_other = cluster_other
     )
     clustz <- sapply(cluster_list,
-      function(lasim) cc_get_cluster(lasim$beta_list, n)
+      function(lasim) cc_get_cluster(lasim$elements, n)
     )
   }
 
@@ -293,7 +291,7 @@ cc_crossclustering <- function(dist,
     k_star_star <- k_star[which.max(Sil), ]
   }
 
-  Cluster_list <- cluster_list[[which.max(Sil)]]$beta_list %>%
+  Cluster_list <- cluster_list[[which.max(Sil)]]$elements %>%
     stats::setNames(paste("cluster", seq_along(.), sep = "_"))
 
   n_clustered  <- length(unlist(Cluster_list))
@@ -301,7 +299,7 @@ cc_crossclustering <- function(dist,
 
 
   structure(Cluster_list,
-    optimal_cluster = length(cluster_list[[which.max(Sil)]]$beta_list),
+    optimal_cluster = length(cluster_list[[which.max(Sil)]]$elements),
     silhouette      = max(unlist(Sil)),
     n_total         = n,
     n_clustered     = n_clustered,
