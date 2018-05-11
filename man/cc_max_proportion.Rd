@@ -6,15 +6,15 @@
 variance and Complete-linkage (or Single-linkage) algorithms (i.e., the
 number of elements classified together by both algorithms) .}
 \usage{
-cc_max_proportion(k, beta_clu_ward, beta_clu_method2, return_list = FALSE)
+cc_max_proportion(k, cluster_ward, cluster_other, return_list = FALSE)
 }
 \arguments{
 \item{k}{[int] a vector containing the number of clusters for Ward and
 for Complete-linkage (or Single-linkage) algorithms, respectively}
 
-\item{beta_clu_ward}{an object of class hclust for the Ward algorithm}
+\item{cluster_ward}{an object of class hclust for the Ward algorithm}
 
-\item{beta_clu_method2}{an object of class hclust for the
+\item{cluster_other}{an object of class hclust for the
 Complete-linkage (or Single-linkage) algorithm}
 
 \item{return_list}{[lgl] If TRUE the list of the elements belonging to
@@ -46,14 +46,14 @@ data(toy)
 toy_dist <- t(toy) \%>\% dist(method = "euclidean")
 
 ### Hierarchical clustering
-beta_clu_ward    <- toy_dist \%>\% hclust(method = "ward.D")
-beta_clu_method2 <- toy_dist \%>\% hclust(method = "complete")
+cluster_ward    <- toy_dist \%>\% hclust(method = "ward.D")
+cluster_other <- toy_dist \%>\% hclust(method = "complete")
 
 
 ### cc_max_proportion
 CrossClustering:::cc_max_proportion(c(3, 4),
-  beta_clu_ward,
-  beta_clu_method2
+  cluster_ward,
+  cluster_other
 )
 
 }

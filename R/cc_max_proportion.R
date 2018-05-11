@@ -4,8 +4,8 @@
 #'
 #' @param k [int] a vector containing the number of clusters for Ward and
 #'        for Complete-linkage (or Single-linkage) algorithms, respectively
-#' @param beta_clu_ward an object of class hclust for the Ward algorithm
-#' @param beta_clu_method2 an object of class hclust for the
+#' @param cluster_ward an object of class hclust for the Ward algorithm
+#' @param cluster_other an object of class hclust for the
 #'        Complete-linkage (or Single-linkage) algorithm
 #' @param return_list [lgl] If TRUE the list of the elements belonging to
 #'        each cluster and the contingency table of the clustering are
@@ -31,14 +31,14 @@
 #' toy_dist <- t(toy) %>% dist(method = "euclidean")
 #'
 #' ### Hierarchical clustering
-#' beta_clu_ward    <- toy_dist %>% hclust(method = "ward.D")
-#' beta_clu_method2 <- toy_dist %>% hclust(method = "complete")
+#' cluster_ward    <- toy_dist %>% hclust(method = "ward.D")
+#' cluster_other <- toy_dist %>% hclust(method = "complete")
 #'
 #'
 #' ### cc_max_proportion
 #' CrossClustering:::cc_max_proportion(c(3, 4),
-#'   beta_clu_ward,
-#'   beta_clu_method2
+#'   cluster_ward,
+#'   cluster_other
 #' )
 #'
 #' @author
@@ -53,20 +53,20 @@
 #' doi:10.1371/journal.pone.0152333
 
 cc_max_proportion <- function(k,
-  beta_clu_ward,
-  beta_clu_method2,
+  cluster_ward,
+  cluster_other,
   return_list = FALSE
 ) {
   assertive::assert_is_of_length(k, 2)
   assertive::assert_is_numeric(k)
-  assertive::assert_is_any_of(beta_clu_ward, 'hclust')
-  assertive::assert_is_any_of(beta_clu_method2, 'hclust')
+  assertive::assert_is_any_of(cluster_ward, 'hclust')
+  assertive::assert_is_any_of(cluster_other, 'hclust')
   assertive::assert_is_a_bool(return_list)
 
   k_w = k[1]
   k_c = k[2]
-  tree_ward     <- cutree(beta_clu_ward    , k = k_w)
-  tree.complete <- cutree(beta_clu_method2 , k = k_c)
+  tree_ward     <- cutree(cluster_ward    , k = k_w)
+  tree.complete <- cutree(cluster_other , k = k_c)
   N <- sum(tree_ward * 0 + 1)
   A <- table(tree_ward, tree.complete)
   A_star <- diag(0, k_w)

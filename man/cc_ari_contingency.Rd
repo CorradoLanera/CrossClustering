@@ -41,9 +41,9 @@ in cases of total number of object clustered greater than 100.
 \examples{
 
 #### This example compares the adjusted Rand Index as computed on the
-### partitions given by Ward's algorithm with the ground truth on the famous
-### Iris data set by the adjustedRandIndex function {mclust package} and by
-### the cc_ari_contingency function
+### partitions given by Ward's algorithm with the ground truth on the
+### famous Iris data set by the adjustedRandIndex function
+### {mclust package} and by the cc_ari_contingency function.
 
 library(CrossClustering)
 library(mclust)

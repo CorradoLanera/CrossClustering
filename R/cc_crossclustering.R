@@ -231,8 +231,8 @@ cc_crossclustering <- function(dist,
 
   n <- attr(dist, 'Size')
 
-  beta_clu_ward    <- hclust(dist, method = "ward.D")
-  beta_clu_method2 <- hclust(dist, method = method)
+  cluster_ward    <- hclust(dist, method = "ward.D")
+  cluster_other <- hclust(dist, method = method)
 
   grid <- as.matrix(expand.grid(k_w_min:k_w_max, k_w_min:k2_max))
 
@@ -246,8 +246,8 @@ cc_crossclustering <- function(dist,
 
   for(i in seq_len(nrow(grid))) {
     n_clu[[i]] <- cc_max_proportion(grid[i, ],
-      beta_clu_ward     = beta_clu_ward,
-      beta_clu_method2  = beta_clu_method2
+      cluster_ward     = cluster_ward,
+      cluster_other  = cluster_other
     )
   }
 
@@ -259,15 +259,15 @@ cc_crossclustering <- function(dist,
 
   if(is.null(dim(k_star))){
     cluster_list <- cc_max_proportion(k_star,
-      beta_clu_ward     = beta_clu_ward,
-      beta_clu_method2  = beta_clu_method2,
+      cluster_ward     = cluster_ward,
+      cluster_other  = cluster_other,
       return_list       = TRUE
     )
     clustz <- cc_get_cluster(cluster_list$beta_list, n)
   } else {
     cluster_list <- apply(k_star, 1, cc_max_proportion,
-      beta_clu_ward     = beta_clu_ward,
-      beta_clu_method2  = beta_clu_method2,
+      cluster_ward     = cluster_ward,
+      cluster_other  = cluster_other,
       return_list       = TRUE
     )
     clustz <- sapply(cluster_list,
