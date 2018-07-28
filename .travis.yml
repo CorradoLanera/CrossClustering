@@ -4,9 +4,12 @@ language: R
 sudo: false
 cache: packages
 
+before_install:
+  - if test "$TRAVIS_OS_NAME" == "osx"; then brew update;brew install libgit2; fi
+
 os:
-- linux
-- osx
+  - linux
+  - osx
 
 r:
   - oldrel
