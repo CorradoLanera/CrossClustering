@@ -5,7 +5,7 @@ Title: A partial clustering algorithm with automatic estimation of the
        elongated clusters, with two tests for the significance of the 
        adjusted Rand Index and the computation of it and its confidence 
        interval from contingency tables 
-Version: 3.3.01
+Version: 3.3.02
 Date: 2018-02-12
 Authors@R: c(
     person("Paola"  , "Tellaroli",
@@ -44,20 +44,20 @@ RoxygenNote: 6.0.1
 BugReports: https://github.com/CorradoLanera/CrossClustering/issues
 Depends: R (>= 3.1)
 Imports: 
-    cluster,
-    mclust,
-    flip,
-    magrittr,
-    purrr,
-    utils,
-    assertive,
-    crayon,
-    glue,
-    cli,
-    dplyr
+    cluster (>= 2.0.7.1),
+    mclust (>= 5.4.1),
+    flip (>= 2.4.3),
+    magrittr (>= 1.5),
+    purrr (>= 0.2.5),
+    utils (>= 3.5.1),
+    assertive (>= 0.3.5),
+    crayon (>= 1.3.4),
+    glue (>= 1.3.0),
+    cli (>= 1.0.0),
+    dplyr (>= 0.7.6)
 Suggests: 
-    testthat,
-    covr,
-    roxygen2
+    testthat (>= 2.0.0),
+    covr (>= 3.1.0),
+    roxygen2 (>= 6.0.1)
 Encoding: UTF-8
 LazyData: true
