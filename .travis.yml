@@ -4,9 +4,6 @@ language: R
 sudo: false
 cache: packages
 
-before_install:
-  - if test "$TRAVIS_OS_NAME" == "osx"; then brew update;brew install libgit2; fi
-
 os:
   - linux
   - osx
@@ -14,7 +11,11 @@ os:
 r:
   - oldrel
   - release
-  - devel
 
+include:
+  matrix:
+    - r: devel
+    - warnings_are_errors: false
+    
 after_success:
   - Rscript -e 'covr::codecov()'
