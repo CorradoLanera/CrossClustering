@@ -9,7 +9,7 @@ Version: 3.3.02
 Date: 2018-02-12
 Authors@R: c(
     person("Paola"  , "Tellaroli",
-      email = "paola [dot] tellaroli [at] unipd [dot] it",
+      email = "paola [dot] tellaroli [at] gmail [dot] com",
       role  = c('cre', 'aut')
     ),
     person("Marco"  , "Bazzi",
@@ -33,7 +33,7 @@ Authors@R: c(
       role  = 'aut'
     )
   )
-Maintainer: Paola Tellaroli <paola.tellaroli@unipd.it>
+Maintainer: Paola Tellaroli <paola.tellaroli@gmail.com>
 Description: CrossClustering is a partial clustering algorithm that combines
     the Ward's minimum variance and Complete Linkage algorithms, providing
     automatic estimation of a suitable number of clusters and identification
