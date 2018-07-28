@@ -1,3 +1,5 @@
+# CrossClustering 4.0.0
+
 # CrossClustering 3.3.02
 
 * Rversions 3.1 and 3.2 removed from Travis-CI
