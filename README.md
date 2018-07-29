@@ -7,7 +7,7 @@ Status](https://travis-ci.org/CorradoLanera/CrossClustering.svg?branch=develop)]
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/CorradoLanera/CrossClustering?branch=develop&svg=true)](https://ci.appveyor.com/project/CorradoLanera/CrossClustering)
 [![CRAN Status
-Badge](http://www.r-pkg.org/badges/version/CrossClustering)](https://cran.r-project.org/web/packages/CrossClustering)
+Badge](http://www.r-pkg.org/badges/version/CrossClustering)](https://CRAN.R-project.org/package=CrossClustering)
 [![Coverage
 Status](https://codecov.io/gh/CorradoLanera/CrossClustering/branch/develop/graph/badge.svg)](https://codecov.io/gh/CorradoLanera/CrossClustering?branch=develop)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
