@@ -30,7 +30,7 @@ details)}
 
 \item{method}{[chr] "complete" (default) or "single". CrossClustering
 combines Ward's algorithm with Complete-linkage if method is set
-to "complete", otherwhise (if method is set to 'single')
+to "complete", otherwise (if method is set to 'single')
 Single-linkage will be used.}
 
 \item{x}{an object used to select a method.}
@@ -42,9 +42,9 @@ A list of objects describing characteristics of the partitioning
         as follows:
           \item{Optimal_cluster}{number of clusters}
           \item{Cluster_list}{a list of clusters; each element of this
-          lists contains the indices of the elemenents belonging to the
+          lists contains the indices of the elements belonging to the
           cluster}
-          \item{Silhouette}{the average silhouette witdh over all the
+          \item{Silhouette}{the average silhouette width over all the
             clusters}
           \item{n_total}{total number of input elements}
           \item{n_clustered}{number of input elements that have actually

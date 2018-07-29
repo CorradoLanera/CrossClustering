@@ -7,18 +7,18 @@
 prune_zero_tail(diag_mat)
 }
 \arguments{
-\item{diag_mat}{a diagonal matrix which must sutisfy the following
+\item{diag_mat}{a diagonal matrix which must satisfy the following
 property: in the diagonal, every element after a zero is a zero.}
 }
 \value{
 a diagonal matrix without zeros in the diagonal, composed by the
   first rows and columns of the original matrix with non zeros in the
-  diagonal (wich are also the only ones)
+  diagonal (which are also the only ones)
 }
 \description{
 Given a diagonal matrix which is supposed to have no non-zero entry in
 the diagonal after the first one (if any) the  function returns the
-diagonal (sub-)matrix whithout the columns and the row corresponding to
+diagonal (sub-)matrix without the columns and the row corresponding to
 the zero-entries in the diagonal (if any).
 }
 \examples{

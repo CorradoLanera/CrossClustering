@@ -7,7 +7,7 @@
 is_zero(num)
 }
 \arguments{
-\item{num}{a numerical vector of lenght one}
+\item{num}{a numerical vector of length one}
 }
 \value{
 a boolean, TRUE if num is 0

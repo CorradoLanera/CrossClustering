@@ -1,6 +1,6 @@
 #' Reverse the process of create a contingency table
 #'
-#' @param x a contingecy table
+#' @param x a contingency table
 #'
 #' @return a list of 2 vector corresponding to the unrolled table
 #' @export

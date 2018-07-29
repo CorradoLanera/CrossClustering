@@ -2,15 +2,15 @@
 #'
 #' Given a diagonal matrix which is supposed to have no non-zero entry in
 #' the diagonal after the first one (if any) the  function returns the
-#' diagonal (sub-)matrix whithout the columns and the row corresponding to
+#' diagonal (sub-)matrix without the columns and the row corresponding to
 #' the zero-entries in the diagonal (if any).
 #'
-#' @param diag_mat a diagonal matrix which must sutisfy the following
+#' @param diag_mat a diagonal matrix which must satisfy the following
 #'   property: in the diagonal, every element after a zero is a zero.
 #'
 #' @return a diagonal matrix without zeros in the diagonal, composed by the
 #'   first rows and columns of the original matrix with non zeros in the
-#'   diagonal (wich are also the only ones)
+#'   diagonal (which are also the only ones)
 #' @export
 #'
 #' @examples
@@ -44,7 +44,7 @@ prune_zero_tail <- function(diag_mat) {
 #'
 #' Check if a given, single, number is 0 or not
 #'
-#' @param num a numerical vector of lenght one
+#' @param num a numerical vector of length one
 #'
 #' @return a boolean, TRUE if num is 0
 #'

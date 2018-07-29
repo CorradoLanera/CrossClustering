@@ -7,7 +7,7 @@
 reverse_table(x)
 }
 \arguments{
-\item{x}{a contingecy table}
+\item{x}{a contingency table}
 }
 \value{
 a list of 2 vector corresponding to the unrolled table
