@@ -1,6 +1,8 @@
 # CrossClustering 4.0.1
 
 * submit to  CRAN
+* url fixed
+* spellcheck
 * update `.travis.yml` to fix an error in the macOS-devel build:
   `warnings_are_errors: false` for that build.
 

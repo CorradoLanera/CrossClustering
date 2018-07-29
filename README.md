@@ -7,7 +7,7 @@ Status](https://travis-ci.org/CorradoLanera/CrossClustering.svg?branch=develop)]
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/CorradoLanera/CrossClustering?branch=develop&svg=true)](https://ci.appveyor.com/project/CorradoLanera/CrossClustering)
 [![CRAN Status
-Badge](http://www.r-pkg.org/badges/version/CrossClustering)](http://cran.R-project.org/package=CrossClustering)
+Badge](http://www.r-pkg.org/badges/version/CrossClustering)](https://cran.r-project.org/web/packages/CrossClustering)
 [![Coverage
 Status](https://codecov.io/gh/CorradoLanera/CrossClustering/branch/develop/graph/badge.svg)](https://codecov.io/gh/CorradoLanera/CrossClustering?branch=develop)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
@@ -105,7 +105,7 @@ References
 **Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016).
 Cross-Clustering: A Partial Clustering Algorithm with Automatic
 Estimation of the Number of Clusters. PLoS ONE 11(3): e0152333.
-<doi:10.1371/journal.pone.0152333>**
+<https://doi.org/10.1371/journal.pone.0152333>**
 
 **Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2017).
 E1829: Cross-Clustering: A Partial Clustering Algorithm with Automatic

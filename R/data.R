@@ -60,5 +60,7 @@
 #' @format A data frame with 100 observations on 36 numeric variables.
 #'
 #' @source Data included in the bioconductor package `maSigPro`.
-#'   \url{'http://bioinfo.cipf.es/'}
+#'   \url{
+#'     'https://www.bioconductor.org/packages/release/bioc/html/maSigPro.html'
+#'   }
 "nb_data"
