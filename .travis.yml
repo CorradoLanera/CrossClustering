@@ -15,9 +15,11 @@ r:
 include:
   matrix:
     - name: "devel linux"
+      language: R
       r: devel
       os: linux
     - name: "devel osx"
+      language: R
       r: devel
       os: osx
       warnings_are_errors: false
