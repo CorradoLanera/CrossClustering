@@ -1,0 +1,9 @@
+^CrossClustering\.Rproj$
+^\.Rproj\.user$
+^cran-comments\.md$
+^README\.rmd$
+^\.travis\.yml$
+^codecov\.yml$
+^data-raw$
+^appveyor\.yml$
+^revdep$

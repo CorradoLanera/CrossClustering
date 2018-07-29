@@ -1,0 +1,63 @@
+Package: CrossClustering
+Type: Package
+Title: A partial clustering algorithm with automatic estimation of the
+       number of clusters and identification of outliers for spherical or
+       elongated clusters, with two tests for the significance of the 
+       adjusted Rand Index and the computation of it and its confidence 
+       interval from contingency tables 
+Version: 4.0.0
+Date: 2018-02-12
+Authors@R: c(
+    person("Paola"  , "Tellaroli",
+      email = "paola [dot] tellaroli [at] gmail [dot] com",
+      role  = c('cre', 'aut')
+    ),
+    person("Marco"  , "Bazzi",
+      email = "bazzi [at] stat [dot] unipd [dot] it",
+      role  = 'aut'
+    ),
+    person("Michele", "Donato",
+      email = "mdonato [at] stanford [dot] edu",
+      role  = 'aut'
+    ),
+    person("Livio", "Finos",
+      email = "livio [dot] finos [at] unipd [dot] it",
+      role  = 'aut'
+    ),
+    person("Philippe", "Courcoux",
+      email = "philippe [dot] courcoux [at] oniris-nantes [dot] fr",
+      role  = 'aut'
+    ),
+    person("Corrado", "Lanera",
+      email = "corrado [dot] lanera [at] unipd [dot] it",
+      role  = 'aut'
+    )
+  )
+Maintainer: Paola Tellaroli <paola.tellaroli@gmail.com>
+Description: CrossClustering is a partial clustering algorithm that combines
+    the Ward's minimum variance and Complete Linkage algorithms, providing
+    automatic estimation of a suitable number of clusters and identification
+    of outlier elements.
+License: GPL (>=3)
+URL: http://CRAN.R-project.org/package=CrossClustering
+RoxygenNote: 6.0.1
+BugReports: https://github.com/CorradoLanera/CrossClustering/issues
+Depends: R (>= 3.1)
+Imports: 
+    cluster,
+    mclust,
+    flip,
+    magrittr,
+    purrr,
+    utils,
+    assertive,
+    crayon,
+    glue,
+    cli,
+    dplyr
+Suggests: 
+    testthat,
+    covr,
+    roxygen2
+Encoding: UTF-8
+LazyData: true
