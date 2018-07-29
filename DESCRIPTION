@@ -1,11 +1,7 @@
 Package: CrossClustering
 Type: Package
-Title: A Partial Clustering Algorithm with Automatic Estimation of the Number of
-       Clusters and Identification of Outliers for Spherical or Elongated
-       Clusters, with Two Tests for the Significance of the Adjusted Rand Index
-       and the Computation of it and Its Confidence Interval from Contingency
-       Tables 
-Version: 4.0.1
+Title: CrossClustering: A Partial Clustering Algorithm 
+Version: 4.0.2
 Date: 2018-07-29
 Authors@R: c(
     person("Paola"  , "Tellaroli",
@@ -34,10 +30,11 @@ Authors@R: c(
     )
   )
 Maintainer: Paola Tellaroli <paola.tellaroli@gmail.com>
-Description: This package implements the CrossClustering algorithm, which is a
-    partial clustering algorithm that combines the Ward's minimum variance and
-    Complete Linkage algorithms, providing automatic estimation of a suitable
-    number of clusters and identification of outlier elements.
+Description: Provide the CrossClustering algorithm (Tellaroli et al. (2016)
+    <doi:10.1371/journal.pone.0152333>), which is a partial clustering algorithm
+    that combines the Ward's minimum variance and Complete Linkage algorithms,
+    providing automatic estimation of a suitable number of clusters and
+    identification of outlier elements.
 License: GPL (>=3)
 URL: https://CRAN.R-project.org/package=CrossClustering
 RoxygenNote: 6.0.1
