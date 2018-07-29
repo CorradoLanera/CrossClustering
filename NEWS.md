@@ -1,6 +1,8 @@
-# CrossClustering 4.0.0
+# CrossClustering 4.0.1
 
-* submitted to CRAN
+* submit to  CRAN
+* update `.travis.yml` to fix an error in the macOS-devel build:
+  `warnings_are_errors: false` for that build.
 
 # CrossClustering 3.3.02
 
