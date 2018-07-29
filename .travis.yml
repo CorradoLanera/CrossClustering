@@ -14,8 +14,13 @@ r:
 
 include:
   matrix:
-    r: devel
-    warnings_are_errors: false
-    
+    - name: "devel linux"
+      r: devel
+      os: linux
+    - name: "devel osx"
+      r: devel
+      os: osx
+      warnings_are_errors: false
+
 after_success:
   - Rscript -e 'covr::codecov()'
