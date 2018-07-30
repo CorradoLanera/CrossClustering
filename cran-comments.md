@@ -25,10 +25,4 @@ R CMD check succeeded.
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* Reduced the title to less than 65 chars, i.e.: to 48.
-
-* Removed "This package" from the description.
-
-* Added a reference about the CrossClustering method into the Description,
-  in the form Authors (year) <doi:.....>, i.e.: (Tellaroli et al. (2016)
-    <doi:10.1371/journal.pone.0152333>)
+* Removed the package name from the title.

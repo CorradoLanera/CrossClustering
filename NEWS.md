@@ -1,8 +1,12 @@
-# CrossClustering 4.0.2
+# CrossClustering 4.0.3
 
 * resubmission to CRAN
 * fix `DESCRIPTION` issues
 
+# CrossClustering 4.0.2
+
+* resubmission to CRAN
+* fix `DESCRIPTION` issues
 
 # CrossClustering 4.0.1
 
