@@ -11,6 +11,8 @@ Badge](http://www.r-pkg.org/badges/version/CrossClustering)](https://CRAN.R-proj
 [![Coverage
 Status](https://codecov.io/gh/CorradoLanera/CrossClustering/branch/develop/graph/badge.svg)](https://codecov.io/gh/CorradoLanera/CrossClustering?branch=develop)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![CII Best
+Practices](https://bestpractices.coreinfrastructure.org/projects/2065/badge)](https://bestpractices.coreinfrastructure.org/projects/2065)
 
 CrossClustering is a partial clustering algorithm that combines the
 Ward’s minimum variance and Complete Linkage algorithms, providing

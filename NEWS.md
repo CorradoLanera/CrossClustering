@@ -1,5 +1,6 @@
 # CrossClustering 4.0.4
 
+* Added __CII Best Practices__ badge to `README`
 * Added `.github/CONTRIBUTING.md`
 * Added `.github/ISSUE_TEMPLATE.md` file
 * Added `CODE_OF_CONDUCT.md` file
