@@ -1,5 +1,8 @@
 # CrossClustering 4.0.4
 
+* Added `.github/CONTRIBUTING.md`
+* Added `.github/ISSUE_TEMPLATE.md` file
+* Added `CODE_OF_CONDUCT.md` file
 * Added `LICENCE` file for GPL-3
 
 # CrossClustering 4.0.3 (CRAN ACCEPTED)
