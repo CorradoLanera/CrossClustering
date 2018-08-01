@@ -7,3 +7,4 @@
 ^data-raw$
 ^appveyor\.yml$
 ^revdep$
+^LICENSE\.md$

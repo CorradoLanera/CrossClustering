@@ -1,4 +1,8 @@
-# CrossClustering 4.0.3
+# CrossClustering 4.0.4
+
+* Added `LICENCE` file for GPL-3
+
+# CrossClustering 4.0.3 (CRAN ACCEPTED)
 
 * resubmission to CRAN
 * fix `DESCRIPTION` issues
