@@ -27,11 +27,11 @@ Provides the vector of clusters' ID to which each element belong to.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{default}: default method for \code{\link{cc_get_cluster}}.
+\item \code{cc_get_cluster(default)}: default method for \code{\link{cc_get_cluster}}.
 
-\item \code{crossclustering}: automatically extract inputs from a \code{crossclustering} object
+\item \code{cc_get_cluster(crossclustering)}: automatically extract inputs from a \code{crossclustering} object
+
 }}
-
 \examples{
 library(CrossClustering)
 

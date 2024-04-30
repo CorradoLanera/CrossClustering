@@ -203,31 +203,18 @@ cc_crossclustering <- function(dist,
   out     = TRUE,
   method  = c('complete', 'single')
 ) {
-  # imput check
-  assertive::assert_is_any_of(dist, 'dist')
-  assertive::assert_is_a_number(k_w_min)
-
-  assertive::assert_all_are_positive(k_w_min)
-  if (!assertive::assert_all_are_equal_to(k_w_min, as.integer(k_w_min))) {
-    stop(paste0('k_w_min must be an integer. It is: ', k_w_min, '.'))
-  }
-
-  assertive::assert_is_a_number(k_w_max)
-  assertive::assert_all_are_less_than(k_w_min, k_w_max)
-  if (!assertive::assert_all_are_equal_to(k_w_max, as.integer(k_w_max))) {
-    stop(paste0('k_w_max must be an integer. It is: ', k_w_max, '.'))
-  }
-
-  assertive::assert_is_a_number(k2_max)
-  assertive::assert_all_are_less_than(k_w_min, k2_max)
-  if (!assertive::assert_all_are_equal_to(k2_max, as.integer(k2_max))) {
-    stop(paste0('k2_max must be an integer. It is: ', k2_max, '.'))
-  }
-
-  assertive::assert_is_a_bool(out)
-  assertive::assert_is_character(method)
-
   method <- match.arg(method)
+
+  # imput check
+  checkmate::assert_class(dist, "dist")
+  checkmate::qassert(k_w_min, "X1(0,)")
+  checkmate::qassert(k_w_min, "X1(0,)")
+  checkmate::assert_integerish(k_w_max, lower = k_w_min)
+  checkmate::qassert(k2_max, "X1(0,)")
+  checkmate::assert_integerish(k2_max, lower = k_w_min)
+
+  checkmate::qassert(out, "B1")
+  checkmate::qassert(method, "S1")
 
   n <- attr(dist, 'Size')
 

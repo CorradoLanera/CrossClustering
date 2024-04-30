@@ -74,20 +74,14 @@
 #' D. Steinley, M.J. Brusco, L. Hubert (2016) The Variance of the Adjusted
 #' Rand Index, Psychological Methods, 21(2), 261-272
 
-ari <- function(mat, alpha = 0.05, digits = 2){
-  assertive::assert_is_matrix(mat)
-  assertive::assert_is_numeric(mat)
-  assertive::assert_all_are_greater_than_or_equal_to(mat, 0)
-  assertive::assert_all_are_equal_to(mat, as.integer(mat))
-  assertive::assert_is_a_double(alpha)
-  assertive::assert_all_are_proportions(alpha,
-    lower_is_strict = TRUE,
-    upper_is_strict = TRUE
-  )
-  assertive::assert_is_a_number(digits)
-  assertive::assert_all_are_greater_than_or_equal_to(digits, 0)
+ari <- function(mat, alpha = 0.05, digits = 2) {
+  checkmate::assert_matrix(mat)
+  checkmate::qassert(mat, "M*[0,)")
+  checkmate::qassert(mat, "X*[0,)")
+  checkmate::qassert(alpha, "R1(0,1)")
+  checkmate::qassert(digits, "X1[0,)")
 
-  if(sum(mat) < 100) warning(paste0('\n',
+  if (sum(mat) < 100) warning(paste0('\n',
     "Sum of elements of ", crayon::blue("mat"), " is less than 100,\n",
     "  confidence interval should not be trusted."
   ))
@@ -100,8 +94,8 @@ ari <- function(mat, alpha = 0.05, digits = 2){
   num2 <- numeric(ncol(mat))
   num3 <- numeric(nrow(mat))
 
-  for (i in 1:nrow(mat)){
-    for (j in 1:ncol(mat)){
+  for (i in 1:nrow(mat)) {
+    for (j in 1:ncol(mat)) {
       p <- p + 1
       num1[[p]] <- choose(mat[i,j],2)
       num2[[j]] <- choose(colSums(mat)[j],2)

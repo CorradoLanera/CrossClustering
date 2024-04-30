@@ -54,10 +54,9 @@ consensus_cluster <- function(k,
   cluster_ward,
   cluster_other
 ) {
-  assertive::assert_is_of_length(k, 2)
-  assertive::assert_is_numeric(k)
-  assertive::assert_is_any_of(cluster_ward,  'hclust')
-  assertive::assert_is_any_of(cluster_other, 'hclust')
+  checkmate::qassert(k, "N2")
+  checkmate::assert_class(cluster_ward,  'hclust')
+  checkmate::assert_class(cluster_other, 'hclust')
 
   k_w = k[1]
   k_c = k[2]

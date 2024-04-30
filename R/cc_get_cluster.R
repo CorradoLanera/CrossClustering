@@ -13,8 +13,6 @@ cc_get_cluster <- function(x, n_elem) {
 
 
 
-#' @inheritParams cc_get_cluster
-#'
 #' @export
 #'
 #' @describeIn cc_get_cluster default method for \code{\link{cc_get_cluster}}.
@@ -51,9 +49,8 @@ cc_get_cluster <- function(x, n_elem) {
 #' doi:10.1371/journal.pone.0152333
 cc_get_cluster.default <- function(x, n_elem) {
 
-  assertive::assert_is_list(x)
-  assertive::assert_is_a_number(n_elem)
-  assertive::assert_all_are_equal_to(n_elem, as.integer(n_elem))
+  checkmate::qassert(x, "L")
+  checkmate::qassert(n_elem, "X1")
 
   n_cluster <- length(x)
   elements  <- unlist(x)
@@ -81,8 +78,6 @@ cc_get_cluster.default <- function(x, n_elem) {
 }
 
 
-#' @inheritParams cc_get_cluster
-#'
 #' @describeIn cc_get_cluster automatically extract inputs from a \code{crossclustering} object
 #'
 #' @export
@@ -92,6 +87,6 @@ cc_get_cluster.default <- function(x, n_elem) {
 #' ### cc_get_cluster directly from a crossclustering object
 #' cc_get_cluster(toyres)
 cc_get_cluster.crossclustering <- function(x, n_elem) {
-  assertive::assert_is_inherited_from(x, 'crossclustering')
+  checkmate::assert_class(x, "crossclustering")
   cc_get_cluster.default(x, attr(x, 'n_total'))
 }

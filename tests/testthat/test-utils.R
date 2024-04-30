@@ -14,5 +14,5 @@ test_that("prune_zero_tail prune matrix and only if correctly provided", {
 test_that("is_zero", {
   expect_true(is_zero(0))
   expect_false(is_zero(1))
-  expect_error(is_zero('a'), 'is_a_number')
+  expect_error(is_zero('a'), "Must be of class 'numeric'")
 })

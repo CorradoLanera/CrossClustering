@@ -51,51 +51,51 @@ expected <-
 test_that("error for incorrect input", {
   expect_error(
     cc_crossclustering(1, k_w_min, k_w_max, k2_max, out, 'complete'),
-    'is not in any of the classes'
+    "Must inherit from class 'dist'"
   )
   expect_error(
     cc_crossclustering(dist, -1, k_w_max, k2_max, out, 'complete'),
-    'is_positive'
+    'All elements must be > 0'
   )
   expect_error(
     cc_crossclustering(dist, 1.2, k_w_max, k2_max, out, 'complete'),
-    'is_equal_to'
+    "Must be of class 'integerish'"
   )
   expect_error(
     cc_crossclustering(dist, k_w_min, -1, k2_max, out, 'complete'),
-    'is_less_than'
+    'Element 1 is not >= 2'
   )
   expect_error(
     cc_crossclustering(dist, k_w_min, 3.2, k2_max, out, 'complete'),
-    'is_equal_to'
+    "Must be of type 'integerish'"
   )
   expect_error(
     cc_crossclustering(dist, 3, 2, k2_max, out, 'complete'),
-    'is_less_than'
+    'Element 1 is not >= 3'
   )
   expect_error(
     cc_crossclustering(dist, k_w_min, k_w_max, -1, out, 'complete'),
-    'is_less_than'
+    'All elements must be > 0'
   )
   expect_error(
     cc_crossclustering(dist, k_w_min, k_w_max, 3.2, out, 'complete'),
-    'is_equal_to'
+    "Must be of class 'integerish'"
   )
   expect_error(
     cc_crossclustering(dist, 3, k_w_max, 2, out, 'complete'),
-    'is_less_than'
+    'Element 1 is not >= 3'
   )
   expect_error(
     cc_crossclustering(dist, 3, k_w_max, k2_max, 5, 'complete'),
-    'is_a_bool'
+    "Must be of class 'logical'"
   )
   expect_error(
     cc_crossclustering(dist, 3, k_w_max, k2_max, out, 1),
-    'is_character'
+    "must be NULL or a character vector"
   )
   expect_error(
     cc_crossclustering(dist, 3, k_w_max, k2_max, out, 'a'),
-    'should be one of '
+    'should be one of'
   )
 })
 

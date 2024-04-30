@@ -4,7 +4,9 @@
 \name{nb_data}
 \alias{nb_data}
 \title{RNA-Seq dataset example}
-\format{A data frame with 100 observations on 36 numeric variables.}
+\format{
+A data frame with 100 observations on 36 numeric variables.
+}
 \source{
 Data included in the bioconductor package `maSigPro`.
   \url{https://doi.org/doi:10.18129/B9.bioc.maSigPro}

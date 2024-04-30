@@ -36,11 +36,10 @@
 
 cc_test_ari_permutation <- function(ground_truth, partition) {
 
-  assertive::assert_is_numeric(ground_truth)
-  assertive::assert_is_numeric(partition)
-  assertive::assert_are_same_length(ground_truth, partition)
-  assertive::assert_all_are_not_na(ground_truth)
-  assertive::assert_all_are_not_na(partition)
+  checkmate::qassert(ground_truth, "N+")
+  checkmate::qassert(partition, "N+")
+  checkmate::assert_true(length(ground_truth) == length(partition))
+
 
   ari_fixed_partition <- function(ground_truth){
     mclust::adjustedRandIndex(ground_truth, partition)

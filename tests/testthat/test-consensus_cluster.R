@@ -10,15 +10,15 @@ cluster_other <- hclust(d, method = "complete")
 test_that("error for incorrect input", {
   expect_error(consensus_cluster(
     1, cluster_ward, cluster_other),
-    'is_of_length'
+    "Must be of length == 2"
   )
   expect_error(consensus_cluster(
     NA, cluster_ward, cluster_other),
-    'is_of_length'
+    "Must be of class 'numeric'"
   )
   expect_error(consensus_cluster(
     c(1, 2, 3), cluster_ward, cluster_other),
-    'is_of_length'
+    'Must be of length == 2'
   )
   expect_error(consensus_cluster(
     c(1, 2), 1, cluster_other),

@@ -49,9 +49,9 @@ in cases of total number of object clustered greater than 100.
 }
 \section{Methods (by generic)}{
 \itemize{
-\item \code{print}: 
-}}
+\item \code{print(ari)}: 
 
+}}
 \examples{
 
 #### This example compares the adjusted Rand Index as computed on the

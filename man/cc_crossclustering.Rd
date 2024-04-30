@@ -6,8 +6,14 @@
 \title{A partial clustering algorithm with automatic estimation of
 the number of clusters and identification of outliers}
 \usage{
-cc_crossclustering(dist, k_w_min = 2, k_w_max = attr(dist, "Size") - 2,
-  k2_max = k_w_max + 1, out = TRUE, method = c("complete", "single"))
+cc_crossclustering(
+  dist,
+  k_w_min = 2,
+  k_w_max = attr(dist, "Size") - 2,
+  k2_max = k_w_max + 1,
+  out = TRUE,
+  method = c("complete", "single")
+)
 
 \method{print}{crossclustering}(x, ...)
 }
@@ -56,17 +62,15 @@ combines the Ward's minimum variance and Complete-linkage (default,
 useful for finding spherical clusters) or Single-linkage (useful for
 finding elongated clusters) algorithms, providing automatic estimation of
 a suitable number of clusters and identification of outlier elements.
-
-print method for crossclustering class
 }
 \details{
 See cited document for more details.
 }
-\section{Methods (by generic)}{
+\section{Functions}{
 \itemize{
-\item \code{print}: 
-}}
+\item \code{print(crossclustering)}: 
 
+}}
 \examples{
 library(CrossClustering)
 

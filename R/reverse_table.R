@@ -13,7 +13,7 @@
 #' reverse_table(cont_table)
 reverse_table <- function(x) {
   # input check
-  assertive::is_integer(x)
+  checkmate::qassert(x, "X+")
 
   stats::setNames(
     list(

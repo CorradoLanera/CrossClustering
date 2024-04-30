@@ -1,60 +1,42 @@
-Package: CrossClustering
 Type: Package
-Title: A Partial Clustering Algorithm 
+Package: CrossClustering
+Title: A Partial Clustering Algorithm
 Version: 4.0.4
 Date: 2018-07-29
 Authors@R: c(
-    person("Paola"  , "Tellaroli",
-      email = "paola.tellaroli@gmail.com",
-      role  = c('cre', 'aut')
-    ),
-    person("Marco"  , "Bazzi",
-      email = "bazzi [at] stat [dot] unipd [dot] it",
-      role  = 'aut'
-    ),
-    person("Michele", "Donato",
-      email = "mdonato [at] stanford [dot] edu",
-      role  = 'aut'
-    ),
-    person("Livio", "Finos",
-      email = "livio [dot] finos [at] unipd [dot] it",
-      role  = 'aut'
-    ),
-    person("Philippe", "Courcoux",
-      email = "philippe [dot] courcoux [at] oniris-nantes [dot] fr",
-      role  = 'aut'
-    ),
-    person("Corrado", "Lanera",
-      email = "corrado [dot] lanera [at] unipd [dot] it",
-      role  = 'aut'
-    )
+    person("Paola", "Tellaroli", , "paola.tellaroli@gmail.com", role = c("cre", "aut")),
+    person("Marco", "Bazzi", , "bazzi [at] stat [dot] unipd [dot] it", role = "aut"),
+    person("Michele", "Donato", , "mdonato [at] stanford [dot] edu", role = "aut"),
+    person("Livio", "Finos", , "livio [dot] finos [at] unipd [dot] it", role = "aut"),
+    person("Philippe", "Courcoux", , "philippe [dot] courcoux [at] oniris-nantes [dot] fr", role = "aut"),
+    person("Corrado", "Lanera", , "corrado [dot] lanera [at] unipd [dot] it", role = "aut")
   )
 Maintainer: Paola Tellaroli <paola.tellaroli@gmail.com>
-Description: Provide the CrossClustering algorithm (Tellaroli et al. (2016)
-    <doi:10.1371/journal.pone.0152333>), which is a partial clustering algorithm
-    that combines the Ward's minimum variance and Complete Linkage algorithms,
-    providing automatic estimation of a suitable number of clusters and
-    identification of outlier elements.
+Description: Provide the CrossClustering algorithm (Tellaroli et al.
+    (2016) <doi:10.1371/journal.pone.0152333>), which is a partial
+    clustering algorithm that combines the Ward's minimum variance and
+    Complete Linkage algorithms, providing automatic estimation of a
+    suitable number of clusters and identification of outlier elements.
 License: GPL-3
 URL: https://CRAN.R-project.org/package=CrossClustering
-RoxygenNote: 6.0.1
 BugReports: https://github.com/CorradoLanera/CrossClustering/issues
-Depends: R (>= 3.1)
+Depends: 
+    R (>= 3.1)
 Imports: 
+    checkmate,
+    cli,
     cluster,
-    mclust,
+    crayon,
+    dplyr,
     flip,
     magrittr,
+    mclust,
     purrr,
-    utils,
-    assertive,
-    crayon,
-    glue,
-    cli,
-    dplyr
+    utils
 Suggests: 
-    testthat,
     covr,
-    roxygen2
+    roxygen2,
+    testthat
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.3.1

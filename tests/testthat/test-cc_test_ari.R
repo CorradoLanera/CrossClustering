@@ -1,14 +1,14 @@
 context("test-cc_test_ari.R")
 
 test_that("error for incorrect input", {
-  expect_error(cc_test_ari('a', 1), 'is.numeric')
-  expect_error(cc_test_ari(1, 'a'), 'is.numeric')
-  expect_error(cc_test_ari(c(1, 2), 2), 'are_same_length')
-  expect_error(cc_test_ari(1, NA), 'is.numeric')
-  expect_error(cc_test_ari(1, c(NA_real_)), 'is_not_na')
-  expect_error(cc_test_ari(1, NaN), 'is_not_na')
-  expect_error(cc_test_ari(c(NA_real_), 1), 'is_not_na')
-  expect_error(cc_test_ari(NaN, 1), 'is_not_na')
+  expect_error(cc_test_ari('a', 1), "Must be of class 'numeric'")
+  expect_error(cc_test_ari(1, 'a'), "Must be of class 'numeric'")
+  expect_error(cc_test_ari(c(1, 2), 2), "Assertion on 'length\\(ground_truth\\) == length\\(partition\\)' failed: Must be TRUE\\.")
+  expect_error(cc_test_ari(1, NA), "Must be of class 'numeric'")
+  expect_error(cc_test_ari(1, c(NA_real_)), 'May not contain missing values')
+  expect_error(cc_test_ari(1, NaN), 'May not contain missing values')
+  expect_error(cc_test_ari(c(NA_real_), 1), 'May not contain missing values')
+  expect_error(cc_test_ari(NaN, 1), 'May not contain missing values')
 })
 
 test_that("output class is a list", {

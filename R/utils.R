@@ -18,7 +18,10 @@
 #' prune_zero_tail(diag_mat)
 prune_zero_tail <- function(diag_mat) {
   # input check
-  assertive::assert_is_diagonal_matrix(diag_mat)
+  diag_check <- diag_mat
+  diag(diag_check) <- 0
+  checkmate::qassert(diag_check, "N+[0,0]")
+  rm(diag_check)
 
   # detect the index of the first zero in the diagonal
   # note: detect_index run the computation only until the first match
@@ -53,7 +56,7 @@ prune_zero_tail <- function(diag_mat) {
 #' CrossClustering:::is_zero(0)
 is_zero <- function(num) {
   # input check
-  assertive::assert_is_a_number(num)
+  checkmate::qassert(num, "N1")
 
   # return the results
   num == 0
