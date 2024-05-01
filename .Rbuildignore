@@ -1,3 +1,5 @@
+^renv$
+^renv\.lock$
 ^CrossClustering\.Rproj$
 ^\.Rproj\.user$
 ^cran-comments\.md$
@@ -7,3 +9,6 @@
 ^data-raw$
 ^appveyor\.yml$
 ^revdep$
+^LICENSE\.md$
+^CODE_OF_CONDUCT\.md$
+^\.github$

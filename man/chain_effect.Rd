@@ -4,13 +4,15 @@
 \name{chain_effect}
 \alias{chain_effect}
 \title{A toy dataset for illustrating the chain effect.}
-\format{A data frame with 28 rows and 2 variables:
+\format{
+A data frame with 28 rows and 2 variables:
 
 \describe{
-   \item{\code{X}}{num} x coordinates
-     0 is negative.
-   \item{\code{Y}}{num} y coordinates.
-   }}
+\item{\code{X}}{num} x coordinates
+0 is negative.
+\item{\code{Y}}{num} y coordinates.
+}
+}
 \usage{
 chain_effect
 }

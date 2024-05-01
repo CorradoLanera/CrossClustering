@@ -7,7 +7,7 @@
 consensus_cluster(k, cluster_ward, cluster_other)
 }
 \arguments{
-\item{k}{[int] a vector containing the number of clusters for Ward and
+\item{k}{(int) a vector containing the number of clusters for Ward and
 for Complete-linkage (or Single-linkage) algorithms, respectively}
 
 \item{cluster_ward}{an object of class hclust for the Ward algorithm}
@@ -17,12 +17,12 @@ Complete-linkage (or Single-linkage) algorithm}
 }
 \value{
 an object of class \code{consensus_cluster} with the following
-        elements:
-          \item{elements}{
-            list of the elements belonging to each cluster
-          };
-          \item{A_star}{contingency table of the clustering};
-          \item{max_consensus}{maximum clustering consensus}.
+elements:
+\item{elements}{
+list of the elements belonging to each cluster
+};
+\item{a_star}{contingency table of the clustering};
+\item{max_consensus}{maximum clustering consensus}.
 }
 \description{
 Computes the consensus between Ward's minimum variance and
@@ -36,15 +36,19 @@ data(toy)
 
 ### toy is transposed as we want to cluster samples (columns of the
 ### original matrix)
-toy_dist <- t(toy) \%>\% dist(method = "euclidean")
+toy_dist <- t(toy) |>
+  dist(method = "euclidean")
 
 ### Hierarchical clustering
-cluster_ward    <- toy_dist \%>\% hclust(method = "ward.D")
-cluster_other <- toy_dist \%>\% hclust(method = "complete")
+cluster_ward <- toy_dist |>
+  hclust(method = "ward.D")
+cluster_other <- toy_dist |>
+  hclust(method = "complete")
 
 
 ### consensus_cluster
-CrossClustering:::consensus_cluster(c(3, 4),
+CrossClustering:::consensus_cluster(
+  c(3, 4),
   cluster_ward,
   cluster_other
 )
@@ -57,7 +61,7 @@ Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333.
 doi:10.1371/journal.pone.0152333
 }
 \author{
-Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
-Marco Bazzi, <bazzi [at] stat [dot] unipd [dot] it>;
-Michele Donato, <mdonato [at] stanford [dot] edu>.
+Paola Tellaroli, <paola \code{dot} tellaroli \code{at} unipd \code{dot} it>;;
+Marco Bazzi, <bazzi \code{at} stat \code{dot} unipd \code{dot} it>;
+Michele Donato, <mdonato \code{at} stanford \code{dot} edu>.
 }

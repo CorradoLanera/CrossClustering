@@ -19,19 +19,20 @@ cc_get_cluster(x, n_elem)
 is of class \code{crossclustering})}
 }
 \value{
-An integer vector of clusters to which the elements belong (`1`
-        for the outliers, ID + 1 for the others).
+An integer vector of clusters to which the elements belong (\code{1}
+for the outliers, ID + 1 for the others).
 }
 \description{
 Provides the vector of clusters' ID to which each element belong to.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{default}: default method for \code{\link{cc_get_cluster}}.
+\item \code{cc_get_cluster(default)}: default method for \link{cc_get_cluster}.
 
-\item \code{crossclustering}: automatically extract inputs from a \code{crossclustering} object
+\item \code{cc_get_cluster(crossclustering)}: automatically extract inputs from a
+\code{crossclustering} object
+
 }}
-
 \examples{
 library(CrossClustering)
 
@@ -39,10 +40,12 @@ data(toy)
 
 ### toy is transposed as we want to cluster samples (columns of the
 ### original matrix)
-toy_dist <- t(toy) \%>\% dist(method = "euclidean")
+toy_dist <- t(toy) |>
+  dist(method = "euclidean")
 
 ### Run CrossClustering
-toyres <- cc_crossclustering(toy_dist,
+toyres <- cc_crossclustering(
+  toy_dist,
   k_w_min = 2,
   k_w_max = 5,
   k2_max  = 6,
@@ -63,7 +66,7 @@ Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333.
 doi:10.1371/journal.pone.0152333
 }
 \author{
-Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
-Marco Bazzi, <bazzi [at] stat [dot] unipd [dot] it>;
-Michele Donato, <mdonato [at] stanford [dot] edu>.
+Paola Tellaroli, <paola \code{dot} tellaroli \code{at} unipd \code{dot} it>;;
+Marco Bazzi, <bazzi \code{at} stat \code{dot} unipd \code{dot} it>;
+Michele Donato, <mdonato \code{at} stanford \code{dot} edu>.
 }

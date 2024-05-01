@@ -8,19 +8,19 @@ agreement (i.e., adjusted Rand Index equal to 0) between two partitions.}
 cc_test_ari(ground_truth, partition)
 }
 \arguments{
-\item{ground_truth}{[int] A vector of the actual membership of elements
+\item{ground_truth}{(int) A vector of the actual membership of elements
 in clusters}
 
 \item{partition}{The partition coming from a clustering algorithm}
 }
 \value{
 A list with six elements:
-  \item{Rand}{the Rand Index}
-  \item{ExpectedRand}{expected value of  Rand Index}
-  \item{AdjustedRand}{Adjusted Rand Index}
-  \item{varARI}{variance of Rand Index}
-  \item{NARI}{NARI}
-  \item{p-value}{the p-value of the test}
+\item{Rand}{the Rand Index}
+\item{ExpectedRand}{expected value of  Rand Index}
+\item{AdjustedRand}{Adjusted Rand Index}
+\item{var_ari}{variance of Rand Index}
+\item{nari}{nari}
+\item{p-value}{the p-value of the test}
 }
 \description{
 A test for testing the null hypothesis of random
@@ -29,25 +29,26 @@ agreement (i.e., adjusted Rand Index equal to 0) between two partitions.
 \examples{
 library(CrossClustering)
 
-clusters <- iris[-5] \%>\%
-  dist \%>\%
-  hclust(method = 'ward.D') \%>\%
+clusters <- iris[-5] |>
+  dist() |>
+  hclust(method = 'ward.D') |>
   cutree(k = 3)
 
-ground_truth <- iris[[5]] \%>\% as.numeric()
+ground_truth <- iris[[5]] |>
+  as.numeric()
 
 CrossClustering:::cc_test_ari(ground_truth, clusters)
 
 }
 \references{
-E_M. Qannari, P. Courcoux and Faye P. (2014) Significance test of the
+E_M. Qannari, p. Courcoux and Faye p. (2014) Significance test of the
 adjusted Rand index. Application to the free sorting task, Food Quality
 and Preference, (32)93-97
 
-L. Hubert and P. Arabie (1985) Comparing partitions, Journal of
+L. Hubert and p. Arabie (1985) Comparing partitions, Journal of
 Classification, 2, 193-218.
 }
 \author{
-Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;
-Philippe Courcoux, <philippe [dot] courcoux [at] oniris-nantes [dot] fr>
+Paola Tellaroli, <paola \code{dot} tellaroli \code{at} unipd \code{dot} it>;
+Philippe Courcoux, <philippe \code{dot} courcoux \code{at} oniris-nantes \code{dot} fr>
 }

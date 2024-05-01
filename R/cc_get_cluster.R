@@ -1,23 +1,21 @@
 #' Provides the vector of clusters' ID to which each element belong to.
 #'
-#' @param x list of clustered elements or a \code{crossclustering} object
+#' @param x list of clustered elements or a `crossclustering` object
 #' @param n_elem total number of elements clustered (ignored if x
-#'        is of class \code{crossclustering})
+#'        is of class `crossclustering`)
 #'
 #' @return An integer vector of clusters to which the elements belong (`1`
 #'         for the outliers, ID + 1 for the others).
 #' @export
 cc_get_cluster <- function(x, n_elem) {
-  UseMethod('cc_get_cluster', x)
+  UseMethod("cc_get_cluster", x)
 }
 
 
 
-#' @inheritParams cc_get_cluster
-#'
 #' @export
 #'
-#' @describeIn cc_get_cluster default method for \code{\link{cc_get_cluster}}.
+#' @describeIn cc_get_cluster default method for [cc_get_cluster].
 #'
 #' @examples
 #' library(CrossClustering)
@@ -26,10 +24,12 @@ cc_get_cluster <- function(x, n_elem) {
 #'
 #' ### toy is transposed as we want to cluster samples (columns of the
 #' ### original matrix)
-#' toy_dist <- t(toy) %>% dist(method = "euclidean")
+#' toy_dist <- t(toy) |>
+#'   dist(method = "euclidean")
 #'
 #' ### Run CrossClustering
-#' toyres <- cc_crossclustering(toy_dist,
+#' toyres <- cc_crossclustering(
+#'   toy_dist,
 #'   k_w_min = 2,
 #'   k_w_max = 5,
 #'   k2_max  = 6,
@@ -40,9 +40,9 @@ cc_get_cluster <- function(x, n_elem) {
 #' cc_get_cluster(toyres[], 7)
 #'
 #' @author
-#' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
-#' Marco Bazzi, <bazzi [at] stat [dot] unipd [dot] it>;
-#' Michele Donato, <mdonato [at] stanford [dot] edu>.
+#' Paola Tellaroli, <paola `dot` tellaroli `at` unipd `dot` it>;;
+#' Marco Bazzi, <bazzi `at` stat `dot` unipd `dot` it>;
+#' Michele Donato, <mdonato `at` stanford `dot` edu>.
 #'
 #' @references
 #' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016).
@@ -51,15 +51,13 @@ cc_get_cluster <- function(x, n_elem) {
 #' doi:10.1371/journal.pone.0152333
 cc_get_cluster.default <- function(x, n_elem) {
 
-  assertive::assert_is_list(x)
-  assertive::assert_is_a_number(n_elem)
-  assertive::assert_all_are_equal_to(n_elem, as.integer(n_elem))
+  checkmate::qassert(x, "L")
+  checkmate::qassert(n_elem, "X1")
 
-  n_cluster <- length(x)
   elements  <- unlist(x)
 
   if (n_elem < length(elements)) {
-    stop('n_elem has to be at least the number of clustered elements')
+    stop("n_elem has to be at least the number of clustered elements")
   }
 
   outliers <- setdiff(seq_len(n_elem), elements)
@@ -81,9 +79,8 @@ cc_get_cluster.default <- function(x, n_elem) {
 }
 
 
-#' @inheritParams cc_get_cluster
-#'
-#' @describeIn cc_get_cluster automatically extract inputs from a \code{crossclustering} object
+#' @describeIn cc_get_cluster automatically extract inputs from a
+#'   `crossclustering` object
 #'
 #' @export
 #'
@@ -92,6 +89,6 @@ cc_get_cluster.default <- function(x, n_elem) {
 #' ### cc_get_cluster directly from a crossclustering object
 #' cc_get_cluster(toyres)
 cc_get_cluster.crossclustering <- function(x, n_elem) {
-  assertive::assert_is_inherited_from(x, 'crossclustering')
-  cc_get_cluster.default(x, attr(x, 'n_total'))
+  checkmate::assert_class(x, "crossclustering")
+  cc_get_cluster.default(x, attr(x, "n_total"))
 }

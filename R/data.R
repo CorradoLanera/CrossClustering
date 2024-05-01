@@ -3,9 +3,9 @@
 #' @format A data frame with 28 rows and 2 variables:
 #'
 #' \describe{
-#'    \item{\code{X}}{num} x coordinates
+#'    \item{`X`}{num} x coordinates
 #'      0 is negative.
-#'    \item{\code{Y}}{num} y coordinates.
+#'    \item{`Y`}{num} y coordinates.
 #'    }
 #'
 "chain_effect"
@@ -16,9 +16,9 @@
 #' @format A data frame with 52 rows and 3 variables:
 #'
 #' \describe{
-#'    \item{\code{x}}{num} x coordinates
-#'    \item{\code{y}}{num} y coordinates.
-#'    \item{\code{clusters}}{integer} cluster membership (outliers
+#'    \item{`x`}{num} x coordinates
+#'    \item{`y`}{num} y coordinates.
+#'    \item{`clusters`}{integer} cluster membership (outliers
 #'          classified as 3rd cluster).
 #' }
 #'
@@ -31,9 +31,9 @@
 #' @format A data frame with 87 rows and 3 variables:
 #'
 #' \describe{
-#'    \item{\code{x}}{num} x coordinates
-#'    \item{\code{y}}{num} y coordinates.
-#'    \item{\code{cluster}}{integer} cluster membership (outliers classified
+#'    \item{`x`}{num} x coordinates
+#'    \item{`y`}{num} y coordinates.
+#'    \item{`cluster`}{integer} cluster membership (outliers classified
 #'          as 3rd cluster).
 #' }
 #'
@@ -60,5 +60,5 @@
 #' @format A data frame with 100 observations on 36 numeric variables.
 #'
 #' @source Data included in the bioconductor package `maSigPro`.
-#'   \url{https://doi.org/doi:10.18129/B9.bioc.maSigPro}
+#'   <https://doi.org/doi:10.18129/B9.bioc.maSigPro>
 "nb_data"

@@ -26,8 +26,8 @@ representing the significance level of interest. (default is 0.05)}
 }
 \value{
 An object of class \code{ari} with the following elements:
-  \item{AdjustedRandIndex}{The adjusted Rand Index}
-  \item{CI}{The confidence interval}
+\item{AdjustedRandIndex}{The adjusted Rand Index}
+\item{CI}{The confidence interval}
 }
 \description{
 Computes the adjusted Rand index and the confidence interval, comparing
@@ -49,9 +49,9 @@ in cases of total number of object clustered greater than 100.
 }
 \section{Methods (by generic)}{
 \itemize{
-\item \code{print}: 
-}}
+\item \code{print(ari)}: 
 
+}}
 \examples{
 
 #### This example compares the adjusted Rand Index as computed on the
@@ -62,21 +62,21 @@ in cases of total number of object clustered greater than 100.
 library(CrossClustering)
 library(mclust)
 
-clusters <- iris[-5] \%>\%
-  dist \%>\%
-  hclust(method = 'ward.D') \%>\%
+clusters <- iris[-5] |>
+  dist() |>
+  hclust(method = 'ward.D') |>
   cutree(k = 3)
 
-ground_truth <- iris[[5]] \%>\% as.numeric()
+ground_truth <- iris[[5]] |> as.numeric()
 
 mc_ari <- adjustedRandIndex(clusters, ground_truth)
 mc_ari
 
-ari_cc <- table(ground_truth, clusters) \%>\%
+ari_cc <- table(ground_truth, clusters) |>
   ari(digits = 7)
 ari_cc
 
-all.equal(mc_ari, unclass(ari_cc), check.attributes = FALSE)
+all.equal(mc_ari, unclass(ari_cc)[["ari"]], check.attributes = FALSE)
 
 }
 \references{
@@ -98,5 +98,5 @@ D. Steinley, M.J. Brusco, L. Hubert (2016) The Variance of the Adjusted
 Rand Index, Psychological Methods, 21(2), 261-272
 }
 \author{
-Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;
+Paola Tellaroli, <paola \code{dot} tellaroli \code{at} unipd \code{dot} it>;
 }

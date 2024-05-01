@@ -9,15 +9,15 @@ two partitions.}
 cc_test_ari_permutation(ground_truth, partition)
 }
 \arguments{
-\item{ground_truth}{[int] A vector of the actual membership of elements
+\item{ground_truth}{(int) A vector of the actual membership of elements
 in clusters}
 
 \item{partition}{The partition coming from a clustering algorithm}
 }
 \value{
 A data_frame with two columns:
-  \item{ari}{the adjusted Rand Index}
-  \item{p_value}{the p-value of the test}
+\item{ari}{the adjusted Rand Index}
+\item{p_value}{the p-value of the test}
 }
 \description{
 A permutation test for testing the null hypothesis of
@@ -27,12 +27,13 @@ two partitions.
 \examples{
 library(CrossClustering)
 
-clusters <- iris[-5] \%>\%
-  dist \%>\%
-  hclust(method = 'ward.D') \%>\%
+clusters <- iris[-5] |>
+  dist() |>
+  hclust(method = 'ward.D') |>
   cutree(k = 3)
 
-ground_truth <- iris[[5]] \%>\% as.numeric()
+ground_truth <- iris[[5]] |>
+  as.numeric()
 
 CrossClustering:::cc_test_ari_permutation(ground_truth, clusters)
 
@@ -46,6 +47,6 @@ L. Hubert and P. Arabie (1985) Comparing partitions, Journal of
 Classification, 2, 193-218.
 }
 \author{
-Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;
-Livio Finos, <livio [dot] finos [at] unipd [dot] it>
+Paola Tellaroli, <paola \code{dot} tellaroli \code{at} unipd \code{dot} it>;
+Livio Finos, <livio \code{dot} finos \code{at} unipd \code{dot} it>
 }

@@ -4,17 +4,29 @@ test_that("error for incorrect input", {
   ok_list  <- list(1, 2)
   ko_list  <- c(1, 2)
   ok_n_low <- 1
-  ko_n     <- 'a'
-  expect_error(cc_get_cluster(ko_list, ok_n_low), 'is_list')
-  expect_error(cc_get_cluster(ok_list, ko_n), 'is_a_number')
-  expect_error(cc_get_cluster(ok_list, ok_n_low), 'at least the number')
-  expect_error(cc_get_cluster(ok_list, 1.4), 'is_equal_to')
+  ko_n     <- "a"
+  expect_error(
+    cc_get_cluster(ko_list, ok_n_low),
+    "Must be of class 'list'"
+  )
+  expect_error(
+    cc_get_cluster(ok_list, ko_n),
+    "Must be of class 'integerish'"
+  )
+  expect_error(
+    cc_get_cluster(ok_list, ok_n_low),
+    "at least the number"
+  )
+  expect_error(
+    cc_get_cluster(ok_list, 1.4),
+    "Must be of class 'integerish'"
+  )
 })
 
 test_that("output class is integer", {
   cluster_list <- list(1:2, 3:4, 5:6)
   n <- 7
-  expect_type(cc_get_cluster(cluster_list, n), 'integer')
+  expect_type(cc_get_cluster(cluster_list, n), "integer")
 })
 
 test_that("correct known result", {
@@ -24,4 +36,3 @@ test_that("correct known result", {
   actual   <- cc_get_cluster(cluster_list, n)
   expect_equal(actual, expected)
 })
-

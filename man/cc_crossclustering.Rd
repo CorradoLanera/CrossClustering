@@ -3,11 +3,17 @@
 \name{cc_crossclustering}
 \alias{cc_crossclustering}
 \alias{print.crossclustering}
-\title{A partial clustering algorithm with automatic estimation of
-the number of clusters and identification of outliers}
+\title{A partial clustering algorithm with automatic estimation of the
+number of clusters and identification of outliers}
 \usage{
-cc_crossclustering(dist, k_w_min = 2, k_w_max = attr(dist, "Size") - 2,
-  k2_max = k_w_max + 1, out = TRUE, method = c("complete", "single"))
+cc_crossclustering(
+  dist,
+  k_w_min = 2,
+  k_w_max = attr(dist, "Size") - 2,
+  k2_max = k_w_max + 1,
+  out = TRUE,
+  method = c("complete", "single")
+)
 
 \method{print}{crossclustering}(x, ...)
 }
@@ -15,58 +21,56 @@ cc_crossclustering(dist, k_w_min = 2, k_w_max = attr(dist, "Size") - 2,
 \item{dist}{A dissimilarity structure as produced by the function
 \code{dist}}
 
-\item{k_w_min}{[int] Minimum number of clusters for the Ward's minimum
-variance method. By default is set equal 2}
+\item{k_w_min}{(int) Minimum number of clusters for the Ward's
+minimum variance method. By default is set equal 2}
 
-\item{k_w_max}{[int] Maximum number of clusters for the Ward's minimum
-variance method (see details)}
+\item{k_w_max}{(int) Maximum number of clusters for the Ward's
+minimum variance method (see details)}
 
-\item{k2_max}{[int] Maximum number of clusters for the
-Complete/Single-linkage method. It can not be equal or greater
-than the number of elements to cluster (see details)}
+\item{k2_max}{(int) Maximum number of clusters for the
+Complete/Single-linkage method. It can not be equal or greater than
+the number of elements to cluster (see details)}
 
-\item{out}{[lgl] If \code{TRUE} (default) outliers must be searched (see
-details)}
+\item{out}{(lgl) If \code{TRUE} (default) outliers must be searched
+(see details)}
 
-\item{method}{[chr] "complete" (default) or "single". CrossClustering
-combines Ward's algorithm with Complete-linkage if method is set
-to "complete", otherwise (if method is set to 'single')
-Single-linkage will be used.}
+\item{method}{(chr) "complete" (default) or "single". CrossClustering
+combines Ward's algorithm with Complete-linkage if method is set to
+"complete", otherwise (if method is set to 'single') Single-linkage
+will be used.}
 
 \item{x}{an object used to select a method.}
 
 \item{...}{further arguments passed to or from other methods.}
 }
 \value{
-A list of objects describing characteristics of the partitioning
-        as follows:
-          \item{Optimal_cluster}{number of clusters}
-          \item{Cluster_list}{a list of clusters; each element of this
-          lists contains the indices of the elements belonging to the
-          cluster}
-          \item{Silhouette}{the average silhouette width over all the
-            clusters}
-          \item{n_total}{total number of input elements}
-          \item{n_clustered}{number of input elements that have actually
-            been clustered}
+A list of objects describing characteristics of the
+partitioning as follows:
+\item{Optimal_cluster}{number of clusters}
+\item{cluster_list_elements}{a list of clusters; each element of this
+lists contains the indices of the elements belonging to the
+cluster}
+\item{Silhouette}{the average silhouette width over all the clusters}
+\item{n_total}{total number of input elements}
+\item{n_clustered}{number of input elements that have actually
+been clustered}
 }
 \description{
 This function performs the CrossClustering algorithm. This method
 combines the Ward's minimum variance and Complete-linkage (default,
 useful for finding spherical clusters) or Single-linkage (useful for
-finding elongated clusters) algorithms, providing automatic estimation of
-a suitable number of clusters and identification of outlier elements.
-
-print method for crossclustering class
+finding elongated clusters) algorithms, providing automatic
+estimation of a suitable number of clusters and identification of
+outlier elements.
 }
 \details{
 See cited document for more details.
 }
-\section{Methods (by generic)}{
+\section{Functions}{
 \itemize{
-\item \code{print}: 
-}}
+\item \code{print(crossclustering)}: 
 
+}}
 \examples{
 library(CrossClustering)
 
@@ -77,15 +81,16 @@ data(toy)
 
 ### toy is transposed as we want to cluster samples (columns of the
 ### original matrix)
-toy_dist <- t(toy) \%>\%
+toy_dist <- t(toy) |>
   dist(method = "euclidean")
 
 ### Run CrossClustering
-cc_crossclustering(toy_dist,
+cc_crossclustering(
+  toy_dist,
   k_w_min = 2,
   k_w_max = 5,
-  k2_max  = 6,
-  out     = TRUE
+  k2_max = 6,
+  out = TRUE
 )
 
 #### Simulated data as in reference paper
@@ -103,7 +108,7 @@ t[4, ] <- c( 6, 12, 15, 10,  5)
 t[5, ] <- c(12, 17,  3,  7, 10)
 
 t_mat <- NULL
-for (i in seq_len(nrow(t))){
+for (i in seq_len(nrow(t))) {
   t_mat <- rbind(
     t_mat,
     matrix(rep(t[i, ], sg[i]), nrow = sg[i], byrow = TRUE)
@@ -111,7 +116,8 @@ for (i in seq_len(nrow(t))){
 }
 
 data_15 <- matrix(NA, nrow = 2000, ncol = 5)
-data_15[1:1850, ] <- matrix(abs(rnorm(sum(sg) * 5, sd = 1.5)),
+data_15[1:1850, ] <- matrix(
+  abs(rnorm(sum(sg) * 5, sd = 1.5)),
   nrow = sum(sg),
   ncol = 5
 ) + t_mat
@@ -124,11 +130,12 @@ data_15[1851:2000, ] <- matrix(
 )
 
 ### Run CrossClustering
-cc_crossclustering(dist(data_15),
+cc_crossclustering(
+  dist(data_15),
   k_w_min = 2,
   k_w_max = 19,
-  k2_max  = 20,
-  out     = TRUE
+  k2_max = 20,
+  out = TRUE
 )
 
 
@@ -148,17 +155,20 @@ cc_crossclustering(dist = nb_dist, k_w_max = 20, k2_max = 19)
 
 data(twomoons)
 
-moons_dist <- twomoons[, 1:2] \%>\%
+moons_dist <- twomoons[, 1:2] |>
   dist(method = "euclidean")
 
-cc_moons <- cc_crossclustering(moons_dist,
+cc_moons <- cc_crossclustering(
+  moons_dist,
   k_w_max = 9,
-  k2_max  = 10,
-  method  = 'single'
+  k2_max = 10,
+  method = 'single'
 )
 
 moons_col <- cc_get_cluster(cc_moons)
-plot(twomoons[, 1:2], col = moons_col,
+plot(
+  twomoons[, 1:2],
+  col = moons_col,
   pch      = 19,
   xlab     = "",
   ylab     = "",
@@ -168,22 +178,25 @@ plot(twomoons[, 1:2], col = moons_col,
 ### Worms data
 data(worms)
 
-worms_dist <- worms[, 1:2] \%>\%
+worms_dist <- worms[, 1:2] |>
   dist(method = "euclidean")
 
-cc_worms <- cc_crossclustering(worms_dist,
+cc_worms <- cc_crossclustering(
+  worms_dist,
   k_w_max = 9,
   k2_max  = 10,
-  method  = 'single'
+  method  = "single"
 )
 
 worms_col <-  cc_get_cluster(cc_worms)
 
-plot(worms[, 1:2], col = worms_col,
-  pch      = 19,
-  xlab     = "",
-  ylab     = "",
-  main     = "CrossClustering-Single"
+plot(
+  worms[, 1:2],
+  col = worms_col,
+  pch = 19,
+  xlab = "",
+  ylab = "",
+  main = "CrossClustering-Single"
 )
 
 
@@ -191,18 +204,21 @@ plot(worms[, 1:2], col = worms_col,
 
 data(chain_effect)
 
-chain_dist <- chain_effect \%>\%
+chain_dist <- chain_effect |>
   dist(method = "euclidean")
-cc_chain <- cc_crossclustering(chain_dist,
+cc_chain <- cc_crossclustering(
+  chain_dist,
   k_w_max = 9,
-  k2_max  = 10,
-  method  = 'single'
+  k2_max = 10,
+  method = "single"
 )
 
 chain_col <- cc_get_cluster(cc_chain)
 
-plot(chain_effect, col = chain_col,
-  pch  = 19,
+plot(
+  chain_effect,
+  col = chain_col,
+  pch = 19,
   xlab = "",
   ylab = "",
   main = "CrossClustering-Single"
@@ -221,7 +237,7 @@ Estimation of the Number of Clusters. CMStatistics 2017, London 16-18
 December, Book of Abstracts (ISBN 978-9963-2227-4-2)
 }
 \author{
-Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
-Marco Bazzi, <bazzi [at] stat [dot] unipd [dot] it>;
-Michele Donato, <mdonato [at] stanford [dot] edu>
+Paola Tellaroli, <paola \code{dot} tellaroli \code{at} unipd \code{dot} it>;;
+Marco Bazzi, <bazzi \code{at} stat \code{dot} unipd \code{dot} it>;
+Michele Donato, <mdonato \code{at} stanford \code{dot} edu>
 }
