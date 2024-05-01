@@ -16,12 +16,13 @@
 #' @examples
 #' library(CrossClustering)
 #'
-#' clusters <- iris[-5] %>%
-#'   dist %>%
-#'   hclust(method = 'ward.D') %>%
+#' clusters <- iris[-5] |>
+#'   dist() |>
+#'   hclust(method = 'ward.D') |>
 #'   cutree(k = 3)
 #'
-#' ground_truth <- iris[[5]] %>% as.numeric()
+#' ground_truth <- iris[[5]] |>
+#'   as.numeric()
 #'
 #' CrossClustering:::cc_test_ari(ground_truth, clusters)
 #'

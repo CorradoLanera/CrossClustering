@@ -44,22 +44,23 @@ data(toy)
 d <- dist(t(toy), method = "euclidean")
 
 ### Run CrossClustering
-toyres <- cc_crossclustering(d, k_w_min = 2, k_w_max = 5, k2_max = 6,
-out = TRUE)
+toyres <- cc_crossclustering(
+  d, k_w_min = 2, k_w_max = 5, k2_max = 6, out = TRUE
+)
 toyres
 ```
 
 Another useful function worth to mention is `ari`:
 ```{r}
-clusters <- iris[-5] %>%
- dist() %>%
- hclust(method = 'ward.D') %>%
+clusters <- iris[-5] |>
+ dist() |>
+ hclust(method = 'ward.D') |>
  cutree(k = 3)
 
-ground_truth <- iris[[5]] %>%
+ground_truth <- iris[[5]] |>
   as.numeric()
 
-table(ground_truth, clusters) %>% 
+table(ground_truth, clusters) |> 
   ari()
 ```
 

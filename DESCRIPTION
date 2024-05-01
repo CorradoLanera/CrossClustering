@@ -21,7 +21,7 @@ License: GPL-3
 URL: https://CRAN.R-project.org/package=CrossClustering
 BugReports: https://github.com/CorradoLanera/CrossClustering/issues
 Depends: 
-    R (>= 3.5)
+    R (>= 4.1)
 Imports: 
     checkmate,
     cli,
@@ -29,7 +29,6 @@ Imports:
     crayon,
     dplyr,
     flip,
-    magrittr,
     mclust,
     purrr,
     utils

@@ -25,7 +25,7 @@ prune_zero_tail <- function(diag_mat) {
 
   # detect the index of the first zero in the diagonal
   # note: detect_index run the computation only until the first match
-  first_zero <- diag(diag_mat) %>%
+  first_zero <- diag(diag_mat) |>
     purrr::detect_index(is_zero)
 
   # no zero-entry

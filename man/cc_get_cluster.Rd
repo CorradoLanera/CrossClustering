@@ -40,10 +40,12 @@ data(toy)
 
 ### toy is transposed as we want to cluster samples (columns of the
 ### original matrix)
-toy_dist <- t(toy) \%>\% dist(method = "euclidean")
+toy_dist <- t(toy) |>
+  dist(method = "euclidean")
 
 ### Run CrossClustering
-toyres <- cc_crossclustering(toy_dist,
+toyres <- cc_crossclustering(
+  toy_dist,
   k_w_min = 2,
   k_w_max = 5,
   k2_max  = 6,

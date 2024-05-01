@@ -37,21 +37,21 @@
 #' library(CrossClustering)
 #' library(mclust)
 #'
-#' clusters <- iris[-5] %>%
-#'   dist %>%
-#'   hclust(method = 'ward.D') %>%
+#' clusters <- iris[-5] |>
+#'   dist() |>
+#'   hclust(method = 'ward.D') |>
 #'   cutree(k = 3)
 #'
-#' ground_truth <- iris[[5]] %>% as.numeric()
+#' ground_truth <- iris[[5]] |> as.numeric()
 #'
 #' mc_ari <- adjustedRandIndex(clusters, ground_truth)
 #' mc_ari
 #'
-#' ari_cc <- table(ground_truth, clusters) %>%
+#' ari_cc <- table(ground_truth, clusters) |>
 #'   ari(digits = 7)
 #' ari_cc
 #'
-#' all.equal(mc_ari, unclass(ari_cc), check.attributes = FALSE)
+#' all.equal(mc_ari, unclass(ari_cc)[["ari"]], check.attributes = FALSE)
 #'
 #' @author
 #' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;

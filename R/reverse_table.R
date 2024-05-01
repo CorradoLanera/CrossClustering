@@ -6,8 +6,14 @@
 #' @export
 #'
 #' @examples
-#' clust_1 <- iris[, 1:4] %>% dist() %>% hclust() %>% cutree(k = 3)
-#' clust_2 <- iris[, 1:4] %>% dist() %>% hclust() %>% cutree(k = 4)
+#' clust_1 <- iris[, 1:4] |>
+#'   dist() |>
+#'   hclust() |>
+#'   cutree(k = 3)
+#' clust_2 <- iris[, 1:4] |>
+#'   dist() |>
+#'   hclust() |>
+#'   cutree(k = 4)
 #' cont_table <- table(clust_1, clust_2)
 #'
 #' reverse_table(cont_table)

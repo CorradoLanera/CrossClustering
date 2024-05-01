@@ -1,6 +1,6 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-CrossClustering
-===============
+
+# CrossClustering
 
 [![Travis Build
 Status](https://travis-ci.org/CorradoLanera/CrossClustering.svg?branch=develop)](https://travis-ci.org/CorradoLanera/CrossClustering)
@@ -17,10 +17,9 @@ Ward’s minimum variance and Complete Linkage algorithms, providing
 automatic estimation of a suitable number of clusters and identification
 of outlier elements.
 
-Example
--------
+## Example
 
-This is a basic example which shows you how to the main function, i.e.
+This is a basic example which shows you how to the main function, i.e. 
 `cc_crossclustering()` works:
 
 ``` r
@@ -35,8 +34,9 @@ data(toy)
 d <- dist(t(toy), method = "euclidean")
 
 ### Run CrossClustering
-toyres <- cc_crossclustering(d, k_w_min = 2, k_w_max = 5, k2_max = 6,
-out = TRUE)
+toyres <- cc_crossclustering(
+  d, k_w_min = 2, k_w_max = 5, k2_max = 6, out = TRUE
+)
 toyres
 #> 
 #>     CrossClustering with method complete.
@@ -55,15 +55,15 @@ toyres
 Another useful function worth to mention is `ari`:
 
 ``` r
-clusters <- iris[-5] %>%
- dist() %>%
- hclust(method = 'ward.D') %>%
+clusters <- iris[-5] |>
+ dist() |>
+ hclust(method = 'ward.D') |>
  cutree(k = 3)
 
-ground_truth <- iris[[5]] %>%
+ground_truth <- iris[[5]] |>
   as.numeric()
 
-table(ground_truth, clusters) %>% 
+table(ground_truth, clusters) |> 
   ari()
 #>     Adjusted Rand Index (alpha = 0.05)
 #> 
@@ -75,8 +75,7 @@ table(ground_truth, clusters) %>%
 #>   * Permutation test =   0.001
 ```
 
-Install
--------
+## Install
 
 ### CRAN version
 
@@ -92,15 +91,13 @@ To install the develop branch of CrossClastering package, use:
 devtools::install_github('CorradoLanera/CrossClustering', ref = 'develop')
 ```
 
-Bug reports
------------
+## Bug reports
 
 If you encounter a bug, please file a
 [reprex](https://github.com/tidyverse/reprex) (minimal reproducible
 example) to <https://github.com/CorradoLanera/CrossClustering/issues>
 
-References
-----------
+## References
 
 **Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016).
 Cross-Clustering: A Partial Clustering Algorithm with Automatic

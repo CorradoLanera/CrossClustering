@@ -47,15 +47,16 @@
 #'
 #' ### toy is transposed as we want to cluster samples (columns of the
 #' ### original matrix)
-#' toy_dist <- t(toy) %>%
+#' toy_dist <- t(toy) |>
 #'   dist(method = "euclidean")
 #'
 #' ### Run CrossClustering
-#' cc_crossclustering(toy_dist,
+#' cc_crossclustering(
+#'   toy_dist,
 #'   k_w_min = 2,
 #'   k_w_max = 5,
-#'   k2_max  = 6,
-#'   out     = TRUE
+#'   k2_max = 6,
+#'   out = TRUE
 #' )
 #'
 #' #### Simulated data as in reference paper
@@ -73,7 +74,7 @@
 #' t[5, ] <- c(12, 17,  3,  7, 10)
 #'
 #' t_mat <- NULL
-#' for (i in seq_len(nrow(t))){
+#' for (i in seq_len(nrow(t))) {
 #'   t_mat <- rbind(
 #'     t_mat,
 #'     matrix(rep(t[i, ], sg[i]), nrow = sg[i], byrow = TRUE)
@@ -81,7 +82,8 @@
 #' }
 #'
 #' data_15 <- matrix(NA, nrow = 2000, ncol = 5)
-#' data_15[1:1850, ] <- matrix(abs(rnorm(sum(sg) * 5, sd = 1.5)),
+#' data_15[1:1850, ] <- matrix(
+#'   abs(rnorm(sum(sg) * 5, sd = 1.5)),
 #'   nrow = sum(sg),
 #'   ncol = 5
 #' ) + t_mat
@@ -94,11 +96,12 @@
 #' )
 #'
 #' ### Run CrossClustering
-#' cc_crossclustering(dist(data_15),
+#' cc_crossclustering(
+#'   dist(data_15),
 #'   k_w_min = 2,
 #'   k_w_max = 19,
-#'   k2_max  = 20,
-#'   out     = TRUE
+#'   k2_max = 20,
+#'   out = TRUE
 #' )
 #'
 #'
@@ -118,17 +121,20 @@
 #'
 #' data(twomoons)
 #'
-#' moons_dist <- twomoons[, 1:2] %>%
+#' moons_dist <- twomoons[, 1:2] |>
 #'   dist(method = "euclidean")
 #'
-#' cc_moons <- cc_crossclustering(moons_dist,
+#' cc_moons <- cc_crossclustering(
+#'   moons_dist,
 #'   k_w_max = 9,
-#'   k2_max  = 10,
-#'   method  = 'single'
+#'   k2_max = 10,
+#'   method = 'single'
 #' )
 #'
 #' moons_col <- cc_get_cluster(cc_moons)
-#' plot(twomoons[, 1:2], col = moons_col,
+#' plot(
+#'   twomoons[, 1:2],
+#'   col = moons_col,
 #'   pch      = 19,
 #'   xlab     = "",
 #'   ylab     = "",
@@ -138,22 +144,25 @@
 #' ### Worms data
 #' data(worms)
 #'
-#' worms_dist <- worms[, 1:2] %>%
+#' worms_dist <- worms[, 1:2] |>
 #'   dist(method = "euclidean")
 #'
-#' cc_worms <- cc_crossclustering(worms_dist,
+#' cc_worms <- cc_crossclustering(
+#'   worms_dist,
 #'   k_w_max = 9,
 #'   k2_max  = 10,
-#'   method  = 'single'
+#'   method  = "single"
 #' )
 #'
 #' worms_col <-  cc_get_cluster(cc_worms)
 #'
-#' plot(worms[, 1:2], col = worms_col,
-#'   pch      = 19,
-#'   xlab     = "",
-#'   ylab     = "",
-#'   main     = "CrossClustering-Single"
+#' plot(
+#'   worms[, 1:2],
+#'   col = worms_col,
+#'   pch = 19,
+#'   xlab = "",
+#'   ylab = "",
+#'   main = "CrossClustering-Single"
 #' )
 #'
 #'
@@ -161,19 +170,22 @@
 #'
 #' data(chain_effect)
 #'
-#' chain_dist <- chain_effect %>%
+#' chain_dist <- chain_effect |>
 #'   dist(method = "euclidean")
 
-#' cc_chain <- cc_crossclustering(chain_dist,
+#' cc_chain <- cc_crossclustering(
+#'   chain_dist,
 #'   k_w_max = 9,
-#'   k2_max  = 10,
-#'   method  = 'single'
+#'   k2_max = 10,
+#'   method = "single"
 #' )
 #'
 #' chain_col <- cc_get_cluster(cc_chain)
 #'
-#' plot(chain_effect, col = chain_col,
-#'   pch  = 19,
+#' plot(
+#'   chain_effect,
+#'   col = chain_col,
+#'   pch = 19,
 #'   xlab = "",
 #'   ylab = "",
 #'   main = "CrossClustering-Single"

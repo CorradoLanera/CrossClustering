@@ -1,3 +1,7 @@
+* linted
+* switch from `{magrittr}` to native pipe
+* switch from `{assertive}` to `{checkmate}`
+
 # CrossClustering 4.0.4
 
 * Added `.github/CONTRIBUTING.md`
