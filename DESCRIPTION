@@ -5,11 +5,11 @@ Version: 4.1.0
 Date: 2024-05-01
 Authors@R: c(
     person("Paola", "Tellaroli", , "paola.tellaroli@gmail.com", role = c("cre", "aut")),
-    person("Marco", "Bazzi", , "bazzi [at] stat [dot] unipd [dot] it", role = "aut"),
-    person("Michele", "Donato", , "mdonato [at] stanford [dot] edu", role = "aut"),
-    person("Livio", "Finos", , "livio [dot] finos [at] unipd [dot] it", role = "aut"),
-    person("Philippe", "Courcoux", , "philippe [dot] courcoux [at] oniris-nantes [dot] fr", role = "aut"),
-    person("Corrado", "Lanera", , "corrado [dot] lanera [at] unipd [dot] it", role = "aut")
+    person("Marco", "Bazzi", , "bazzi@stat.unipd.it", role = "aut"),
+    person("Michele", "Donato", , "mdonato@stanford.edu", role = "aut"),
+    person("Livio", "Finos", , "livio.finos@unipd.it", role = "aut"),
+    person("Philippe", "Courcoux", , "philippe.courcoux@oniris-nantes.fr", role = "aut"),
+    person("Corrado", "Lanera", , "corrado.lanera@unipd.it", role = "aut")
   )
 Maintainer: Paola Tellaroli <paola.tellaroli@gmail.com>
 Description: Provide the CrossClustering algorithm (Tellaroli et al.
