@@ -1,7 +1,7 @@
 Type: Package
 Package: CrossClustering
 Title: A Partial Clustering Algorithm
-Version: 4.0.4.9000
+Version: 4.1.0
 Date: 2018-07-29
 Authors@R: c(
     person("Paola", "Tellaroli", , "paola.tellaroli@gmail.com", role = c("cre", "aut")),

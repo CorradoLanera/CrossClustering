@@ -1,4 +1,4 @@
-# CrossClustering (development version)
+# CrossClustering 4.1.0
 
 * linted
 * switch from `{magrittr}` to native pipe
