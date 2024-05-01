@@ -18,8 +18,8 @@ A list with six elements:
   \item{Rand}{the Rand Index}
   \item{ExpectedRand}{expected value of  Rand Index}
   \item{AdjustedRand}{Adjusted Rand Index}
-  \item{varARI}{variance of Rand Index}
-  \item{NARI}{NARI}
+  \item{var_ari}{variance of Rand Index}
+  \item{nari}{nari}
   \item{p-value}{the p-value of the test}
 }
 \description{
@@ -40,11 +40,11 @@ CrossClustering:::cc_test_ari(ground_truth, clusters)
 
 }
 \references{
-E_M. Qannari, P. Courcoux and Faye P. (2014) Significance test of the
+E_M. Qannari, p. Courcoux and Faye p. (2014) Significance test of the
 adjusted Rand index. Application to the free sorting task, Food Quality
 and Preference, (32)93-97
 
-L. Hubert and P. Arabie (1985) Comparing partitions, Journal of
+L. Hubert and p. Arabie (1985) Comparing partitions, Journal of
 Classification, 2, 193-218.
 }
 \author{

@@ -8,7 +8,7 @@
 #'         for the outliers, ID + 1 for the others).
 #' @export
 cc_get_cluster <- function(x, n_elem) {
-  UseMethod('cc_get_cluster', x)
+  UseMethod("cc_get_cluster", x)
 }
 
 
@@ -52,11 +52,10 @@ cc_get_cluster.default <- function(x, n_elem) {
   checkmate::qassert(x, "L")
   checkmate::qassert(n_elem, "X1")
 
-  n_cluster <- length(x)
   elements  <- unlist(x)
 
   if (n_elem < length(elements)) {
-    stop('n_elem has to be at least the number of clustered elements')
+    stop("n_elem has to be at least the number of clustered elements")
   }
 
   outliers <- setdiff(seq_len(n_elem), elements)
@@ -78,7 +77,8 @@ cc_get_cluster.default <- function(x, n_elem) {
 }
 
 
-#' @describeIn cc_get_cluster automatically extract inputs from a \code{crossclustering} object
+#' @describeIn cc_get_cluster automatically extract inputs from a
+#'   \code{crossclustering} object
 #'
 #' @export
 #'
@@ -88,5 +88,5 @@ cc_get_cluster.default <- function(x, n_elem) {
 #' cc_get_cluster(toyres)
 cc_get_cluster.crossclustering <- function(x, n_elem) {
   checkmate::assert_class(x, "crossclustering")
-  cc_get_cluster.default(x, attr(x, 'n_total'))
+  cc_get_cluster.default(x, attr(x, "n_total"))
 }

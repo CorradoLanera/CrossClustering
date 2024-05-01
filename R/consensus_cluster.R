@@ -15,7 +15,7 @@
 #'           \item{elements}{
 #'             list of the elements belonging to each cluster
 #'           };
-#'           \item{A_star}{contingency table of the clustering};
+#'           \item{a_star}{contingency table of the clustering};
 #'           \item{max_consensus}{maximum clustering consensus}.
 #'
 #'
@@ -55,47 +55,48 @@ consensus_cluster <- function(k,
   cluster_other
 ) {
   checkmate::qassert(k, "N2")
-  checkmate::assert_class(cluster_ward,  'hclust')
-  checkmate::assert_class(cluster_other, 'hclust')
+  checkmate::assert_class(cluster_ward,  "hclust")
+  checkmate::assert_class(cluster_other, "hclust")
 
-  k_w = k[1]
-  k_c = k[2]
-  tree_ward     <- cutree(cluster_ward    , k = k_w)
-  tree.complete <- cutree(cluster_other , k = k_c)
-  N <- sum(tree_ward * 0 + 1)
-  A <- table(tree_ward, tree.complete)
-  A_star <- diag(0, k_w)
+  k_w <- k[1]
+  k_c <- k[2]
+  tree_ward <- cutree(cluster_ward, k = k_w)
+  tree_complete <- cutree(cluster_other, k = k_c)
+  n <- sum(tree_ward * 0 + 1)
+  a <- table(tree_ward, tree_complete)
+  a_star <- diag(0, k_w)
 
-  elements <- vector('list', length = length(k_w))
+  elements <- vector("list", length = length(k_w))
 
 
-  for(i in seq_len(k_w)) {
-    A_star[i, i] <- max(A)
-    A_max        <- which(A == max(A), arr.ind = TRUE)[1, ]
-    r_max        <- A_max[1]
-    c_max        <- A_max[2]
+  for (i in seq_len(k_w)) {
+    a_star[i, i] <- max(a)
+    a_max        <- which(a == max(a), arr.ind = TRUE)[1, ]
+    r_max        <- a_max[1]
+    c_max        <- a_max[2]
 
-    elements[[i]] <- (seq_len(N))[
-      (tree_ward     == r_max) & (tree.complete == c_max)
+    elements[[i]] <- (seq_len(n))[
+      (tree_ward == r_max) & (tree_complete == c_max)
     ]
 
-    A[r_max,      ] <- 0
-    A[     , c_max] <- 0
+    a[r_max, ] <- 0
+    a[, c_max] <- 0
   }
 
-  A_star <- prune_zero_tail(A_star)
+  a_star <- prune_zero_tail(a_star)
 
 
 
-  n_clusters   <- length(diag(A_star))
+  n_clusters <- length(diag(a_star))
   elements <- elements[seq_len(n_clusters)]
-  elements <- stats::setNames(elements,
+  elements <- stats::setNames(
+    elements,
     paste("cluster", seq_along(elements), sep = "_")
   )
 
   list(
     "elements"      = elements,
-    "A_star"        = A_star,
-    "max_consensus" = as.integer(sum(A_star))
+    "a_star"        = a_star,
+    "max_consensus" = as.integer(sum(a_star))
   )
 }

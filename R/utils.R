@@ -35,7 +35,7 @@ prune_zero_tail <- function(diag_mat) {
   max_pos <- first_zero - 1
 
   if (max_pos != sum(diag_mat != 0)) stop(
-    'diag_mat cannot have non-zeros after the first zero in the diagonal'
+    "diag_mat cannot have non-zeros after the first zero in the diagonal"
   )
 
   taken_id <- seq_len(first_zero - 1)

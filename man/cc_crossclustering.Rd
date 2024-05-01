@@ -3,8 +3,8 @@
 \name{cc_crossclustering}
 \alias{cc_crossclustering}
 \alias{print.crossclustering}
-\title{A partial clustering algorithm with automatic estimation of
-the number of clusters and identification of outliers}
+\title{A partial clustering algorithm with automatic estimation of the
+number of clusters and identification of outliers}
 \usage{
 cc_crossclustering(
   dist,
@@ -21,47 +21,47 @@ cc_crossclustering(
 \item{dist}{A dissimilarity structure as produced by the function
 \code{dist}}
 
-\item{k_w_min}{[int] Minimum number of clusters for the Ward's minimum
-variance method. By default is set equal 2}
+\item{k_w_min}{[int] Minimum number of clusters for the Ward's
+minimum variance method. By default is set equal 2}
 
-\item{k_w_max}{[int] Maximum number of clusters for the Ward's minimum
-variance method (see details)}
+\item{k_w_max}{[int] Maximum number of clusters for the Ward's
+minimum variance method (see details)}
 
 \item{k2_max}{[int] Maximum number of clusters for the
-Complete/Single-linkage method. It can not be equal or greater
-than the number of elements to cluster (see details)}
+Complete/Single-linkage method. It can not be equal or greater than
+the number of elements to cluster (see details)}
 
-\item{out}{[lgl] If \code{TRUE} (default) outliers must be searched (see
-details)}
+\item{out}{[lgl] If \code{TRUE} (default) outliers must be searched
+(see details)}
 
 \item{method}{[chr] "complete" (default) or "single". CrossClustering
-combines Ward's algorithm with Complete-linkage if method is set
-to "complete", otherwise (if method is set to 'single')
-Single-linkage will be used.}
+combines Ward's algorithm with Complete-linkage if method is set to
+"complete", otherwise (if method is set to 'single') Single-linkage
+will be used.}
 
 \item{x}{an object used to select a method.}
 
 \item{...}{further arguments passed to or from other methods.}
 }
 \value{
-A list of objects describing characteristics of the partitioning
-        as follows:
-          \item{Optimal_cluster}{number of clusters}
-          \item{Cluster_list}{a list of clusters; each element of this
-          lists contains the indices of the elements belonging to the
-          cluster}
-          \item{Silhouette}{the average silhouette width over all the
-            clusters}
-          \item{n_total}{total number of input elements}
-          \item{n_clustered}{number of input elements that have actually
-            been clustered}
+A list of objects describing characteristics of the
+  partitioning as follows:
+    \item{Optimal_cluster}{number of clusters}
+    \item{cluster_list_elements}{a list of clusters; each element of this
+      lists contains the indices of the elements belonging to the
+      cluster}
+    \item{Silhouette}{the average silhouette width over all the clusters}
+    \item{n_total}{total number of input elements}
+    \item{n_clustered}{number of input elements that have actually
+      been clustered}
 }
 \description{
 This function performs the CrossClustering algorithm. This method
 combines the Ward's minimum variance and Complete-linkage (default,
 useful for finding spherical clusters) or Single-linkage (useful for
-finding elongated clusters) algorithms, providing automatic estimation of
-a suitable number of clusters and identification of outlier elements.
+finding elongated clusters) algorithms, providing automatic
+estimation of a suitable number of clusters and identification of
+outlier elements.
 }
 \details{
 See cited document for more details.

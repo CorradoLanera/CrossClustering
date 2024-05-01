@@ -21,7 +21,7 @@ an object of class \code{consensus_cluster} with the following
           \item{elements}{
             list of the elements belonging to each cluster
           };
-          \item{A_star}{contingency table of the clustering};
+          \item{a_star}{contingency table of the clustering};
           \item{max_consensus}{maximum clustering consensus}.
 }
 \description{

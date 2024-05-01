@@ -41,21 +41,22 @@ cc_test_ari_permutation <- function(ground_truth, partition) {
   checkmate::assert_true(length(ground_truth) == length(partition))
 
 
-  ari_fixed_partition <- function(ground_truth){
+  ari_fixed_partition <- function(ground_truth) {
     mclust::adjustedRandIndex(ground_truth, partition)
   }
 
   # flip force to cut information of no interest for us
-  capture.output(
-    res_flip <- flip::flip(Y = matrix(ground_truth), X = matrix(partition),
+  capture.output({
+    res_flip <- flip::flip(
+      Y = matrix(ground_truth),
+      X = matrix(partition),
       statTest = ari_fixed_partition
     )
-  )
+  })
 
   # original rownames has to be restored, i.e. numeric and not characted
-  res <- res_flip@res[c('Stat', 'p-value')]
+  res <- res_flip@res[c("Stat", "p-value")]
   rownames(res) <- NULL
-  colnames(res) <- c('ari', 'p_value')
+  colnames(res) <- c("ari", "p_value")
   res
 }
-
