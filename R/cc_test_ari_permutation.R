@@ -2,7 +2,7 @@
 #' random agreement (i.e., adjusted Rand Index equal to 0) between
 #' two partitions.
 #'
-#' @param ground_truth [int] A vector of the actual membership of elements
+#' @param ground_truth (int) A vector of the actual membership of elements
 #'   in clusters
 #' @param partition The partition coming from a clustering algorithm
 #'
@@ -24,8 +24,8 @@
 #' CrossClustering:::cc_test_ari_permutation(ground_truth, clusters)
 #'
 #' @author
-#' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;
-#' Livio Finos, <livio [dot] finos [at] unipd [dot] it>
+#' Paola Tellaroli, <paola `dot` tellaroli `at` unipd `dot` it>;
+#' Livio Finos, <livio `dot` finos `at` unipd `dot` it>
 #'
 #' @references
 #' Samuh M. H., Leisch F., and Finos L. (2014), Tests for Random Agreement

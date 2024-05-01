@@ -12,8 +12,8 @@ property: in the diagonal, every element after a zero is a zero.}
 }
 \value{
 a diagonal matrix without zeros in the diagonal, composed by the
-  first rows and columns of the original matrix with non zeros in the
-  diagonal (which are also the only ones)
+first rows and columns of the original matrix with non zeros in the
+diagonal (which are also the only ones)
 }
 \description{
 Given a diagonal matrix which is supposed to have no non-zero entry in

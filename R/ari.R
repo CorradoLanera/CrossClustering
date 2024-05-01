@@ -21,7 +21,7 @@
 #' in cases of total number of object clustered greater than 100.
 #'
 #' @return
-#' An object of class \code{ari} with the following elements:
+#' An object of class `ari` with the following elements:
 #'   \item{AdjustedRandIndex}{The adjusted Rand Index}
 #'   \item{CI}{The confidence interval}
 #'
@@ -54,7 +54,7 @@
 #' all.equal(mc_ari, unclass(ari_cc)[["ari"]], check.attributes = FALSE)
 #'
 #' @author
-#' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;
+#' Paola Tellaroli, <paola `dot` tellaroli `at` unipd `dot` it>;
 #'
 #' @references
 #' L. Hubert and P. Arabie (1985) Comparing partitions, Journal of

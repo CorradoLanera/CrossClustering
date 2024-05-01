@@ -4,13 +4,13 @@
 #' Complete-linkage (or Single-linkage) algorithms (i.e., the number of
 #' elements classified together by both algorithms).
 #'
-#' @param k [int] a vector containing the number of clusters for Ward and
+#' @param k (int) a vector containing the number of clusters for Ward and
 #'        for Complete-linkage (or Single-linkage) algorithms, respectively
 #' @param cluster_ward an object of class hclust for the Ward algorithm
 #' @param cluster_other an object of class hclust for the
 #'        Complete-linkage (or Single-linkage) algorithm
 #'
-#' @return an object of class \code{consensus_cluster} with the following
+#' @return an object of class `consensus_cluster` with the following
 #'         elements:
 #'           \item{elements}{
 #'             list of the elements belonging to each cluster
@@ -44,9 +44,9 @@
 #' )
 #'
 #' @author
-#' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
-#' Marco Bazzi, <bazzi [at] stat [dot] unipd [dot] it>;
-#' Michele Donato, <mdonato [at] stanford [dot] edu>.
+#' Paola Tellaroli, <paola `dot` tellaroli `at` unipd `dot` it>;;
+#' Marco Bazzi, <bazzi `at` stat `dot` unipd `dot` it>;
+#' Michele Donato, <mdonato `at` stanford `dot` edu>.
 #'
 #' @references
 #' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016).

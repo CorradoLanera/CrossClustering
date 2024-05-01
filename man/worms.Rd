@@ -9,10 +9,10 @@ outliers}
 A data frame with 87 rows and 3 variables:
 
 \describe{
-   \item{\code{x}}{num} x coordinates
-   \item{\code{y}}{num} y coordinates.
-   \item{\code{cluster}}{integer} cluster membership (outliers classified
-         as 3rd cluster).
+\item{\code{x}}{num} x coordinates
+\item{\code{y}}{num} y coordinates.
+\item{\code{cluster}}{integer} cluster membership (outliers classified
+as 3rd cluster).
 }
 }
 \usage{

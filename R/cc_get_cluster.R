@@ -1,8 +1,8 @@
 #' Provides the vector of clusters' ID to which each element belong to.
 #'
-#' @param x list of clustered elements or a \code{crossclustering} object
+#' @param x list of clustered elements or a `crossclustering` object
 #' @param n_elem total number of elements clustered (ignored if x
-#'        is of class \code{crossclustering})
+#'        is of class `crossclustering`)
 #'
 #' @return An integer vector of clusters to which the elements belong (`1`
 #'         for the outliers, ID + 1 for the others).
@@ -15,7 +15,7 @@ cc_get_cluster <- function(x, n_elem) {
 
 #' @export
 #'
-#' @describeIn cc_get_cluster default method for \code{\link{cc_get_cluster}}.
+#' @describeIn cc_get_cluster default method for [cc_get_cluster].
 #'
 #' @examples
 #' library(CrossClustering)
@@ -40,9 +40,9 @@ cc_get_cluster <- function(x, n_elem) {
 #' cc_get_cluster(toyres[], 7)
 #'
 #' @author
-#' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
-#' Marco Bazzi, <bazzi [at] stat [dot] unipd [dot] it>;
-#' Michele Donato, <mdonato [at] stanford [dot] edu>.
+#' Paola Tellaroli, <paola `dot` tellaroli `at` unipd `dot` it>;;
+#' Marco Bazzi, <bazzi `at` stat `dot` unipd `dot` it>;
+#' Michele Donato, <mdonato `at` stanford `dot` edu>.
 #'
 #' @references
 #' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016).
@@ -80,7 +80,7 @@ cc_get_cluster.default <- function(x, n_elem) {
 
 
 #' @describeIn cc_get_cluster automatically extract inputs from a
-#'   \code{crossclustering} object
+#'   `crossclustering` object
 #'
 #' @export
 #'

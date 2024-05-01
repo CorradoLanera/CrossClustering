@@ -1,7 +1,7 @@
 #' A test for testing the null hypothesis of random
 #' agreement (i.e., adjusted Rand Index equal to 0) between two partitions.
 #'
-#' @param ground_truth [int] A vector of the actual membership of elements
+#' @param ground_truth (int) A vector of the actual membership of elements
 #'        in clusters
 #' @param partition The partition coming from a clustering algorithm
 #'
@@ -27,8 +27,8 @@
 #' CrossClustering:::cc_test_ari(ground_truth, clusters)
 #'
 #' @author
-#' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;
-#' Philippe Courcoux, <philippe [dot] courcoux [at] oniris-nantes [dot] fr>
+#' Paola Tellaroli, <paola `dot` tellaroli `at` unipd `dot` it>;
+#' Philippe Courcoux, <philippe `dot` courcoux `at` oniris-nantes `dot` fr>
 #'
 #' @references
 #' E_M. Qannari, p. Courcoux and Faye p. (2014) Significance test of the

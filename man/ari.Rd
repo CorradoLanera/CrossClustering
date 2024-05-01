@@ -26,8 +26,8 @@ representing the significance level of interest. (default is 0.05)}
 }
 \value{
 An object of class \code{ari} with the following elements:
-  \item{AdjustedRandIndex}{The adjusted Rand Index}
-  \item{CI}{The confidence interval}
+\item{AdjustedRandIndex}{The adjusted Rand Index}
+\item{CI}{The confidence interval}
 }
 \description{
 Computes the adjusted Rand index and the confidence interval, comparing
@@ -98,5 +98,5 @@ D. Steinley, M.J. Brusco, L. Hubert (2016) The Variance of the Adjusted
 Rand Index, Psychological Methods, 21(2), 261-272
 }
 \author{
-Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;
+Paola Tellaroli, <paola \code{dot} tellaroli \code{at} unipd \code{dot} it>;
 }

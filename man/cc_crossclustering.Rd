@@ -21,20 +21,20 @@ cc_crossclustering(
 \item{dist}{A dissimilarity structure as produced by the function
 \code{dist}}
 
-\item{k_w_min}{[int] Minimum number of clusters for the Ward's
+\item{k_w_min}{(int) Minimum number of clusters for the Ward's
 minimum variance method. By default is set equal 2}
 
-\item{k_w_max}{[int] Maximum number of clusters for the Ward's
+\item{k_w_max}{(int) Maximum number of clusters for the Ward's
 minimum variance method (see details)}
 
-\item{k2_max}{[int] Maximum number of clusters for the
+\item{k2_max}{(int) Maximum number of clusters for the
 Complete/Single-linkage method. It can not be equal or greater than
 the number of elements to cluster (see details)}
 
-\item{out}{[lgl] If \code{TRUE} (default) outliers must be searched
+\item{out}{(lgl) If \code{TRUE} (default) outliers must be searched
 (see details)}
 
-\item{method}{[chr] "complete" (default) or "single". CrossClustering
+\item{method}{(chr) "complete" (default) or "single". CrossClustering
 combines Ward's algorithm with Complete-linkage if method is set to
 "complete", otherwise (if method is set to 'single') Single-linkage
 will be used.}
@@ -45,15 +45,15 @@ will be used.}
 }
 \value{
 A list of objects describing characteristics of the
-  partitioning as follows:
-    \item{Optimal_cluster}{number of clusters}
-    \item{cluster_list_elements}{a list of clusters; each element of this
-      lists contains the indices of the elements belonging to the
-      cluster}
-    \item{Silhouette}{the average silhouette width over all the clusters}
-    \item{n_total}{total number of input elements}
-    \item{n_clustered}{number of input elements that have actually
-      been clustered}
+partitioning as follows:
+\item{Optimal_cluster}{number of clusters}
+\item{cluster_list_elements}{a list of clusters; each element of this
+lists contains the indices of the elements belonging to the
+cluster}
+\item{Silhouette}{the average silhouette width over all the clusters}
+\item{n_total}{total number of input elements}
+\item{n_clustered}{number of input elements that have actually
+been clustered}
 }
 \description{
 This function performs the CrossClustering algorithm. This method
@@ -237,7 +237,7 @@ Estimation of the Number of Clusters. CMStatistics 2017, London 16-18
 December, Book of Abstracts (ISBN 978-9963-2227-4-2)
 }
 \author{
-Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
-Marco Bazzi, <bazzi [at] stat [dot] unipd [dot] it>;
-Michele Donato, <mdonato [at] stanford [dot] edu>
+Paola Tellaroli, <paola \code{dot} tellaroli \code{at} unipd \code{dot} it>;;
+Marco Bazzi, <bazzi \code{at} stat \code{dot} unipd \code{dot} it>;
+Michele Donato, <mdonato \code{at} stanford \code{dot} edu>
 }

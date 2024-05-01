@@ -9,17 +9,17 @@
 #' outlier elements.
 #'
 #' @param dist A dissimilarity structure as produced by the function
-#'   \code{dist}
-#' @param k_w_min [int] Minimum number of clusters for the Ward's
+#'   `dist`
+#' @param k_w_min (int) Minimum number of clusters for the Ward's
 #'   minimum variance method. By default is set equal 2
-#' @param k_w_max [int] Maximum number of clusters for the Ward's
+#' @param k_w_max (int) Maximum number of clusters for the Ward's
 #'   minimum variance method (see details)
-#' @param k2_max [int] Maximum number of clusters for the
+#' @param k2_max (int) Maximum number of clusters for the
 #'   Complete/Single-linkage method. It can not be equal or greater than
 #'   the number of elements to cluster (see details)
-#' @param out [lgl] If \code{TRUE} (default) outliers must be searched
+#' @param out (lgl) If `TRUE` (default) outliers must be searched
 #'   (see details)
-#' @param method [chr] "complete" (default) or "single". CrossClustering
+#' @param method (chr) "complete" (default) or "single". CrossClustering
 #'   combines Ward's algorithm with Complete-linkage if method is set to
 #'   "complete", otherwise (if method is set to 'single') Single-linkage
 #'   will be used.
@@ -192,9 +192,9 @@
 #' )
 #'
 #' @author
-#' Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;;
-#' Marco Bazzi, <bazzi [at] stat [dot] unipd [dot] it>;
-#' Michele Donato, <mdonato [at] stanford [dot] edu>
+#' Paola Tellaroli, <paola `dot` tellaroli `at` unipd `dot` it>;;
+#' Marco Bazzi, <bazzi `at` stat `dot` unipd `dot` it>;
+#' Michele Donato, <mdonato `at` stanford `dot` edu>
 #'
 #' @references
 #' Tellaroli P, Bazzi M., Donato M., Brazzale A. R., Draghici S. (2016).

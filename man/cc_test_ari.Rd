@@ -8,19 +8,19 @@ agreement (i.e., adjusted Rand Index equal to 0) between two partitions.}
 cc_test_ari(ground_truth, partition)
 }
 \arguments{
-\item{ground_truth}{[int] A vector of the actual membership of elements
+\item{ground_truth}{(int) A vector of the actual membership of elements
 in clusters}
 
 \item{partition}{The partition coming from a clustering algorithm}
 }
 \value{
 A list with six elements:
-  \item{Rand}{the Rand Index}
-  \item{ExpectedRand}{expected value of  Rand Index}
-  \item{AdjustedRand}{Adjusted Rand Index}
-  \item{var_ari}{variance of Rand Index}
-  \item{nari}{nari}
-  \item{p-value}{the p-value of the test}
+\item{Rand}{the Rand Index}
+\item{ExpectedRand}{expected value of  Rand Index}
+\item{AdjustedRand}{Adjusted Rand Index}
+\item{var_ari}{variance of Rand Index}
+\item{nari}{nari}
+\item{p-value}{the p-value of the test}
 }
 \description{
 A test for testing the null hypothesis of random
@@ -49,6 +49,6 @@ L. Hubert and p. Arabie (1985) Comparing partitions, Journal of
 Classification, 2, 193-218.
 }
 \author{
-Paola Tellaroli, <paola [dot] tellaroli [at] unipd [dot] it>;
-Philippe Courcoux, <philippe [dot] courcoux [at] oniris-nantes [dot] fr>
+Paola Tellaroli, <paola \code{dot} tellaroli \code{at} unipd \code{dot} it>;
+Philippe Courcoux, <philippe \code{dot} courcoux \code{at} oniris-nantes \code{dot} fr>
 }
