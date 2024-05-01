@@ -1,3 +1,5 @@
+# CrossClustering (development version)
+
 * linted
 * switch from `{magrittr}` to native pipe
 * switch from `{assertive}` to `{checkmate}`
