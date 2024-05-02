@@ -1,5 +1,5 @@
 ## Test environments
-* local win 10 pro, R 3.5.1
+* local win 11 edu, R 4.4.0
 
 * ubuntu 14.04.5 LTS, and macOS Sierra 10.12.6 (on travis-ci);
     both on R 3.4.4, R 3.5.0, and R under development (2018-06-20 r74923)
@@ -17,12 +17,14 @@ R CMD check results
 
 R CMD check succeeded.
 
+## Re-submission
+This is a re-submission, after the package has been removed from CRAN.
+In this version I have:
 
-## Downstream dependencies
-* devtools::revdep_check() results in no errors
-
-
-## Resubmission
-This is a resubmission. In this version I have:
-
-* Removed the package name from the title.
+* Replace all `{assertive}`'s functions calls to `{checkmate}`'s ones.
+* Replace `{magrittr}`'s pipe instances with native pipe (updating 
+  Dependencies)
+* Overall general lint of source code
+* Update the documentation format
+* Switch from Travis and AppVeyor to GH-actions for CMD-checks, lint, 
+  and coverage.
