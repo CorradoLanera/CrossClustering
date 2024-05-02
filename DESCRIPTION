@@ -34,9 +34,12 @@ Imports:
     utils
 Suggests: 
     covr,
+    devtools,
+    lintr,
     roxygen2,
     spelling,
-    testthat
+    testthat,
+    usethis
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
