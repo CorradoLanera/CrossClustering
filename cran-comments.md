@@ -1,11 +1,11 @@
-# CrossClustering v4.1.0
+# CrossClustering v4.1.1
 ## Test environments
 ### Local
 * Windows 11 Edu, R 4.4.0
 
 ### Remote (rhub)
 
-* 19/20 [rhub checks](https://github.com/CorradoLanera/CrossClustering/actions/runs/8927590108) passed (all but the [windows on R devel](https://github.com/CorradoLanera/CrossClustering/actions/runs/8927590108/job/24521327410#step:5:5339) one, because of a [known](https://github.com/gagolews/stringi/issues/508) setup issue w/ `{stringi}`):
+* 19/20 [rhub checks](https://github.com/CorradoLanera/CrossClustering/actions/runs/8941514230) passed (all but the [windows on R devel](https://github.com/CorradoLanera/CrossClustering/actions/runs/8941514230/job/24563996554#step:5:5336) one, because of a [known](https://github.com/gagolews/stringi/issues/508) setup issue w/ `{stringi}`):
   - [VM] linux          R-* (any version)                     ubuntu-latest on GitHub
   - [VM] macos          R-* (any version)                     macos-13 on GitHub
   - [VM] macos-arm64    R-* (any version)                     macos-latest on GitHub
@@ -34,8 +34,8 @@ R CMD check results (rhub)
 R CMD check succeeded.
 
 ### Remote (win-builder)
-* R [oldrelease](https://win-builder.r-project.org/X9E9rr91J3Li),
-  and [release](https://win-builder.r-project.org/v0F0zw3vZZ91)
+* R [oldrelease](https://win-builder.r-project.org/5IeBFD74s03V),
+  and [release](https://win-builder.r-project.org/8yWOrhyD9fhG)
   with win-builder.r-project.org.
 
 R CMD check results (rhub)
