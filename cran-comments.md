@@ -1,9 +1,9 @@
+# CrossClustering v4.1.0
 ## Test environments
 ### Local
 * Windows 11 Edu, R 4.4.0
 
-### Remote
-* R-oldrelease, and release with win-builder.r-project.org.
+### Remote (rhub)
 
 * 19/20 [rhub checks](https://github.com/CorradoLanera/CrossClustering/actions/runs/8927590108) passed (all but the [windows on R devel](https://github.com/CorradoLanera/CrossClustering/actions/runs/8927590108/job/24521327410#step:5:5339) one, because of a [known](https://github.com/gagolews/stringi/issues/508) setup issue w/ `{stringi}`):
   - [VM] linux          R-* (any version)                     ubuntu-latest on GitHub
@@ -27,20 +27,45 @@
   - [CT] ubuntu-release R-4.4.0 (2024-04-24)                  Ubuntu 22.04.4 LTS
   - [CT] valgrind       R-devel (2024-05-01 r86507)           Fedora Linux 38 (Container Image)
 
-## R CMD check results
-R CMD check results
+
+R CMD check results (rhub)
 0 errors | 0 warnings | 0 notes
 
 R CMD check succeeded.
 
-## Re-submission
-This is a re-submission, after the package has been removed from CRAN.
-In this version I have:
+### Remote (win-builder)
+* R [oldrelease](https://win-builder.r-project.org/X9E9rr91J3Li),
+  and [release](https://win-builder.r-project.org/v0F0zw3vZZ91)
+  with win-builder.r-project.org.
+
+R CMD check results (rhub)
+0 errors | 0 warnings | 1 notes
+
+> New submission
+> 
+> Package was archived on CRAN
+> 
+> Possibly misspelled words in DESCRIPTION:
+>   CrossClustering (15:26)
+>   Tellaroli (15:53)
+>   al (15:66)
+>   et (15:63)
+> 
+> CRAN repository db overrides:
+>   X-CRAN-Comment: Archived on 2020-07-31 as required archived package
+>     'assertive'.
+
+
+## New submission (after package archived on CRAN)
+This is a new/re-submission, after the package has been removed/archived
+from CRAN.
+
+In this updated version I have:
 
 * Replace all `{assertive}`'s functions calls to `{checkmate}`'s ones.
 * Replace `{magrittr}`'s pipe instances with native pipe (updating 
   Dependencies)
 * Overall general lint of source code
 * Update the documentation format
-* Switch from Travis and AppVeyor to GH-actions for CMD-checks, lint, 
+* Switch from Travis and AppVeyor to GitHub-actions for CMD-checks, lint, 
   and coverage.
