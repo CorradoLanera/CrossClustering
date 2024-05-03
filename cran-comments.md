@@ -1,15 +1,31 @@
 ## Test environments
-* local win 11 edu, R 4.4.0
+### Local
+* Windows 11 Edu, R 4.4.0
 
-* ubuntu 14.04.5 LTS, and macOS Sierra 10.12.6 (on travis-ci);
-    both on R 3.4.4, R 3.5.0, and R under development (2018-06-20 r74923)
-    (NOTE: R devel, only under osx, throwed a warning due to a problem 
-           we were not able to manage with git2r configuration. see:
-           <https://travis-ci.org/CorradoLanera/CrossClustering/jobs/409315972>,
-           hence `warnings_are_errors` were set as `false` for that build)
+### Remote
+* R-oldrelease, and release with win-builder.r-project.org.
 
-* win-builder (on appveyor) R devel and release
-
+* 19/20 [rhub checks](https://github.com/CorradoLanera/CrossClustering/actions/runs/8927590108) passed (all but the [windows on R devel](https://github.com/CorradoLanera/CrossClustering/actions/runs/8927590108/job/24521327410#step:5:5339) one, because of a [known](https://github.com/gagolews/stringi/issues/508) setup issue w/ `{stringi}`):
+  - [VM] linux          R-* (any version)                     ubuntu-latest on GitHub
+  - [VM] macos          R-* (any version)                     macos-13 on GitHub
+  - [VM] macos-arm64    R-* (any version)                     macos-latest on GitHub
+  - [VM] windows        R-* (any version)                     windows-latest on GitHub
+  - [CT] atlas          R-devel (2024-05-01 r86507)           Fedora Linux 38 (Container Image)
+  - [CT] clang-asan     R-devel (2024-05-01 r86507)           Ubuntu 22.04.4 LTS
+  - [CT] clang16        R-devel (2024-04-30 r86503)           Ubuntu 22.04.4 LTS
+  - [CT] clang17        R-devel (2024-04-30 r86503)           Ubuntu 22.04.4 LTS
+  - [CT] clang18        R-devel (2024-04-30 r86503)           Ubuntu 22.04.4 LTS
+  - [CT] donttest       R-devel (2024-04-30 r86503)           Ubuntu 22.04.4 LTS
+  - [CT] gcc13          R-devel (2024-05-01 r86507)           Fedora Linux 38 (Container Image)
+  - [CT] intel          R-devel (2024-05-01 r86507)           Fedora Linux 38 (Container Image)
+  - [CT] mkl            R-devel (2024-05-01 r86507)           Fedora Linux 38 (Container Image)
+  - [CT] nold           R-devel (2024-05-01 r86507)           Ubuntu 22.04.4 LTS
+  - [CT] nosuggests     R-devel (2024-05-01 r86507)           Fedora Linux 38 (Container Image)
+  - [CT] ubuntu-clang   R-devel (2024-05-01 r86507)           Ubuntu 22.04.4 LTS
+  - [CT] ubuntu-gcc12   R-devel (2024-05-01 r86507)           Ubuntu 22.04.4 LTS
+  - [CT] ubuntu-next    R-4.4.0 (patched) (2024-04-30 r86507) Ubuntu 22.04.4 LTS
+  - [CT] ubuntu-release R-4.4.0 (2024-04-24)                  Ubuntu 22.04.4 LTS
+  - [CT] valgrind       R-devel (2024-05-01 r86507)           Fedora Linux 38 (Container Image)
 
 ## R CMD check results
 R CMD check results

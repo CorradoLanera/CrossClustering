@@ -11,7 +11,8 @@ coverage](https://codecov.io/gh/CorradoLanera/CrossClustering/branch/master/grap
 [![lint](https://github.com/CorradoLanera/CrossClustering/actions/workflows/lint.yaml/badge.svg)](https://github.com/CorradoLanera/CrossClustering/actions/workflows/lint.yaml)
 [![CRAN Status
 Badge](http://www.r-pkg.org/badges/version/CrossClustering)](https://CRAN.R-project.org/package=CrossClustering)
-[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
 CrossClustering is a partial clustering algorithm that combines the
