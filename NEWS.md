@@ -1,3 +1,6 @@
+
+* Removed `.Random.seed` after CRAN request.
+
 # CrossClustering 4.1.0
 
 * linted

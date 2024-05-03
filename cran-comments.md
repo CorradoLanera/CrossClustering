@@ -69,3 +69,9 @@ In this updated version I have:
 * Update the documentation format
 * Switch from Travis and AppVeyor to GitHub-actions for CMD-checks, lint, 
   and coverage.
+* removed `.Random.seed`, after request
+  
+> File 'R/CrossClustering-internal.R' sets .Random.seed.
+>    This is usually neither needed nor wanted.
+> 
+> Please fix and resubmit.
