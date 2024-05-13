@@ -47,7 +47,7 @@ cluster_other <- toy_dist |>
 
 
 ### consensus_cluster
-CrossClustering:::consensus_cluster(
+consensus_cluster(
   c(3, 4),
   cluster_ward,
   cluster_other

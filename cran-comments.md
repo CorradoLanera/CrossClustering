@@ -5,7 +5,7 @@
 
 ### Remote (rhub)
 
-* 19/20 [rhub checks](https://github.com/CorradoLanera/CrossClustering/actions/runs/8941514230) passed (all but the [windows on R devel](https://github.com/CorradoLanera/CrossClustering/actions/runs/8941514230/job/24563996554#step:5:5336) one, because of a [known](https://github.com/gagolews/stringi/issues/508) setup issue w/ `{stringi}`):
+* 20/20 [rhub checks](https://github.com/CorradoLanera/CrossClustering/actions/runs/8941514230) passed:
   - [VM] linux          R-* (any version)                     ubuntu-latest on GitHub
   - [VM] macos          R-* (any version)                     macos-13 on GitHub
   - [VM] macos-arm64    R-* (any version)                     macos-latest on GitHub
@@ -70,6 +70,8 @@ In this updated version I have:
 * Switch from Travis and AppVeyor to GitHub-actions for CMD-checks, lint, 
   and coverage.
 * removed `.Random.seed`, after request
+* exported `cc_test_ari`, `cc_test_ari_permutation`,
+  `consensus_cluster`, and `is_zero`
   
 > File 'R/CrossClustering-internal.R' sets .Random.seed.
 >    This is usually neither needed nor wanted.

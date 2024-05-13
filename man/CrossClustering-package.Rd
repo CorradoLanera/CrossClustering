@@ -6,7 +6,7 @@
 \alias{CrossClustering-package}
 \title{CrossClustering: A Partial Clustering Algorithm}
 \description{
-Provide the CrossClustering algorithm (Tellaroli et al. (2016) \doi{10.1371/journal.pone.0152333}), which is a partial clustering algorithm that combines the Ward's minimum variance and Complete Linkage algorithms, providing automatic estimation of a suitable number of clusters and identification of outlier elements.
+Provide the 'CrossClustering' algorithm (Tellaroli et al. (2016) \doi{10.1371/journal.pone.0152333}), which is a partial clustering algorithm that combines the Ward's minimum variance and Complete Linkage algorithms, providing automatic estimation of a suitable number of clusters and identification of outlier elements.
 }
 \seealso{
 Useful links:

@@ -18,6 +18,7 @@
 #'           \item{a_star}{contingency table of the clustering};
 #'           \item{max_consensus}{maximum clustering consensus}.
 #'
+#' @export
 #'
 #' @examples
 #' library(CrossClustering)
@@ -37,7 +38,7 @@
 #'
 #'
 #' ### consensus_cluster
-#' CrossClustering:::consensus_cluster(
+#' consensus_cluster(
 #'   c(3, 4),
 #'   cluster_ward,
 #'   cluster_other
@@ -53,7 +54,6 @@
 #' Cross-Clustering: A Partial Clustering Algorithm with Automatic
 #' Estimation of the Number of Clusters. PLoS ONE 11(3):   e0152333.
 #' doi:10.1371/journal.pone.0152333
-
 consensus_cluster <- function(k,
   cluster_ward,
   cluster_other

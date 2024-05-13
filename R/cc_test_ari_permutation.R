@@ -10,6 +10,8 @@
 #'   \item{ari}{the adjusted Rand Index}
 #'   \item{p_value}{the p-value of the test}
 #'
+#' @export
+#'
 #' @examples
 #' library(CrossClustering)
 #'
@@ -21,7 +23,7 @@
 #' ground_truth <- iris[[5]] |>
 #'   as.numeric()
 #'
-#' CrossClustering:::cc_test_ari_permutation(ground_truth, clusters)
+#' cc_test_ari_permutation(ground_truth, clusters)
 #'
 #' @author
 #' Paola Tellaroli, <paola `dot` tellaroli `at` unipd `dot` it>;
@@ -34,7 +36,6 @@
 #'
 #' L. Hubert and P. Arabie (1985) Comparing partitions, Journal of
 #' Classification, 2, 193-218.
-
 cc_test_ari_permutation <- function(ground_truth, partition) {
 
   checkmate::qassert(ground_truth, "N+")

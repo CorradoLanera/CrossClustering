@@ -37,7 +37,7 @@ clusters <- iris[-5] |>
 ground_truth <- iris[[5]] |>
   as.numeric()
 
-CrossClustering:::cc_test_ari(ground_truth, clusters)
+cc_test_ari(ground_truth, clusters)
 
 }
 \references{

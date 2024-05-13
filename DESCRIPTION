@@ -1,7 +1,7 @@
 Type: Package
 Package: CrossClustering
 Title: A Partial Clustering Algorithm
-Version: 4.1.1
+Version: 4.1.2
 Date: 2024-05-01
 Authors@R: c(
     person("Paola", "Tellaroli", , "paola.tellaroli@gmail.com", role = c("cre", "aut")),
@@ -12,7 +12,7 @@ Authors@R: c(
     person("Corrado", "Lanera", , "corrado.lanera@unipd.it", role = "aut")
   )
 Maintainer: Paola Tellaroli <paola.tellaroli@gmail.com>
-Description: Provide the CrossClustering algorithm (Tellaroli et al.
+Description: Provide the 'CrossClustering' algorithm (Tellaroli et al.
     (2016) <doi:10.1371/journal.pone.0152333>), which is a partial
     clustering algorithm that combines the Ward's minimum variance and
     Complete Linkage algorithms, providing automatic estimation of a

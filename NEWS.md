@@ -1,3 +1,8 @@
+# CrossClustering 4.1.2
+
+* exported `cc_test_ari`, `cc_test_ari_permutation`,
+  `consensus_cluster`, and `is_zero`
+
 # CrossClustering 4.1.1
 
 * Removed `.Random.seed` after CRAN request.

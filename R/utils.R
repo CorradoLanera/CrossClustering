@@ -50,10 +50,10 @@ prune_zero_tail <- function(diag_mat) {
 #' @param num a numerical vector of length one
 #'
 #' @return a boolean, TRUE if num is 0
-#'
+#' @export
 #' @examples
-#' CrossClustering:::is_zero(1)
-#' CrossClustering:::is_zero(0)
+#' is_zero(1)
+#' is_zero(0)
 is_zero <- function(num) {
   # input check
   checkmate::qassert(num, "N1")

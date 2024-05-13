@@ -16,6 +16,6 @@ a boolean, TRUE if num is 0
 Check if a given, single, number is 0 or not
 }
 \examples{
-CrossClustering:::is_zero(1)
-CrossClustering:::is_zero(0)
+is_zero(1)
+is_zero(0)
 }

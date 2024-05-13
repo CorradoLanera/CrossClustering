@@ -13,6 +13,8 @@
 #'   \item{nari}{nari}
 #'   \item{p-value}{the p-value of the test}
 #'
+#' @export
+#'
 #' @examples
 #' library(CrossClustering)
 #'
@@ -24,7 +26,7 @@
 #' ground_truth <- iris[[5]] |>
 #'   as.numeric()
 #'
-#' CrossClustering:::cc_test_ari(ground_truth, clusters)
+#' cc_test_ari(ground_truth, clusters)
 #'
 #' @author
 #' Paola Tellaroli, <paola `dot` tellaroli `at` unipd `dot` it>;
@@ -37,8 +39,6 @@
 #'
 #' L. Hubert and p. Arabie (1985) Comparing partitions, Journal of
 #' Classification, 2, 193-218.
-
-
 cc_test_ari <- function(ground_truth, partition) {
 
   checkmate::qassert(ground_truth, "N+")
