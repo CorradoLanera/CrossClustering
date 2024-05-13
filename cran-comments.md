@@ -5,7 +5,7 @@
 
 ### Remote (rhub)
 
-* 20/20 [rhub checks](https://github.com/CorradoLanera/CrossClustering/actions/runs/8941514230) passed:
+* 20/20 [rhub checks](https://github.com/CorradoLanera/CrossClustering/actions/runs/9065559066) passed:
   - [VM] linux          R-* (any version)                     ubuntu-latest on GitHub
   - [VM] macos          R-* (any version)                     macos-13 on GitHub
   - [VM] macos-arm64    R-* (any version)                     macos-latest on GitHub
@@ -34,8 +34,8 @@ R CMD check results (rhub)
 R CMD check succeeded.
 
 ### Remote (win-builder)
-* R [oldrelease](https://win-builder.r-project.org/5IeBFD74s03V),
-  and [release](https://win-builder.r-project.org/8yWOrhyD9fhG)
+* R [oldrelease](https://win-builder.r-project.org/bAVBF38BNXJK),
+  and [release](https://win-builder.r-project.org/0nXlf3Hm2Uh8)
   with win-builder.r-project.org.
 
 R CMD check results (rhub)
@@ -71,9 +71,42 @@ In this updated version I have:
   and coverage.
 * removed `.Random.seed`, after request
 * exported `cc_test_ari`, `cc_test_ari_permutation`,
-  `consensus_cluster`, and `is_zero`
-  
+  `consensus_cluster`, and `is_zero` documented functions
+* put single quotes on package description for the package name.
+
+Note: We deliberately keep 'CrossClustering' in CammelCase style as
+      package name for historical reasons.
+
+### First CRAN request
 > File 'R/CrossClustering-internal.R' sets .Random.seed.
 >    This is usually neither needed nor wanted.
+> 
+> Please fix and resubmit.
+
+### Second CRAN request
+
+> Please always write package names, software names and API (application
+> programming interface) names in single quotes in title and description.
+> e.g: --> 'CrossClustering'
+> Please note that package names are case sensitive.
+> 
+> "Using foo:::f instead of foo::f allows access to unexported objects.
+> This is generally not recommended, as the semantics of unexported
+> objects may be changed by the package author in routine maintenance."
+> 
+> Please omit one colon.
+> 
+> -> Warning: Used ::: in documentation:
+>       man/cc_test_ari_permutation.Rd:
+>          CrossClustering:::cc_test_ari_permutation(ground_truth, clusters)
+>       man/cc_test_ari.Rd:
+>          CrossClustering:::cc_test_ari(ground_truth, clusters)
+>       man/consensus_cluster.Rd:
+>          CrossClustering:::consensus_cluster(c(3, 4), cluster_ward,
+> cluster_other)
+>       man/is_zero.Rd:
+>          CrossClustering:::is_zero(1)
+>       man/is_zero.Rd:
+>          CrossClustering:::is_zero(0)
 > 
 > Please fix and resubmit.
