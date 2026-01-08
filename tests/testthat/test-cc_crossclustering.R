@@ -115,5 +115,5 @@ test_that("correct output class", {
   expect_type(attr(current, "silhouette"), "double")
   expect_type(attr(current, "n_total"), "integer")
   expect_type(attr(current, "n_clustered"), "integer")
-  expect_equal(current, expected)
+  expect_equal(current, expected, check.attributes = FALSE)
 })

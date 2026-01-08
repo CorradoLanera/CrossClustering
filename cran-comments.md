@@ -1,3 +1,12 @@
+# CrossClustering v4.1.3
+
+Relaxes the attribute check in a test case `correct output class` (within `tests/testthat/test-cc-crossclustering.R`) due to for the function used for the comparison (i.e. `testthat::expect_equal`) now "comparison of these types is not implemented". Anyway, all the attributes are already checked in the previous lines of the same test case. 
+
+## Test environments
+### Local
+* Windows 11 Edu, R 4.5.2
+
+
 # CrossClustering v4.1.1
 ## Test environments
 ### Local

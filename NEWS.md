@@ -1,3 +1,10 @@
+# CrossClustering 4.1.3
+
+* Relaxed attribute check in test case `correct output class` within
+  `tests/testthat/test-cc-crossclustering.R` due to `testthat::expect_equal`
+  now "comparison of these types is not implemented".
+  All attributes are already checked in previous lines of the same test case.
+
 # CrossClustering 4.1.2
 
 * exported `cc_test_ari`, `cc_test_ari_permutation`,
