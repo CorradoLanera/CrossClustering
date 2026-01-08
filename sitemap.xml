@@ -1,75 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/CODE_OF_CONDUCT.html</loc>
-  </url>
-  <url>
-    <loc>/CONTRIBUTING.html</loc>
-  </url>
-  <url>
-    <loc>/ISSUE_TEMPLATE.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/CrossClustering-package.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ari.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cc_crossclustering.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cc_get_cluster.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cc_test_ari.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cc_test_ari_permutation.html</loc>
-  </url>
-  <url>
-    <loc>/reference/chain_effect.html</loc>
-  </url>
-  <url>
-    <loc>/reference/consensus_cluster.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/is_zero.html</loc>
-  </url>
-  <url>
-    <loc>/reference/nb_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/prune_zero_tail.html</loc>
-  </url>
-  <url>
-    <loc>/reference/reverse_table.html</loc>
-  </url>
-  <url>
-    <loc>/reference/toy.html</loc>
-  </url>
-  <url>
-    <loc>/reference/twomoons.html</loc>
-  </url>
-  <url>
-    <loc>/reference/worms.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>/CONTRIBUTING.html</loc></url>
+<url><loc>/ISSUE_TEMPLATE.html</loc></url>
+<url><loc>/LICENSE.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/news/index.html</loc></url>
+<url><loc>/reference/CrossClustering-package.html</loc></url>
+<url><loc>/reference/ari.html</loc></url>
+<url><loc>/reference/cc_crossclustering.html</loc></url>
+<url><loc>/reference/cc_get_cluster.html</loc></url>
+<url><loc>/reference/cc_test_ari.html</loc></url>
+<url><loc>/reference/cc_test_ari_permutation.html</loc></url>
+<url><loc>/reference/chain_effect.html</loc></url>
+<url><loc>/reference/consensus_cluster.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/is_zero.html</loc></url>
+<url><loc>/reference/nb_data.html</loc></url>
+<url><loc>/reference/prune_zero_tail.html</loc></url>
+<url><loc>/reference/reverse_table.html</loc></url>
+<url><loc>/reference/toy.html</loc></url>
+<url><loc>/reference/twomoons.html</loc></url>
+<url><loc>/reference/worms.html</loc></url>
 </urlset>
+
