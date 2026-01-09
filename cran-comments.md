@@ -6,6 +6,48 @@ Relaxes the attribute check in a test case `correct output class` (within `tests
 ### Local
 * Windows 11 Edu, R 4.5.2
 
+### Remote (rhub v2)
+
+Only rchk (container issue) and macos r-devel (which is retired) failed.
+see https://github.com/CorradoLanera/CrossClustering/actions/runs/20835662551 for the complete record.
+
+All the following has passed:
+
+ 1 [VM] linux          R-* (any version)                     ubuntu-latest on Git…
+ 2 [VM] m1-san         R-* (any version)                     macos-15 on GitHub, …
+ 3 [VM] macos          R-* (any version)                     macos-13 on GitHub
+ 4 [VM] macos-arm64    R-* (any version)                     macos-latest on GitH…
+ 5 [VM] windows        R-* (any version)                     windows-latest on Gi…
+ 6 [CT] atlas          R-devel (2026-01-07 r89288)           Fedora Linux 38 (Con…
+ 7 [CT] c23            R-devel (2026-01-06 r89281)           Ubuntu 22.04.5 LTS
+ 8 [CT] clang-asan     R-devel (2026-01-07 r89288)           Ubuntu 22.04.5 LTS
+ 9 [CT] clang-ubsan    R-devel (2026-01-07 r89288)           Ubuntu 22.04.5 LTS
+10 [CT] clang16        R-devel (2026-01-06 r89281)           Ubuntu 22.04.5 LTS
+11 [CT] clang17        R-devel (2026-01-06 r89281)           Ubuntu 22.04.5 LTS
+12 [CT] clang18        R-devel (2026-01-06 r89281)           Ubuntu 22.04.5 LTS
+13 [CT] clang19        R-devel (2026-01-06 r89281)           Ubuntu 22.04.5 LTS
+14 [CT] clang20        R-devel (2026-01-07 r89288)           Ubuntu 22.04.5 LTS
+15 [CT] donttest       R-devel (2026-01-06 r89281)           Ubuntu 22.04.5 LTS
+16 [CT] gcc-asan       R-devel (2026-01-07 r89288)           Fedora Linux 40 (Con…
+17 [CT] gcc13          R-devel (2026-01-07 r89288)           Fedora Linux 38 (Con…
+18 [CT] gcc14          R-devel (2026-01-07 r89288)           Fedora Linux 40 (Con…
+19 [CT] gcc15          R-devel (2026-01-07 r89288)           Fedora Linux 42 (Con…
+20 [CT] intel          R-devel (2026-01-07 r89288)           Fedora Linux 38 (Con…
+21 [CT] lto            R-4.5.2 (2025-10-31)                  Ubuntu 24.04.3 LTS
+22 [CT] mkl            R-devel (2026-01-07 r89288)           Fedora Linux 38 (Con…
+23 [CT] nold           R-devel (2026-01-07 r89288)           Ubuntu 22.04.5 LTS
+24 [CT] noremap        R-devel (2026-01-07 r89288)           Ubuntu 22.04.5 LTS
+25 [CT] nosuggests     R-devel (2026-01-07 r89288)           Fedora Linux 38 (Con…
+27 [CT] ubuntu-clang   R-devel (2026-01-07 r89288)           Ubuntu 22.04.5 LTS
+28 [CT] ubuntu-gcc12   R-devel (2026-01-07 r89288)           Ubuntu 22.04.5 LTS
+29 [CT] ubuntu-next    R-4.5.2 (patched) (2026-01-07 r89288) Ubuntu 24.04.3 LTS
+30 [CT] ubuntu-release R-4.5.2 (2025-10-31)                  Ubuntu 24.04.3 LTS
+31 [CT] valgrind       R-devel (2026-01-07 r89288)           Fedora Linux 38 (Con…
+
+R CMD check results (rhub)
+0 errors | 0 warnings | 0 notes
+
+R CMD check succeeded.
 
 # CrossClustering v4.1.1
 ## Test environments
